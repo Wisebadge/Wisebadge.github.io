@@ -107,8 +107,9 @@ nav a:focus { color: #fff; }
 	display: inline-block;
 	width: 113px;
 	height: 110px;
-	background: url(../img/logo.jpg) center center no-repeat;
-	text-indent: -99999px;
+	/* background: url(../img/logo.jpg) center center no-repeat; */
+	background: url(../../Owl1.svg) center center no-repeat;
+    text-indent: -99999px;
 }
 
 .coming-soon .logo a:before {
