@@ -105,20 +105,35 @@ nav a:focus { color: #fff; }
 
 .coming-soon .logo a {
 	display: inline-block;
-	width: 113px;
+	/* width: 113px;
 	height: 110px;
-	/* background: url(../img/logo.jpg) center center no-repeat; */
+	background: url(../img/logo.jpg) center center no-repeat; */
+    width: 290px;
+    height: 250px;
 	background: url(../../Owl1.svg) center center no-repeat;
     text-indent: -99999px;
 }
 
-.coming-soon .logo a:before {
-	content: url(../img/logo-hover.jpg);
+.sticker {
+padding-top: 10px;
+width: 310px;
+height: 200px;
+}
+
+.owl .sticker-img {
+    background: url(../../Owl1.svg) center center no-repeat;
+}
+
+
+/*.coming-soon .logo a:before {
+	/*content: url(../img/logo-hover.jpg); 
+    content: url(../../Owl1.svg)  center center no-repeat;
 	width: 0;
 	height: 0;
 	visibility: hidden;
 }
-.coming-soon .logo a:hover { background-image: url(../img/logo-hover.jpg); }
+*/
+/* .coming-soon .logo a:hover { background: url(../../Owl1.svg) } /*background: url(../../Owl1.svg)*/
 
 .coming-soon h2 {
     font-size: 46px;
