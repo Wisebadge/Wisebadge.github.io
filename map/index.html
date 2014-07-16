@@ -133,7 +133,7 @@ function codeLatLng() {
         });
         infowindow.setContent(results[1].formatted_address);
         infowindow.open(map, marker);
-        markers.push(marker);
+        newMarkers.push(marker);
       } else {
         alert('No results found');
       }
@@ -155,7 +155,7 @@ function codeAddress() {
 
         infowindow.setContent(results[0].formatted_address);
         infowindow.open(map, marker);
-        markers.push(marker);
+        newMarkers.push(marker);
 
 
     } else {
