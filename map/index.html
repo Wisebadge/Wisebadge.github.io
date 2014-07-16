@@ -85,7 +85,7 @@ var pdata = [];
          var date = new Date();
          i++;
 
-        posRef.push({firepos: firepos, time: date}); 
+        posRef.push({firepos: firepos, time: date.toDateString(), Jdate: date.toJSON()}); 
       }
           if (newMarkers.length > 0) {
             alert(newMarkers.length + ' items pushed');
