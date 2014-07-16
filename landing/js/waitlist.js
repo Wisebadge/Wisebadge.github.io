@@ -43,7 +43,7 @@ $(document).ready(function(){
     }
 
     // Submit Form
-    function submitEmail(){
+  /*  function submitEmail(){
         var email = $('#email-input').val(),
             //os = checkClient()
             os = selectedOS
@@ -107,7 +107,7 @@ $(document).ready(function(){
         selectedOS = device
     })
 
-
+*/
     $('.transaction').addClass('counting')
     var transaction = 0,
     currentValue = 0;

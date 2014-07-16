@@ -116,19 +116,20 @@ body {
   margin: 0;
   color: white;
   font-family: "Avenir Next", sans-serif;
-  background: url(../images/background.jpg) no-repeat center center fixed;
+  /* background: url(../images/background.jpg) no-repeat center center fixed; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover; }
 
 /* line 25, ../sass/base.sass */
 .cover {
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
   height: 100%;
-  background-color: rgba(47, 174, 143, 0.9);
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(47, 174, 143, 0.9)), to(rgba(47, 146, 174, 0.9)));
-  background: -webkit-linear-gradient(top, rgba(47, 174, 143, 0.9), rgba(47, 146, 174, 0.9));
+  background-color: rgba(107, 222, 255, 0.9);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(88, 47, 174, 0.9)), to(rgba(50, 210, 255, 0.9)));
+  background: -webkit-linear-gradient(top, rgba(54, 80, 218, 0.9), rgba(41, 204, 250, 0.9))
+
   background: -moz-linear-gradient(top, rgba(47, 174, 143, 0.9), rgba(47, 146, 174, 0.9));
   background: -ms-linear-gradient(top, rgba(47, 174, 143, 0.9), rgba(47, 146, 174, 0.9));
   background: -o-linear-gradient(top, rgba(47, 174, 143, 0.9), rgba(47, 146, 174, 0.9));
@@ -160,7 +161,7 @@ header {
   /* line 35, ../sass/base.sass */
   header .logo {
     margin: 30px 0 0 0;
-    width: 144px;
+    width: 370px;
     cursor: pointer; }
 
 @-webkit-keyframes countTransaction {
@@ -324,7 +325,7 @@ header {
     text-align: center;
     position: absolute;
     background: white;
-    padding: 10px;
+    padding: 20px;
     width: 100%;
     max-width: 400px;
     left: 50%;
@@ -450,7 +451,7 @@ header {
         display: inline-block;
         width: 32px;
         height: 27px;
-        background: url(../images/sprite_social.png) no-repeat;
+        background: url(../img/sprite_social.png) no-repeat;
         background-size: 126px;
         margin: 8px 10px; }
         /* line 217, ../sass/base.sass */
@@ -468,24 +469,28 @@ header {
           width: 100%;
           height: 100%; }
 
-/* line 227, ../sass/base.sass */
+/* 
 .video-frame {
   top: 0;
-  overflow: hidden; }
+  overflow: hidden; } */
 
 /* line 233, ../sass/base.sass */
 body[data-step="2"] .content #count, body[data-step="2"] .content h2, body[data-step="2"] .content p, body[data-step="2"] .content #list-button {
   opacity: 0;
   -webkit-transform: translateY(30px);
   -moz-transform: translateY(30px);
-  transform: translateY(30px); }
+  transform: translateY(30px);
+   }
+  
+
 /* line 238, ../sass/base.sass */
 body[data-step="2"] .email-form {
   z-index: 5;
   opacity: 1;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%);
+   }
 
 /* line 247, ../sass/base.sass */
 body[data-step="3"] .content .step-1 {
