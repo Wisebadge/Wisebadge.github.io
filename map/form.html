@@ -1,0 +1,168 @@
+<html>
+<head> </head>
+<script>
+function numbersonly(myfield, e, dec)
+{
+var key;
+var keychar;
+
+if (window.event)
+   key = window.event.keyCode;
+else if (e)
+   key = e.which;
+else
+   return true;
+keychar = String.fromCharCode(key);
+
+// control keys
+if ((key==null) || (key==0) || (key==8) || 
+    (key==9) || (key==13) || (key==27) )
+   return true;
+
+// numbers
+else if ((("0123456789").indexOf(keychar) > -1))
+   return true;
+
+// decimal point jump
+else if (dec && (keychar == "."))
+   {
+   myfield.form.elements[dec].focus();
+   return false;
+   }
+else
+   return false;
+}
+
+
+</SCRIPT>
+
+  <title>New Project </title>
+
+   <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+     <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Add custom CSS here -->
+    <link href="css/lazy.css" rel="stylesheet">
+    <!--link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"-->
+     <script src="js/jquery.main.min.js"></script>
+    <script src="js/smoothscroll.js"></script>
+
+</head>
+
+    
+     <body data-spy="scroll" data-offset="0" data-target="#navigation">
+
+    <!-- Fixed navbar -->
+	    <div id="navigation" class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="index.html"><b>Oakland Arts</b></a>
+	        </div>
+	        <div class="navbar-collapse collapse">
+	          <ul class="nav navbar-nav">
+	            <li><a href="index.html" class="smothscroll">Home</a></li>
+                  
+	            <li><a href="#desc" class="smothscroll">Description</a></li>
+            <li><a href="index.html" class="smothscroll">Map</a></li>
+                  <li class="dropdown active">
+                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                     <li class="active"><a href="form.html">Add</a></li>
+                      <li><a href="">Projects</a></li>
+                      <li><a href="">Finances</a></li>
+                      <li><a href="">Administration</a></li>
+                    </ul>
+                </li>
+	          </ul>
+	        </div><!--/.nav-collapse -->
+	      </div>
+	    </div>
+
+
+
+
+
+
+<div class="superhead"> Create a New Project</div>
+
+	
+				
+                    <div class="row spacer"> <div class="col-lg-5"> 
+				<form role="form" action="hack.php" method="post" enctype="plain"> 
+
+
+					   <div class="form-group">
+				  	<label>Project Title</label>
+				  	 <input type="text" name="title" class="form-control" id="title" placeholder="Title">
+				  </div>
+
+				  <div class="form-group">
+				  	<label>Project Description</label>
+				  	<textarea class="form-control" name="description" rows="3" placeholder="Enter Project Description"></textarea>
+				  </div>
+                  
+				  <div class="form-group">
+				    <label for="location">Project Location</label>
+				    <input type="text" name="location" class="form-control" id="location" placeholder="Project Location">
+				  </div>
+                  
+				  <div class="form-group">
+				    <label for="expenditure">Project Expenditures</label>
+				    <input type="text" name="expenditure" class="form-control" id="expenditure" placeholder="Expenditures">
+				  </div>
+                  
+				  <div class="form-group">
+				    <label for="commission">Project Earnings</label>
+				    <input type="text" name="commission" class="form-control" id="commission" placeholder="Commissions">
+				  </div>			
+</div>
+                      
+                    <div class="col-lg-5">
+				  <div class="form-group">
+				    <label for="name">Contact Name</label>
+				    <input type="text" name="name" class="form-control" id="name" placeholder="Full Name">
+				  </div>
+
+				  <div class="form-group">
+				    <label for="phone">Phone Number</label>
+				    <input MAXLENGTH=10 type="text" name="phone" class="form-control" id="phone" placeholder="Phone # (XXXXXXXXXX)" onKeyPress="return numbersonly(this,event)">
+				  </div>
+                  
+				  <div class="form-group">
+				    <label for="phone">Email Address</label>
+				    <input type="email" name="email" class="form-control" id="email" placeholder="johnsmith@gmail.com" required>
+				  </div>
+
+				   <div class="form-group">
+				  	<label>Proposed Location</label>
+				  	 <input type="text" name="plocation" class="form-control" id="plocation" placeholder="Artist Location">
+				  </div>
+                  
+				   <div class="form-group">
+				  	<label>Picture Link</label>
+				  	 <input type="text" name="picture" class="form-control" id="picture" placeholder="Link to picture">
+				  </div>
+        </div>
+
+			
+   <div id="page-wrapper"><button type="submit" class="btn btn-large fattt btn-success">SUBMIT</button>  </div>
+            
+				  
+				</form>
+
+			</div>
+		</div>
+         
+	
+</body>
+
+   <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/bootstrap.js"></script>
+ </html>

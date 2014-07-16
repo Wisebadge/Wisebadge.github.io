@@ -1,63 +1,16 @@
+
 <html>
   <head>
     <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="jquery.min.js"> </script>
     <link rel='stylesheet' type='text/css' href='style.css'>
-
-
-<title> Map </title>
-
-   <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
-     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <!-- Add custom CSS here -->
-    <link href="css/lazy.css" rel="stylesheet">
-    <!--link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"-->
-     <script src="js/jquery.main.min.js"></script>
-       <script src="js/jquery.ui.js"></script>
-    <script src="js/smoothscroll.js"></script>
-
-</head>
-
-    
-     <body data-spy="scroll" data-offset="0" data-target="#navigation">
-
-    <!-- Fixed navbar -->
-      <div id="navigation" class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html"><b>Oakland Arts</b></a>
-          </div>
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li><a href="index.html" class="smothscroll">Home</a></li>
-                  
-              <li><a href="#desc" class="smothscroll">Description</a></li>
-            <li class="active"><a href="index.html" class="smothscroll">Map</a></li>
-                  <li class="dropdown">
-                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                     <li><a href="form.html">Add</a></li>
-                      <li><a href="">Projects</a></li>
-                      <li><a href="">Finances</a></li>
-                      <li><a href="">Administration</a></li>
-                    </ul>
-                </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-
-
-<div class="superhead topmargin"> View the City</div>
-
+  </head>
+  <body>
     <div id='messagesDiv'></div>
+    <input type='text' id='nameInput' placeholder='Name'>
+    <input type='text' id='messageInput' placeholder='Message'>
 
 
     <script>
@@ -269,19 +222,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
     var w4 = .75 * w3;
     $('#page-wrapper').width(w2);
     $('.panel').width(w3);
-    $('.panel-item').width(w4);
     $('#latlng').width(w4);
-    $('#address').width(w4);
     $('#container').width(w2);
 
     
 });
-$(function() {
-    $( "#pan1" ).draggable();
-    $( "#pan2" ).draggable();
-    $( "#pan3" ).draggable();
-  });
-    
 
     </script>
 
@@ -296,20 +241,20 @@ $(function() {
 
     <div class="panel" id="pan1">
       <input id="latlng" type="text" value="37.79296501804014, -122.34786987304688">
-      <div onclick="codeLatLng()" class="panel-item btn btn-primary"> Reverse Geocode </div>
+      <input type="button" value="Reverse Geocode" onclick="codeLatLng()">
     </div>
 
       <div class="panel" id="pan2">
-      <div onclick="clearMarkers();" class="panel-item btn btn-primary"> Hide all markers </div>
-      <div onclick="showMarkers();" class="panel-item btn btn-primary">  Show all markers </div>
-      <div onclick="deleteMarkers();"  class="panel-item btn btn-primary"> Delete Markers </div>
-      <div onclick="zpush();" class="panel-item btn btn-primary"> Push to Firebase </div>
+      <input onclick="clearMarkers();" type=button value="Hide Markers">
+      <input onclick="showMarkers();" type=button value="Show All Markers">
+      <input onclick="deleteMarkers();" type=button value="Delete Markers">
+      <input onclick="zpush();" type=button value="Push to Firebase">
     </div>
 
 <div class="panel" id="pan3">
       <input id="address" type="textbox" value="San Francisco, CA">
-      <div onclick="codeAddress()" class="panel-item btn btn-primary"> Geocode </div>
-</div>
+      <input type="button" value="Geocode" onclick="codeAddress()">
+    </div>
 
   </body>
 
@@ -331,9 +276,9 @@ $(function() {
   }
       html { height: 90% }
       body { height: 90%; margin: 0; padding: 0 }
-      #map-canvas { height: 90%; width:90%; margin-bottom: 20px;}
+      #map-canvas { height: 90%; width:90%;}
 
-      .panel {
+         .panel {
 			position: absolute;
 			margin-left: -180px;
 			width: 300px;
@@ -342,11 +287,6 @@ $(function() {
 			padding: 10px;
 			border: 1px solid #999;
       	}
-      .panel-item {
-        margin-bottom: 2px;
-        margin-top: 2px;
-
-      }  
       	#pan1 {
       	top: 200px;
 		right: 2%;
@@ -357,7 +297,7 @@ $(function() {
 		}
 		#pan3 {
       	top: 200px;
-		left: 20%;
+		left: 15%;
 		}
 
       #latlng {
@@ -369,9 +309,4 @@ $(function() {
       }
 
   </style>
-
-   <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/bootstrap.js"></script>
 </html>
