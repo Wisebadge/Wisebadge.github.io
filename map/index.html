@@ -3,9 +3,6 @@
     <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <link rel='stylesheet' type='text/css' href='style.css'>
-
-
 <title> Map </title>
 
    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
@@ -61,7 +58,7 @@
 
 
     <script>
-      var myDataRef = new Firebase('https://zzeleznick.firebaseio.com'); 
+      var myDataRef = new Firebase('https://zmapper.firebaseio.com'); 
       var posRef = myDataRef.child('positions');
 
 // In the following example, markers appear when the user clicks on the map.
@@ -88,26 +85,20 @@ var pdata = [];
 
        	posRef.push({firepos: firepos});
     	}
-       		/*var name = $('#nameInput').val();
-          	var text = $('#messageInput').val();*/
-
        		if (newMarkers.length > 0) {
-       			console.log(newMarkers.length + ' items pushed');
+       			alert(newMarkers.length + ' items pushed');
        		}
        		else {
-       			console.log('all up to date!');
+       			alert('all up to date!');
        		}
      }
 
     posRef.on('child_added', function(snapshot) {
         var mymarker = snapshot.val();
-		//console.log("The marker is set to: " + mymarker);
         displayMapMarkers(mymarker.firepos);
       });
 
     function displayMapMarkers(firepos) {
-    		//console.log("Trying to display MapMarkers");
-    	    //console.log("firepos was set to: " + firepos);
     	    var zlat = firepos.k;
     	    var zlng = firepos.B;
     	    console.log("firepos lat was set to: " + zlat);
@@ -206,22 +197,13 @@ function addMarker(location) {
    $('<div/>').text(location).prepend($('<em/>').text("Your location"+': ')).appendTo($('#messagesDiv'));
 	var ans = prompt('save, bitch?');
     if (ans == 'yes'){
+
     var marker = new google.maps.Marker({
     position: location,
     map: map
   	});  
-    /*var myCity = new google.maps.Circle({
-                center:location,
-                radius:200,
-                strokeColor:"#0000FF",
-                  strokeOpacity:0.8,
-                  strokeWeight:2,
-                  fillColor:"#0000FF",
-                  fillOpacity:0.4
-                  });
-	//polygon
-  	myCity.setMap(map);   */ 
-  	newMarkers.push(marker);  //add to new marker array
+  	newMarkers.push(marker);//add to new marker array
+        console.log('marker added to local map');
 	}
 
 }
@@ -301,16 +283,16 @@ function showMarkers() {
 // Deletes all markers in the array by removing references to them.
 function deleteMarkers() {
   newMarkers = [];  //the added ones
-  var markerRef = new Firebase('https://zzeleznick.firebaseio.com/positions');
+  var markerRef = new Firebase('https://zmapper.firebaseio.com/positions');
   console.log("what is: " + markerRef);
   var onComplete = function(error) {
   			if (error) {
     			alert('Synchronization failed.');
   			}
   			else {
+          alert('Synchronization succeeded. ' + markers.length + ' items deleted');
           markers = [];
           setAllMap(null);
-    			alert('Synchronization succeeded. items deleted');
 			}
 		};
 		markerRef.remove(onComplete);
