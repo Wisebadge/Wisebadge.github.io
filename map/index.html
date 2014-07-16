@@ -136,6 +136,67 @@ function initialize() {
   google.maps.event.addListener(map, 'click', function(event) {
     addMarker(event.latLng);
   });
+
+  /*  var contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">Hi</h1>'+
+        '<div id="bodyContent">'+
+        '<p>This is a test.</p>'+
+        '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'www.en.wikipedia.org</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
+          
+         var contentString2 = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">Hi</h1>'+
+        '<div id="bodyContent">'+
+        '<p>This is a test.</p>'+
+        '<p>Attribution: MOMMY! <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'www.en.wikipedia.org</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+      content: contentString
+  });
+
+  var infowindow2 = new google.maps.InfoWindow({
+      content: contentString2
+        });
+          
+    var myAltLatLng = new google.maps.LatLng(37.75280111220671, -122.4258041381836);
+    var myLatLng = new google.maps.LatLng(37.7699298, -122.4469157); 
+    
+    var marker = new google.maps.Marker({
+      position: myAltLatLng,
+      draggable:false,
+      map: map,
+      title: "Hello World!"
+    });
+        
+          
+      var marker2 = new google.maps.Marker({
+      position: myLatLng,
+      draggable:true,
+      map: map,
+      title: "Hello World!"
+    });
+        
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+        
+      google.maps.event.addListener(marker2, 'click', function() {
+      infowindow2.open(map,marker2);
+    });
+*/
+
 }
 
 
@@ -264,6 +325,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
     var w = $(window).width();
     var h = $(window).height();
+    var w1 = 2 * w/ 3;
     var w2 = w/2;
     var w3 = w/6
     var w4 = .75 * w3;
@@ -272,7 +334,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     $('.panel-item').width(w4);
     $('#latlng').width(w4);
     $('#address').width(w4);
-    $('#container').width(w2);
+    $('#container').width(w1);
 
     
 });

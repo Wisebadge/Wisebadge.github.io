@@ -1,42 +1,10 @@
 <html>
-<head> </head>
-<script>
-function numbersonly(myfield, e, dec)
-{
-var key;
-var keychar;
-
-if (window.event)
-   key = window.event.keyCode;
-else if (e)
-   key = e.which;
-else
-   return true;
-keychar = String.fromCharCode(key);
-
-// control keys
-if ((key==null) || (key==0) || (key==8) || 
-    (key==9) || (key==13) || (key==27) )
-   return true;
-
-// numbers
-else if ((("0123456789").indexOf(keychar) > -1))
-   return true;
-
-// decimal point jump
-else if (dec && (keychar == "."))
-   {
-   myfield.form.elements[dec].focus();
-   return false;
-   }
-else
-   return false;
-}
-
-
-</SCRIPT>
 
   <title>New Project </title>
+
+    <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
      <!-- Bootstrap core CSS -->
@@ -85,6 +53,62 @@ else
 
 
 
+<script type="text/javascript">
+	function numbersonly(myfield, e, dec)
+{
+var key;
+var keychar;
+
+if (window.event)
+   key = window.event.keyCode;
+else if (e)
+   key = e.which;
+else
+   return true;
+keychar = String.fromCharCode(key);
+
+// control keys
+if ((key==null) || (key==0) || (key==8) || 
+    (key==9) || (key==13) || (key==27) )
+   return true;
+
+// numbers
+else if ((("0123456789").indexOf(keychar) > -1))
+   return true;
+
+// decimal point jump
+else if (dec && (keychar == "."))
+   {
+   myfield.form.elements[dec].focus();
+   return false;
+   }
+else
+   return false;
+}
+
+//Begin Firebase + google maps
+
+  var geocoder = new google.maps.Geocoder();
+
+  var markerRef = new Firebase('https://zzeleznick.firebaseio.com/positions');
+
+  function codeFBAddress() {
+  	console.log('function Begins');
+	  //var address = document.getElementById('location').value;
+	  var address = $('#location').val();
+	  console.log("Address is: " + address);
+	  geocoder.geocode( { 'address': address}, function(results, status) {
+		    if (status == google.maps.GeocoderStatus.OK) {
+		    	var pos = results[0].geometry.location;
+		    	markerRef.push({firepos: pos});
+		    	alert('Geocode success: ' + status);
+		    } else {
+		      alert('Geocode was not successful for the following reason: ' + status);
+		    }
+	   });
+	};
+    	
+</script>
 
 
 
@@ -93,7 +117,8 @@ else
 	
 				
                     <div class="row spacer"> <div class="col-lg-5"> 
-				<form role="form" action="hack.php" method="post" enctype="plain"> 
+
+				<form role="form" method="post" enctype="plain"> 
 
 
 					   <div class="form-group">
@@ -150,7 +175,7 @@ else
         </div>
 
 			
-   <div id="page-wrapper"><button type="submit" class="btn btn-large fattt btn-success">SUBMIT</button>  </div>
+   <div id="page-wrapper"><button type="submit" onclick="codeFBAddress();" class="btn btn-large fattt btn-success">SUBMIT</button>  </div>
             
 				  
 				</form>
