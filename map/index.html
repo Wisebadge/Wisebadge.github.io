@@ -2,7 +2,7 @@
   <head>
     <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 <title> Map </title>
 
    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
@@ -59,7 +59,8 @@
 
     <script>
       var myDataRef = new Firebase('https://zmapper.firebaseio.com'); 
-      var posRef = myDataRef.child('positions');
+       var newRef = myDataRef.child('new');
+      var posRef = newRef.child('elements');
 
 // In the following example, markers appear when the user clicks on the map.
 // The markers are stored in an array.
@@ -68,29 +69,31 @@ var map;
 var markers = [];
 var newMarkers = [];
 var infowindow = new google.maps.InfoWindow();
-var geocoder = new google.maps.Geocoder();	
+var geocoder = new google.maps.Geocoder();  
 var i = 0;
 var data = [];
 var pdata = [];
 
 
   function zpush() {
-       	for (keys in newMarkers) {
+        for (keys in newMarkers) {
          data.push(newMarkers[keys])
          pdata.push(data[i].position)
          console.log(data[i]);
          console.log("Position data is:  " + pdata[i]);
-		var firepos = pdata[i];
-		i++;
+         var firepos = pdata[i];
+         var date = new Date();
+         i++;
 
-       	posRef.push({firepos: firepos});
-    	}
-       		if (newMarkers.length > 0) {
-       			alert(newMarkers.length + ' items pushed');
-       		}
-       		else {
-       			alert('all up to date!');
-       		}
+        posRef.push({firepos: firepos, time: date}); 
+      }
+          if (newMarkers.length > 0) {
+            alert(newMarkers.length + ' items pushed');
+            map.setZoom(12); 
+          }
+          else {
+            alert('all up to date!');
+          }
      }
 
     posRef.on('child_added', function(snapshot) {
@@ -99,18 +102,18 @@ var pdata = [];
       });
 
     function displayMapMarkers(firepos) {
-    	    var zlat = firepos.k;
-    	    var zlng = firepos.B;
-    	    console.log("firepos lat was set to: " + zlat);
-    	    console.log("firepos lng was set to: " + zlng);
+          var zlat = firepos.k;
+          var zlng = firepos.B;
+          console.log("firepos lat was set to: " + zlat);
+          console.log("firepos lng was set to: " + zlng);
 
-      	var marker = new google.maps.Marker({
-    		position: {lat: zlat, lng: zlng},
-    		map: map
-  			});  
+        var marker = new google.maps.Marker({
+        position: {lat: zlat, lng: zlng},
+        map: map
+        });  
 
-  			markers.push(marker);  //configure last-saved marker array
-	};
+        markers.push(marker);  //configure last-saved marker array
+  };
   
 
 
@@ -128,83 +131,99 @@ function initialize() {
     addMarker(event.latLng);
   });
 
-  /*  var contentString = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h1 id="firstHeading" class="firstHeading">Hi</h1>'+
-        '<div id="bodyContent">'+
-        '<p>This is a test.</p>'+
-        '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-        'www.en.wikipedia.org</a> '+
-        '(last visited June 22, 2009).</p>'+
-        '</div>'+
-        '</div>';
-          
-         var contentString2 = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h1 id="firstHeading" class="firstHeading">Hi</h1>'+
-        '<div id="bodyContent">'+
-        '<p>This is a test.</p>'+
-        '<p>Attribution: MOMMY! <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-        'www.en.wikipedia.org</a> '+
-        '(last visited June 22, 2009).</p>'+
-        '</div>'+
-        '</div>';
 
-  var infowindow = new google.maps.InfoWindow({
-      content: contentString
+///Begin Autocomplete mastery
+var input = /** @type {HTMLInputElement} */(
+      document.getElementById('pac-input'));
+
+  var types = document.getElementById('type-selector');
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.bindTo('bounds', map);
+
+  var infowindow = new google.maps.InfoWindow();
+  var marker = new google.maps.Marker({
+    map: map,
+    anchorPoint: new google.maps.Point(0, -29)
   });
 
-  var infowindow2 = new google.maps.InfoWindow({
-      content: contentString2
-        });
-          
-    var myAltLatLng = new google.maps.LatLng(37.75280111220671, -122.4258041381836);
-    var myLatLng = new google.maps.LatLng(37.7699298, -122.4469157); 
-    
-    var marker = new google.maps.Marker({
-      position: myAltLatLng,
-      draggable:false,
-      map: map,
-      title: "Hello World!"
-    });
-        
-          
-      var marker2 = new google.maps.Marker({
-      position: myLatLng,
-      draggable:true,
-      map: map,
-      title: "Hello World!"
-    });
-        
 
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map,marker);
-    });
-        
-      google.maps.event.addListener(marker2, 'click', function() {
-      infowindow2.open(map,marker2);
-    });
-*/
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    infowindow.close();
+    marker.setVisible(false);
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+      return;
+    }
 
+    // If the place has a geometry, then present it on a map.
+    if (place.geometry.viewport) {
+      map.fitBounds(place.geometry.viewport);
+    } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(17);  // Why 17? Because it looks good.
+    }
+    marker.setIcon(/** @type {google.maps.Icon} */({
+      url: place.icon,
+      size: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(35, 35)
+    }));
+    marker.setPosition(place.geometry.location);
+    marker.setVisible(true);
+
+    var address = '';
+    if (place.address_components) {
+      address = [
+        (place.address_components[0] && place.address_components[0].short_name || ''),
+        (place.address_components[1] && place.address_components[1].short_name || ''),
+        (place.address_components[2] && place.address_components[2].short_name || '')
+      ].join(' ');
+    }
+
+    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+    infowindow.open(map, marker);
+    //Begin ZZ FB fix
+   newMarkers.push(marker);//add to new marker array
+        console.log('marker added to local map');
+  //END ZZ FB fix
+  });
+
+  // Sets a listener on a radio button to change the filter type on Places
+  // Autocomplete.
+  function setupClickListener(id, types) {
+    var radioButton = document.getElementById(id);
+    google.maps.event.addDomListener(radioButton, 'click', function() {
+      autocomplete.setTypes(types);
+    });
+  }
+
+  setupClickListener('changetype-all', []);
+  setupClickListener('changetype-establishment', ['establishment']);
+  //setupClickListener('changetype-geocode', ['geocode']);
 }
+
+//end auto-mastery
+
 
 
 // Add a marker to the map and push to the array.
 function addMarker(location) {
   console.log("Your location is:  " + location);
    $('<div/>').text(location).prepend($('<em/>').text("Your location"+': ')).appendTo($('#messagesDiv'));
-	var ans = prompt('save, bitch?');
+  var ans = prompt('save, bitch?');
     if (ans == 'yes'){
 
     var marker = new google.maps.Marker({
     position: location,
     map: map
-  	});  
-  	newMarkers.push(marker);//add to new marker array
+    });  
+    newMarkers.push(marker);//add to new marker array
         console.log('marker added to local map');
-	}
+  }
 
 }
 
@@ -230,27 +249,6 @@ function codeLatLng() {
       }
     } else {
       alert('Geocoder failed due to: ' + status);
-    }
-  });
-}
-
-function codeAddress() {
-  var address = document.getElementById('address').value;
-  geocoder.geocode( { 'address': address}, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-
-        infowindow.setContent(results[0].formatted_address);
-        infowindow.open(map, marker);
-        newMarkers.push(marker);
-
-
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
     }
   });
 }
@@ -286,18 +284,18 @@ function deleteMarkers() {
   var markerRef = new Firebase('https://zmapper.firebaseio.com/positions');
   console.log("what is: " + markerRef);
   var onComplete = function(error) {
-  			if (error) {
-    			alert('Synchronization failed.');
-  			}
-  			else {
+        if (error) {
+          alert('Synchronization failed.');
+        }
+        else {
           alert('Synchronization succeeded. ' + markers.length + ' items deleted');
           markers = [];
           setAllMap(null);
-			}
-		};
-		markerRef.remove(onComplete);
-		initialize();
-		
+      }
+    };
+    markerRef.remove(onComplete);
+    initialize();
+    
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -318,6 +316,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
     $('#address').width(w4);
     $('#container').width(w1);
 
+    $( "#pan3" ).width(400);
+
     
 });
 $(function() {
@@ -334,7 +334,7 @@ $(function() {
   <body>
 
     <div id="container">
-     	<div id="map-canvas"> </div>
+      <div id="map-canvas"> </div>
      </div>
 
 
@@ -350,72 +350,121 @@ $(function() {
       <div onclick="zpush();" class="panel-item btn btn-primary"> Push to Firebase </div>
     </div>
 
-<div class="panel" id="pan3">
-      <input id="address" type="textbox" value="San Francisco, CA">
-      <div onclick="codeAddress()" class="panel-item btn btn-primary"> Geocode </div>
-</div>
+
+   
+    <input id="pac-input" class="controls" type="text"
+        placeholder="Enter a location">
+    <div id="type-selector" class="controls">
+      <input type="radio" name="type" id="changetype-all" checked="checked">
+      <label for="changetype-all">All</label>
+
+      <input type="radio" name="type" id="changetype-establishment">
+      <label for="changetype-establishment">Establishments</label>
+
+      <!--input type="radio" name="type" id="changetype-geocode">
+      <label for="changetype-geocode">Geocodes</label-->
+    </div>
+
 
   </body>
 
- <style type="text/css">
- 	 #messagesDiv {
-		font-size: 30px;
-		border: black;
-		border-style: solid;
-		padding: 20px;
-		margin-bottom: 20px;
-  	}
+
+ <style>
+   #messagesDiv {
+    font-size: 30px;
+    border: black;
+    border-style: solid;
+    padding: 20px;
+    margin-bottom: 20px;
+    }
 
   input {
-  	font-size: 20px;
-  	margin-bottom: 20px;
+    font-size: 20px;
+    margin-bottom: 20px;
   }
   #container {
-  	margin:auto;
+    margin:auto;
   }
       html { height: 90% }
       body { height: 90%; margin: 0; padding: 0 }
       #map-canvas { height: 90%; width:90%; margin-bottom: 20px;}
 
       .panel {
-			position: absolute;
-			margin-left: -180px;
-			width: 300px;
-			z-index: 5;
-			background-color: #fff;
-			padding: 10px;
-			border: 1px solid #999;
-      	}
+      position: absolute;
+      margin-left: -180px;
+      width: 300px;
+      z-index: 5;
+      background-color: #fff;
+      padding: 10px;
+      border: 1px solid #999;
+        }
       .panel-item {
         margin-bottom: 2px;
         margin-top: 2px;
 
       }  
-      	#pan1 {
-      	top: 200px;
-		right: 2%;
-		}
-		#pan2 {
-      	top: 400px;
-		right: 2%;
-		}
-		#pan3 {
-      	top: 200px;
-		left: 20%;
-		}
+        #pan1 {
+        top: 200px;
+    right: 2%;
+    }
+    #pan2 {
+        top: 400px;
+    right: 2%;
+    }
+    #pan3 {
+        top: 200px;
+    left: 20%;
+    }
 
-      #latlng {
-      	font-size: 14px;
+   .controls {
+        margin-top: 16px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       }
 
-      #address {
-      	font-size: 14px;
+      #pac-input {
+        background-color: #fff;
+        padding: 0 11px 0 13px;
+        width: 400px;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        text-overflow: ellipsis;
       }
 
-  </style>
+      #pac-input:focus {
+        border-color: #4d90fe;
+        margin-left: -1px;
+        padding-left: 14px;  /* Regular padding-left + 1. */
+        width: 401px;
+      }
 
-   <!-- Bootstrap core JavaScript
+      .pac-container {
+        font-family: Roboto;
+      }
+
+      #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+      }
+
+      #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+}
+</style>
+
+ <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/bootstrap.js"></script>
 </html>
+
