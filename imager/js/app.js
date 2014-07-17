@@ -90,13 +90,18 @@ var data = [{
 	 	var counts = []; //loaded on first page init
 	 	var allRef = new Firebase("https://hotnot.firebaseio.com/neighborhoods/-JS0sS2Ie-ebCoI8FuLG/data/");	
 	 	
-	 	var auth = new FirebaseSimpleLogin(allRef, function(error, user) {
-		  if (error) {
+	 	var auth = new FirebaseSimpleLogin(ref, function(error, user) {
+	 	   var userRef = new Firebase("https://hotnot.firebaseio.com/neighborUsers");
+		   if (error) {
 		    // an error occurred while attempting login
 		    console.log(error);
 		  } else if (user) {
 		    // user authenticated with Firebase
 		    console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+		    var date = new Date();
+        	var time = date.toJSON();
+
+			userRef.push({userID: user.uid, timestamp: time, auth: true });    
 		  } else {
 		    // user is logged out
 		  }
@@ -196,39 +201,5 @@ var data = [{
  		    //end img check 
 
 			});
-/*
- 		fogRef.on('value', function(snap) {  ///Note this will looop
-  		       console.log("count is: " + count);
-  		    	var myFogVal = snap.val();
-  		      console.log("my fog val = " + myFogVal);
-  		       var myString = "#" + data[count].id;
-  		     //   console.log("my span string = " + myString);
-  		       $(myString +'-f').text('foggy: ' + myFogVal);
- 			//	console.log('foggy appended');
-			});
-
- 		//end fogRef call
- */
  		}
  	});
-
-
-	/*	function(forecast) {
-
-			//Increment counters
-			if (forecast == "sun") {
-				$scope.sunny += 1;
-				ref.$child("sunny").$set($scope.sunny);
-			} else {
-				$scope.foggy += 1;
-				ref.$child("foggy").$set($scope.foggy);
-			}
-
-			//Check values and update weather image
-			if ($scope.sunny >= $scope.foggy) {
-				$scope.weather = "sunny";
-			} else {
-				$scope.weather = "foggy";
-			}
-		}
-*/

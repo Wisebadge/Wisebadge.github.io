@@ -68,7 +68,26 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
+			<div class="neighborhood animated swing">
+		<div class="card" id="north-beach">
+			<h3 class="hood"> North Beach </h3>
+			<h4 class="weather-heading"> </h4>
+
+			<div id="weather-count">
+					<span class="test left" id="north-beach-s"> sunny: </span>
+					<span class="foggy-count right" id="north-beach-f"> foggy </span>
+					<div class="clear"></div>
+				</div>
+
+				<div class="controls">
+					<a onclick="updateSun(2);" class="button button-tiny button-highlight button-rounded"><i class="icon-sun"></i> Sunny</a>
+					<a onclick="updateFog(2);" class="right button button-tiny button-primary button-rounded"><i class="icon-cloud"></i> Foggy</a>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</div> <!--end wrapper-->
 		<!--div ng-repeat="hood in hoods | filter:query" class="neighborhood animated swing">
 			<div class="card" id="{{hood.id}}" ng-class="{'sunny': weather == 'sunny', 'foggy': weather == 'foggy'}" ng-controller="WeatherController" ng-init="init(hood.value)">
 
