@@ -133,27 +133,33 @@ var data = [{
  		for (keys in data) {
  			var myString = "#" + data[keys].id;
  			var sunRef = new Firebase("https://hotnot.firebaseio.com/neighborhoods/-JS0sS2Ie-ebCoI8FuLG/data/" + keys + "/sunny");
- 			console.log('key at:' + keys);
- 			console.log('sunRef at:' + sunRef);
+ 			var fogRef = new Firebase("https://hotnot.firebaseio.com/neighborhoods/-JS0sS2Ie-ebCoI8FuLG/data/" + keys + "/foggy");
+ 			//console.log('key at:' + keys);
+ 			//console.log('sunRef at:' + sunRef);
  			links.push(sunRef);
 
  		var count = 0;
+		var fcount = 0;
 
 			sunRef.on('value', function(snap) {  ///Note this will looop
   		       var mySunVal = snap.val();
-  		       console.log("my sun val = " + mySunVal);
+  		    //   console.log("my sun val = " + mySunVal);
   		       var myString = "#" + data[count].id;
   		       count++;
-  		        console.log("my span string = " + myString);
+  		    //    console.log("my span string = " + myString);
   		       $(myString +'-s').text('sunny: ' + mySunVal);
- 				console.log('sunny appended');
+ 			//	console.log('sunny appended');
 			});
 
- 			var myFogVal = data[keys].foggy;
- 			
-
- 			$(myString + '-f').text('foggy: ' + myFogVal);
- 			console.log('foggy appended');
+ 		fogRef.on('value', function(snap) {  ///Note this will looop
+  		       var myFogVal = snap.val();
+  		      // console.log("my fog val = " + myFogVal);
+  		       var myString = "#" + data[fcount].id;
+  		       fcount++;
+  		     //   console.log("my span string = " + myString);
+  		       $(myString +'-f').text('foggy: ' + myFogVal);
+ 			//	console.log('foggy appended');
+			});
  		}
  	});
 
