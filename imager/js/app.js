@@ -100,8 +100,7 @@ var data = [{
 		    console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
 		    var date = new Date();
         	var time = date.toJSON();
-
-			userRef.push({userID: user.uid, timestamp: time, auth: true });    
+			userRef.push({userID: user.uid, name: user.displayName, timestamp: time,  data: user.thirdPartyUserData, auth: true });    
 		  } else {
 		    // user is logged out
 		  }
