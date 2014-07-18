@@ -1,163 +1,159 @@
 <html>
-<head>
-    <title>Wisebadge waiting list</title>
-    <!-- META -->
-    <meta name="viewport" content="minimal-ui, initial-scale=1.0, user-scalable=no">
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <!-- Javascript -->
-    <script type="text/javascript" src="js/jquery-2.1.1.js"></script>
-    <script type="text/javascript" src="js/jquery.cookie.js"></script>
-    <script src="js/waitlist.js"></script>
-    <!--script src="//cdn.optimizely.com/js/627150995.js"></script-->
-    <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-  
-    <!--KISS Metrics-->
-<script type="text/javascript">var _kmq = _kmq || [];
-var _kmk = _kmk || 'ec1b1f2024d7c723a8d517ef0e097643766a476b';
-function _kms(u){
-  setTimeout(function(){
-    var d = document, f = d.getElementsByTagName('script')[0],
-    s = d.createElement('script');
-    s.type = 'text/javascript'; s.async = true; s.src = u;
-    f.parentNode.insertBefore(s, f);
-  }, 1);
-}
-_kms('https://i.kissmetrics.com/i.js');
-_kms('https://doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
-</script>
-
-
-    <!--script type="text/javascript">
-    //WEBFONTS
-    var MTUserId='bc0a6976-9efe-406c-8ec0-02d2ba5e4d03';
-    var MTFontIds = new Array();
-
-    MTFontIds.push("721257"); // Avenir Next WFS W01 Ultra Light
-    MTFontIds.push("721263"); // Avenir Next WFS W01 Regular
-    (function() {
-    var mtTracking = document.createElement('script');
-    mtTracking.type='text/javascript';
-    mtTracking.async='true';
-    mtTracking.src=('https:'==document.location.protocol?'https:':'http:')+'//fast.fonts.net/lt/trackingCode.js';
-
-    (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(mtTracking);
-    })();
-    //END WEBFONTS
-    </script-->
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-52903606-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-</head>
-<body class="waitlist" data-step="1">
-    <div class="cover">
-        <header>
-            <img class="logo" src="img/owl-ribbon3.svg" alt="WiseBadge logo" onClick="window.location.reload()">
-        </header>
-        <div class="content">
-            <div class="email-form">
-                <form id="emailForm" novalidate>
-                    <div class="button-frame">
-                        <span>Select your device</span>
-                        <div class="button-wrap left">
-                            <button class="select button custom-green device fa fa-apple" data-device="iPhone"><b>iPhone</b></button>
+    <head>
+        <title>Wisebadge waiting list</title>
+        <!-- META -->
+        <meta name="viewport" content="minimal-ui, initial-scale=1.0, user-scalable=no">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href="css/font-awesome.css" rel="stylesheet">
+        <!-- Javascript -->
+        <script type="text/javascript" src="js/jquery-2.1.1.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+        <script src="js/waitlist.js"></script>
+        <!--script src="//cdn.optimizely.com/js/627150995.js"></script-->
+        <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <!--KISS Metrics-->
+        <script type="text/javascript">
+        var _kmq = _kmq || [];
+        var _kmk = _kmk || 'ec1b1f2024d7c723a8d517ef0e097643766a476b';
+        function _kms(u) {
+        setTimeout(function() {
+        var d = document,
+        f = d.getElementsByTagName('script')[0],
+        s = d.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = u;
+        f.parentNode.insertBefore(s, f);
+        }, 1);
+        }
+        _kms('https://i.kissmetrics.com/i.js');
+        _kms('https://doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+        </script>
+        <!--script type="text/javascript">
+        //WEBFONTS
+        var MTUserId='bc0a6976-9efe-406c-8ec0-02d2ba5e4d03';
+        var MTFontIds = new Array();
+        MTFontIds.push("721257"); // Avenir Next WFS W01 Ultra Light
+        MTFontIds.push("721263"); // Avenir Next WFS W01 Regular
+        (function() {
+        var mtTracking = document.createElement('script');
+        mtTracking.type='text/javascript';
+        mtTracking.async='true';
+        mtTracking.src=('https:'==document.location.protocol?'https:':'http:')+'//fast.fonts.net/lt/trackingCode.js';
+        (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(mtTracking);
+        })();
+        //END WEBFONTS
+        </script-->
+        <script>
+        (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-52903606-1', 'auto');
+        ga('send', 'pageview');
+        </script>
+    </head>
+    <body class="waitlist" data-step="1">
+        <div class="cover">
+            <header>
+                <img class="logo" src="img/owl-ribbon3.svg" alt="WiseBadge logo" onClick="window.location.reload()">
+            </header>
+            <div class="content">
+                <div class="email-form">
+                    <form id="emailForm" novalidate>
+                        <div class="button-frame">
+                            <span>Select your device</span>
+                            <div class="button-wrap left">
+                                <button class="select button custom-green device fa fa-apple" data-device="iPhone"><b>iPhone</b>
+                                </button>
+                            </div>
+                            <div class="button-wrap right">
+                                <button class="select button custom-green device fa fa-android" data-device="Android"><b>Android</b>
+                                </button>
+                            </div>
                         </div>
-                        <div class="button-wrap right">
-                            <button class="select button custom-green device fa fa-android" data-device="Android"><b>Android</b></button>
-                        </div>
-                    </div>
-                    <input id="email-input" type="email" placeholder="Email Address" value="">
-                    <a id="submit-button" class="button green">Get On the List</a>
-                </form>
-            </div>
-            <div class="step-1">
-                <div id="count" class="count">
-                    <span class="currentValue">0.00</span>
-                    <span class="transaction">0.50</span>
+                        <input id="email-input" type="email" placeholder="Email Address" value="">
+                        <a id="submit-button" class="button green">Get On the List</a>
+                    </form>
                 </div>
-                <h2>Enhancing Introduction Effortlessly</h2>
-                <p>Meet your next _________ at each networking event.</p>
-                <input type="submit" id="list-button" class="button white" value="Get On the List" onclick="logoTrans();">
+                <div class="step-1">
+                    <div id="count" class="count">
+                        <span class="currentValue">0.00</span>
+                        <span class="transaction">0.50</span>
+                    </div>
+                    <h2>Enhancing Introduction Effortlessly</h2>
+                    <p>Meet your next _________ at each networking event.</p>
+                    <input type="submit" id="list-button" class="button white" value="Get On the List" onclick="logoTrans();">
+                </div>
+                <div class="step-3">
+                    <h2>Thank You!</h2>
+                    <p>You're on the list! Share this unique link to get bumped up in the early access list when your friends join.</p>
+                    <input type="text" id="refcode" class="button white referral" value="wisebadge.github.io/?ref="></input>
+                    <ul class="social">
+                        <li class="facebook">
+                            <a href="https://www.facebook.com/" target="_blank"></a>
+                        </li>
+                        <li class="twitter">
+                            <a href="https://twitter.com/" target="_blank"></a>
+                        </li>
+                        <!--li class="tumblr"><a href="http://blog.acorns.com/" target="_blank"></a></li-->
+                        <li class="linkedin">
+                            <a href="http://www.linkedin.com/company/" target="_blank"></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="step-3">
-                <h2>Thank You!</h2>
-                <p>You're on the list! Share this unique link to get bumped up in the early access list when your friends join.</p>
-                <input type="text" id="refcode" class="button white referral" value="wisebadge.github.io/?ref="></input>
-                <ul class="social">
-                    <li class="facebook"><a href="https://www.facebook.com/" target="_blank"></a></li>
-                    <li class="twitter"><a href="https://twitter.com/" target="_blank"></a></li>
-                    <!--li class="tumblr"><a href="http://blog.acorns.com/" target="_blank"></a></li-->
-                    <li class="linkedin"><a href="http://www.linkedin.com/company/" target="_blank"></a></li>
-                </ul>
-            </div>
-        </div>
-        <footer>
-            <ul>
-                <li><a href="">Careers</a></li>
-                <li><a href="">Disclosures</a></li>
-        </footer>
-    </div>
-
-
-    <script type="text/javascript">
-
-    $(window).on('load resize', function(){
-
-    var w = $(window).width();
-    var h = $(window).height();
-    var w2 = w/3;
-    var w4 = .6* w;
-    var h4 = .6*h;
-    var h2 = h/2;
-
-
-    if (w2 > 359) {
-        $('.email-form').width(w2);
-    };
-
-    $('.email-form').height(h2);
-
-    if ($('.logo').width() <= 370 ) {
-        $('.logo').width(w4);
-    };
-    if ($('.logo').width() > 370 ) {
-        $('.logo').width(370);
-    };
-     if ( h < 470 ) {
-        $('.logo').width(h4);
-    };
-    
-  
-});
-
-function logoTrans(){
-
- $(".logo").animate({
-    opacity: 0.85,
-    height: 175
-  }, 3000, function() {
-    console.log("resized");
-  });
-
+            <footer>
+                <ul>
+                    <li><a href="">Careers</a>
+                </li>
+                <li><a href="">Disclosures</a>
+            </li>
+        </ul>
+    </footer>
+</div>
+<script type="text/javascript">
+$(window).on('load resize', function() {
+var w = $(window).width();
+var h = $(window).height();
+var w2 = w / 3;
+var w4 = .6 * w;
+var h4 = .6 * h;
+var h2 = h / 2;
+if (w2 > 359) {
+$('.email-form').width(w2);
 };
-
-
-    </script>
-     <!-- Quantcast Tag -->
+$('.email-form').height(h2);
+if ($('.logo').width() <= 370) {
+$('.logo').width(w4);
+};
+if ($('.logo').width() > 370) {
+$('.logo').width(370);
+};
+if (h < 470) {
+$('.logo').width(h4);
+};
+});
+function logoTrans() {
+$(".logo").animate({
+opacity: 0.85,
+height: 175
+}, 3000, function() {
+console.log("resized");
+});
+};
+</script>
+<!-- Quantcast Tag -->
 <script type="text/javascript">
 var _qevents = _qevents || [];
-
 (function() {
 var elem = document.createElement('script');
 elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
@@ -166,18 +162,15 @@ elem.type = "text/javascript";
 var scpt = document.getElementsByTagName('script')[0];
 scpt.parentNode.insertBefore(elem, scpt);
 })();
-
 _qevents.push({
-qacct:"p-fvf6SjZDcH_1N"
+qacct: "p-fvf6SjZDcH_1N"
 });
 </script>
-
 <noscript>
 <div style="display:none;">
-<img src="//pixel.quantserve.com/pixel/p-fvf6SjZDcH_1N.gif" border="0" height="1" width="1" alt="Quantcast"/>
+    <img src="//pixel.quantserve.com/pixel/p-fvf6SjZDcH_1N.gif" border="0" height="1" width="1" alt="Quantcast" />
 </div>
 </noscript>
 <!-- End Quantcast tag -->
-
 </body>
 </html>
