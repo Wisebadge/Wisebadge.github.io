@@ -46,6 +46,13 @@ body {
 .bar .title {
     color: #eee;
 }
+
+.bar.bar-mod {
+  background-color: transparent !important;
+  margin: 0 0px !important;
+ }
+
+
 .swipe-cards {
     position: fixed;
 }
@@ -124,6 +131,8 @@ body {
 .card-container {
  };
 
+
+
 </style>
 
 <script type="text/javascript">
@@ -194,6 +203,43 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         card.swipe();
     };
 })
+
+.controller('ContentController', function($scope, $ionicSideMenuDelegate) {
+  $scope.toggleLeft = function() {
+    console.log('swiped left for menu');
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+})
+
+.controller('AppController', function($scope) {
+  console.log('In App Controller');
+
+  $scope.leftButtons = [{
+    type: 'button-icon icon ion-navicon',
+    tap: function(e) {
+        $scope.sideMenuController.toggleLeft();
+    }
+  }];
+})
+
+
+.directive('dragBack', function($ionicGesture, $state) {
+  return {
+    restrict : 'A',
+    link : function(scope, elem, attr) {
+
+      $ionicGesture.on('swipe', function(event) {
+
+        console.log('Got swiped!');
+        event.preventDefault();
+        window.history.back();
+
+      }, elem);
+
+    }
+  }
+})
+
 
 
 .controller('LoginCtrl', function($scope) {
@@ -311,5 +357,9 @@ b.className += ((!!('ontouchstart' in window) || !!('onmsgesturechange' in windo
     <ion-nav-view></ion-nav-view>
 
 </body>
+
+
+
+
 
 </html>
