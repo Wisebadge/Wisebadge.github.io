@@ -23,10 +23,9 @@
 .home .linkedInLogin {
   width: 100%;
   position: absolute;
-  top: 411px;
+  top: 455px;
 }
 .home .linkedInLogin a {
-  width: 260px;
   margin-left: 20px;
   display: block;
   width: 260px;
@@ -40,4 +39,32 @@
 
 .matches {
     background: url(../img/Slice2.png) no-repeat center center fixed !important;
+}
+
+.create-profile.pane {
+    background: url(/img/ProfileCreation.png);
+    background-size: cover;
+}
+.create-profile .has-header {
+  top: 0px !important;
+}
+.create-profile .nextPage {
+  position: absolute;
+  top: 498px;
+  margin-left: 16px;
+  display: block;
+  width: 276px;
+  height: 40px;
+}
+.create-profile .back {
+  position: absolute;
+  top: 13px;
+  margin-left: -5px;
+  display: block;
+  width: 50px;
+  height: 40px;
+}
+.home {
+    background: url(/img/Slice1sm.png);
+    background-size: cover;
 }
