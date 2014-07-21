@@ -68,6 +68,9 @@
     background: url(/img/Slice1sm.png);
     background-size: cover;
 }
+.cards {
+  background: #333 !important;
+}
 
 .max100{
     max-height: 100px;
