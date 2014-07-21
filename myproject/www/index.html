@@ -278,6 +278,13 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
     })
 
 
+    .state('meet', {
+        url: "/meet",
+        //abstract: true,
+        templateUrl: "meet.html",
+        controller: 'CardsCtrl'
+    })
+
 
     // Each tab has its own nav history stack:
     .state('tab.dash', {
