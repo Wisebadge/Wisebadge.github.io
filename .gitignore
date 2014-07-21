@@ -5,3 +5,7 @@ screenshots/
 testimonials/
 *.rtf
 firefeed/
+myproject/.*
+myproject/www/lib/ionic/scss/*
+myproject/platforms/*
+myproject/plugins/*

@@ -1,0 +1,256 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <title>Ionic Template</title>
+
+    <link href="http://code.ionicframework.com/1.0.0-beta.8/css/ionic.css" rel="stylesheet">
+    <script src="http://code.ionicframework.com/1.0.0-beta.8/js/ionic.bundle.js">
+    </script>
+    <link href="css/style.css" rel="stylesheet">
+    <script src="http://clic.cimec.unitn.it/~elia.bruni/tank/ionic.cards.js"></script>
+
+</head>
+
+<style type="text/css">
+body {
+    cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+/* Your app's CSS, go crazy, make it your own */
+
+.ionic-logo {
+    display: block;
+    margin: 15px auto;
+    width: 96px;
+    height: 96px;
+}
+.pane {
+    background-color: #333 !important
+}
+.home {
+    /* background-color: red !important; */
+    background: url(img/Slice1sm.png) no-repeat center center fixed !important;
+}
+
+.bar.bar-transparent {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+}
+.bar .title {
+    color: #eee;
+}
+.swipe-cards {
+    position: fixed;
+}
+.swipe-card {
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
+    display: none;
+    position: fixed;
+    -webkit-transform: scale(1, 1);
+    left: 50%;
+    top: 50%;
+    width: 300px;
+    height: 300px;
+    margin-left: -150px;
+    margin-top: -150px;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    overflow: hidden;
+    -webkit-animation-fill-mode: forwards;
+}
+.swipe-card .title {
+    height: 40px;
+    padding: 5px;
+    line-height: 30px;
+    color: #444;
+}
+.swipe-card .image {
+    overflow: hidden;
+    max-height: 210px;
+}
+.swipe-card .button {
+    border: none;
+}
+.swipe-card .image img {
+    width: 100%;
+    border-radius: 0px 0px 4px 4px;
+}
+#start-card {
+    color: #fff;
+    background-color: #30BD8A;
+    line-height: 300px;
+    word-wrap: break-word;
+    border: 6px solid #4CD68E;
+    text-align: center;
+}
+#start-card span {
+    display: inline-block;
+    line-height: 50px;
+    margin-top: 20;
+    width: 250px;
+    font-size: 30px;
+    vertical-align: middle;
+}
+#footer .button {
+    color: #fff;
+}
+@-webkit-keyframes bounceIn {
+    0% {
+        -webkit-transform: scale(0, 0);
+    }
+    70% {
+        -webkit-transform: scale(1.2, 1.2);
+    }
+    100% {
+        -webkit-transform: scale(1, 1);
+    }
+}
+.swipe-card.pop-in-start {
+    -webkit-transform: scale(0, 0);
+}
+.swipe-card.pop-in {
+    -webkit-animation: bounceIn 0.3s ease-out;
+}
+</style>
+
+<script type="text/javascript">
+angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
+
+.directive('noScroll', function($document) {
+
+    return {
+        restrict: 'A',
+        link: function($scope, $element, $attr) {
+
+            $document.on('touchmove', function(e) {
+                e.preventDefault();
+            });
+        }
+    }
+})
+
+.controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope) {
+    $rootScope.accepted = 0;
+    $rootScope.rejected = 0;
+    var cardTypes = [{
+        title: 'Swipe down to clear the card',
+        image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic.png'
+    }, {
+        title: 'Where is this?',
+        image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic.png'
+    }, {
+        title: 'What kind of grass is this?',
+        image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic2.png'
+    }, {
+        title: 'What beach is this?',
+        image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic3.png'
+    }, {
+        title: 'What kind of clouds are these?',
+        image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic4.png'
+    }];
+
+    $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+
+    $scope.cardSwiped = function(index) {
+        $scope.addCard();
+    };
+
+    $scope.cardDestroyed = function(index) {
+        if (this.swipeCard.positive === true) {
+            $scope.$root.accepted++;
+        } else {
+            $scope.$root.rejected++;
+        }
+        $scope.cards.splice(index, 1);
+    };
+
+    $scope.addCard = function() {
+        var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+        newCard.id = Math.random();
+        $scope.cards.push(angular.extend({}, newCard));
+    }
+})
+
+.controller('CardCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope) {
+    $scope.accept = function() {
+        var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
+        $rootScope.accepted++;
+        card.swipe(true);
+    }
+    $scope.reject = function() {
+        var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
+        $rootScope.rejected++;
+        card.swipe();
+    };
+})
+.controller('LoginCtrl', function($scope) {
+  console.log('YOLO')
+})
+
+
+
+.config(function($stateProvider, $urlRouterProvider) {
+
+  // Ionic uses AngularUI Router which uses the concept of states
+  // Learn more here: https://github.com/angular-ui/ui-router
+  // Set up the various states which the app can be in.
+  // Each state's controller can be found in controllers.js
+  $stateProvider
+
+
+   .state('login', {
+      url: "/login",
+      templateUrl: "homeview.html",
+      controller: 'LoginCtrl'
+    })
+
+    // setup an abstract state for the tabs directive
+    .state('pane', {
+      url: "/pane",
+      //abstract: true,
+      templateUrl: "pane.html",
+      controller: 'CardsCtrl'
+    })
+
+
+
+    // Each tab has its own nav history stack:
+    .state('tab.dash', {
+      url: '/dash',
+      views: {
+        'tab-dash': {
+          templateUrl: 'templates/tab-dash.html',
+          controller: 'DashCtrl'
+        }
+      }
+    })
+
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/login');
+
+});
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+<body ng-app="starter" animation="slide-left-right-ios7" no-scroll>
+
+<ion-nav-view></ion-nav-view>
+
+</body>
+
+</html>
