@@ -1,6 +1,9 @@
    <pane ng-controller="CardsCtrl" class="pane">
             <header-bar type="bar-transparent" title="'Help out'"></header-bar>
             <!--p style="color:white">Accepted: {{accepted}}, Rejected: {{rejected}}</p-->
+             <div class="container">
+                <a href="#/matches">list</a>
+            </div>
             <swipe-cards>
                 <swipe-card on-swipe="cardSwiped()" id="start-card">
                     Swipe right for your new match
