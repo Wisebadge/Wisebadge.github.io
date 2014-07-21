@@ -191,6 +191,9 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 .controller('LoginCtrl', function($scope) {
   console.log('YOLO')
 })
+.controller('CreateProfileCtrl', function($scope) {
+  console.log('YOLO2')
+})
 
 
 
@@ -208,6 +211,11 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
       templateUrl: "homeview.html",
       controller: 'LoginCtrl'
     })
+    .state('createProfile', {
+       url: "/create-profile",
+       templateUrl: "create-profile.html",
+       controller: 'CreateProfileCtrl'
+     })
 
     // setup an abstract state for the tabs directive
     .state('pane', {
