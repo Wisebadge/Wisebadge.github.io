@@ -6,11 +6,20 @@
 
     <title>Ionic Template</title>
 
-    <link href="http://code.ionicframework.com/1.0.0-beta.8/css/ionic.css" rel="stylesheet">
+    <!--link href="http://code.ionicframework.com/1.0.0-beta.8/css/ionic.css" rel="stylesheet">
     <script src="http://code.ionicframework.com/1.0.0-beta.8/js/ionic.bundle.js">
     </script>
+    <script src="http://clic.cimec.unitn.it/~elia.bruni/tank/ionic.cards.js"></script-->
+
     <link href="css/style.css" rel="stylesheet">
-    <script src="http://clic.cimec.unitn.it/~elia.bruni/tank/ionic.cards.js"></script>
+    <!--if no internet-->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <script type="text/javascript" src="js/cards.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+
 
 </head>
 
@@ -32,8 +41,8 @@ body {
 .home {
     /* background-color: red !important; */
     background: url(img/Slice1sm.png) no-repeat center center fixed !important;
-}
 
+}
 .bar.bar-transparent {
     background-color: transparent;
     background-image: none;
@@ -188,68 +197,66 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         card.swipe();
     };
 })
-.controller('LoginCtrl', function($scope) {
-  console.log('YOLO')
-})
+    .controller('LoginCtrl', function($scope) {
+        console.log('YOLO')
+    })
 
 
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider
+    // Ionic uses AngularUI Router which uses the concept of states
+    // Learn more here: https://github.com/angular-ui/ui-router
+    // Set up the various states which the app can be in.
+    // Each state's controller can be found in controllers.js
+    $stateProvider
 
 
-   .state('login', {
-      url: "/login",
-      templateUrl: "homeview.html",
-      controller: 'LoginCtrl'
+    .state('login', {
+        url: "/login",
+        templateUrl: "homeview.html",
+        controller: 'LoginCtrl'
     })
 
     // setup an abstract state for the tabs directive
     .state('pane', {
-      url: "/pane",
-      //abstract: true,
-      templateUrl: "pane.html",
-      controller: 'CardsCtrl'
+        url: "/pane",
+        //abstract: true,
+        templateUrl: "pane.html",
+        controller: 'CardsCtrl'
     })
 
 
 
     // Each tab has its own nav history stack:
     .state('tab.dash', {
-      url: '/dash',
-      views: {
-        'tab-dash': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl'
+        url: '/dash',
+        views: {
+            'tab-dash': {
+                templateUrl: 'templates/tab-dash.html',
+                controller: 'DashCtrl'
+            }
         }
-      }
     })
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+    // if none of the above states are matched, use this as the fallback
+    $urlRouterProvider.otherwise('/login');
 
 });
 
 
 
-
-
-
-
-
-
-
+b = document.documentElement;
+b.setAttribute('data-useragent', navigator.userAgent);
+b.setAttribute('data-viewport', navigator.userAgent);
+b.setAttribute('data-platform', navigator.platform);
+b.className += ((!!('ontouchstart' in window) || !!('onmsgesturechange' in window)) ? ' touch' : '');
 </script>
 
 
 <body ng-app="starter" animation="slide-left-right-ios7" no-scroll>
 
-<ion-nav-view></ion-nav-view>
+    <ion-nav-view></ion-nav-view>
 
 </body>
 
