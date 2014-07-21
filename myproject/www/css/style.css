@@ -68,3 +68,15 @@
     background: url(/img/Slice1sm.png);
     background-size: cover;
 }
+
+.max100{
+    max-height: 100px;
+}
+
+.button .icon:before, .button.icon:before, .button.icon#loc-icon:before{
+    display: inline-block;
+    padding: 0 0 1px 0;
+    vertical-align: inherit;
+    font-size: 23px !important;
+    line-height: 30px;
+    pointer-events: none; }
