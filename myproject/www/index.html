@@ -131,16 +131,14 @@ body {
 angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 
 .directive('noScroll', function($document) {
-
     return {
         restrict: 'A',
         link: function($scope, $element, $attr) {
-
             $document.on('touchmove', function(e) {
                 e.preventDefault();
             });
         }
-    }
+    };
 })
 
 .controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope) {
@@ -182,7 +180,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
         newCard.id = Math.random();
         $scope.cards.push(angular.extend({}, newCard));
-    }
+    };
 })
 
 .controller('CardCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope) {
@@ -190,7 +188,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
         $rootScope.accepted++;
         card.swipe(true);
-    }
+    };
     $scope.reject = function() {
         var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
         $rootScope.rejected++;
@@ -200,10 +198,10 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 
 
 .controller('LoginCtrl', function($scope) {
-  console.log('YOLO')
+
 })
 .controller('CreateProfileCtrl', function($scope) {
-  console.log('YOLO2')
+
 })
 
 
@@ -253,8 +251,6 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
     $urlRouterProvider.otherwise('/login');
 
 });
-
-
 
 b = document.documentElement;
 b.setAttribute('data-useragent', navigator.userAgent);
