@@ -21,7 +21,19 @@
   height: 100%;
 }
 .home .linkedInLogin {
-  display: block;
+  width: 100%;
   position: absolute;
-  bottom: 20px;
+  top: 411px;
+}
+.home .linkedInLogin a {
+  width: 260px;
+  margin-left: 20px;
+  display: block;
+  width: 260px;
+  height: 40px;
+}
+
+.home .linkedInLogin a:focus, .home .linkedInLogin a:active {
+  background-color: white;
+  opacity: 0.2;
 }
