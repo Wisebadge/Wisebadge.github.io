@@ -39,8 +39,8 @@ body {
     background-color: #333 !important
 }
 .home {
-    /* background-color: red !important; */
-    background: url(img/Slice1sm.png) no-repeat center center fixed !important;
+    background: url(img/Slice1sm.png);
+    background-size: cover;
 }
 .bar.bar-transparent {
     background-color: transparent;
@@ -134,16 +134,14 @@ body {
 angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 
 .directive('noScroll', function($document) {
-
     return {
         restrict: 'A',
         link: function($scope, $element, $attr) {
-
             $document.on('touchmove', function(e) {
                 e.preventDefault();
             });
         }
-    }
+    };
 })
 
 .controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope) {
@@ -185,7 +183,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
         newCard.id = Math.random();
         $scope.cards.push(angular.extend({}, newCard));
-    }
+    };
 })
 
 .controller('CardCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope) {
@@ -193,7 +191,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
         $rootScope.accepted++;
         card.swipe(true);
-    }
+    };
     $scope.reject = function() {
         var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
         $rootScope.rejected++;
@@ -203,11 +201,11 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 
 
 .controller('LoginCtrl', function($scope) {
-    console.log('YOLO')
+
 })
-    .controller('CreateProfileCtrl', function($scope) {
-        console.log('YOLO2')
-    })
+.controller('CreateProfileCtrl', function($scope) {
+
+})
 
 .controller('MatchCtrl', function($scope) {
         $scope.matches = [{
@@ -241,16 +239,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         },
         ];
         $scope.orderList = 'name';
-   // }
-    //$scope.matches = Matches.all();
 })
-
-
-/*
-.controller('MatchDetailCtrl', function($scope, $stateParams, Matches) {
-    $scope.matches = Matches.get($stateParams.matchId);
-})
-*/
 
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -305,8 +294,6 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
     $urlRouterProvider.otherwise('/login');
 
 });
-
-
 
 b = document.documentElement;
 b.setAttribute('data-useragent', navigator.userAgent);
