@@ -37,3 +37,7 @@
   background-color: white;
   opacity: 0.2;
 }
+
+.matches {
+    background: url(../img/Slice2.png) no-repeat center center fixed !important;
+}
