@@ -29,3 +29,15 @@
 .matches {
     background: url(../img/Slice2.png) no-repeat center center fixed !important;
 }
+
+.max100{
+    max-height: 100px;
+}
+
+.button .icon:before, .button.icon:before, .button.icon#loc-icon:before{
+    display: inline-block;
+    padding: 0 0 1px 0;
+    vertical-align: inherit;
+    font-size: 23px !important;
+    line-height: 30px;
+    pointer-events: none; }

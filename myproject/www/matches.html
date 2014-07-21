@@ -2,9 +2,20 @@
     <ion-view title="Home" class="matches">
         <ion-content class="has-header">
             <ion-list>
-                <ion-item ng-repeat="match in matches" type="item-text-wrap" href="#/match/{{match.id}}">
-                    {{match.name}}
+
+                <ion-item ng-repeat="match in matches" class="max100" type="item-text-wrap" href="#/match/{{match.id}}">
+                    <!--a class="item item-thumbnail-left" href="#"-->
+                    <div class="card-container item-thumbnail-left">
+                        <img src="img/user75.jpg">
+                        <h2>{{match.name}}</h2>
+                        <div class="">{{match.title}}</div>
+                        <p style="margin: 3 0 39px">
+                            <span class="button button-clear icon ion-ios7-location-outline" id="loc-icon" style="margin-right: -16px;
+margin-left: -20px; margin-top: -4px;"></span>
+                            {{match.location}}</p>
+                    </div>
                 </ion-item>
+
             </ion-list>
         </ion-content>
     </ion-view>

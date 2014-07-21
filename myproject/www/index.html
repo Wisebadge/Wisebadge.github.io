@@ -124,6 +124,10 @@ body {
 .swipe-card.pop-in {
     -webkit-animation: bounceIn 0.3s ease-out;
 }
+
+.card-container {
+ };
+
 </style>
 
 <script type="text/javascript">
@@ -210,18 +214,32 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
             'name': 'Tiffany Wang',
             'email': 't@wang.com',
             'phone': '214-748-3647',
+            'title': 'iOS Engineer at Apple',
+            'location': 'San Francisco, CA',
             'id': 1
         }, {
             'name': 'John Smith',
             'email': 'j@smith.com',
             'phone': '123-456-7890',
+            'title': 'UI/UX at Airbnb',
+            'location': 'Berkeley, CA',
             'id': 2
         }, {
-            'name': 'Mary Doe',
-            'email': 'm@doe.com',
+            'name': 'John Smith',
+            'email': 'j@smith.com',
             'phone': '123-456-7890',
+            'title': 'UI/UX at Airbnb',
+            'location': 'Berkeley, CA',
             'id': 3
-        }, ];
+        },{
+            'name': 'John Smith',
+            'email': 'j@smith.com',
+            'phone': '123-456-7890',
+            'title': 'UI/UX at Airbnb',
+            'location': 'Berkeley, CA',
+            'id': 4
+        },
+        ];
         $scope.orderList = 'name';
    // }
     //$scope.matches = Matches.all();
