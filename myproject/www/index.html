@@ -41,7 +41,6 @@ body {
 .home {
     /* background-color: red !important; */
     background: url(img/Slice1sm.png) no-repeat center center fixed !important;
-
 }
 .bar.bar-transparent {
     background-color: transparent;
@@ -200,12 +199,40 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 
 
 .controller('LoginCtrl', function($scope) {
-  console.log('YOLO')
+    console.log('YOLO')
 })
-.controller('CreateProfileCtrl', function($scope) {
-  console.log('YOLO2')
+    .controller('CreateProfileCtrl', function($scope) {
+        console.log('YOLO2')
+    })
+
+.controller('MatchCtrl', function($scope) {
+        $scope.matches = [{
+            'name': 'Tiffany Wang',
+            'email': 't@wang.com',
+            'phone': '214-748-3647',
+            'id': 1
+        }, {
+            'name': 'John Smith',
+            'email': 'j@smith.com',
+            'phone': '123-456-7890',
+            'id': 2
+        }, {
+            'name': 'Mary Doe',
+            'email': 'm@doe.com',
+            'phone': '123-456-7890',
+            'id': 3
+        }, ];
+        $scope.orderList = 'name';
+   // }
+    //$scope.matches = Matches.all();
 })
 
+
+/*
+.controller('MatchDetailCtrl', function($scope, $stateParams, Matches) {
+    $scope.matches = Matches.get($stateParams.matchId);
+})
+*/
 
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -222,11 +249,11 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         templateUrl: "homeview.html",
         controller: 'LoginCtrl'
     })
-    .state('createProfile', {
-       url: "/create-profile",
-       templateUrl: "create-profile.html",
-       controller: 'CreateProfileCtrl'
-     })
+        .state('createProfile', {
+            url: "/create-profile",
+            templateUrl: "create-profile.html",
+            controller: 'CreateProfileCtrl'
+        })
 
     // setup an abstract state for the tabs directive
     .state('pane', {
@@ -234,6 +261,13 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         //abstract: true,
         templateUrl: "pane.html",
         controller: 'CardsCtrl'
+    })
+
+    .state('matches', {
+        url: "/matches",
+        //abstract: true,
+        templateUrl: "matches.html",
+        controller: 'MatchCtrl'
     })
 
 

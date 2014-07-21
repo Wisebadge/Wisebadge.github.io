@@ -25,3 +25,7 @@
   position: absolute;
   bottom: 20px;
 }
+
+.matches {
+    background: url(../img/Slice2.png) no-repeat center center fixed !important;
+}

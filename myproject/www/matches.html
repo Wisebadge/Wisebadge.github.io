@@ -1,0 +1,11 @@
+<ion-view title="Matches">
+    <ion-view title="Home" class="matches">
+        <ion-content class="has-header">
+            <ion-list>
+                <ion-item ng-repeat="match in matches" type="item-text-wrap" href="#/match/{{match.id}}">
+                    {{match.name}}
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-view>
+</ion-view>
