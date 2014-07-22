@@ -271,7 +271,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         ];
         $scope.orderList = 'name';
 
-
+/*
 console.log('In App Controller');
 
   $scope.leftButtons = [{
@@ -280,9 +280,7 @@ console.log('In App Controller');
         $scope.sideMenuController.toggleLeft();
     }
   }];
-
-
-
+  */
 })
 
 
@@ -327,6 +325,13 @@ console.log('In App Controller');
         //abstract: true,
         templateUrl: "meet.html",
         controller: 'CardsCtrl'
+    })
+
+
+  .state('test', {
+        url: '/test',
+        templateUrl: "test.html",
+        controller: 'MatchCtrl'
     })
 
 

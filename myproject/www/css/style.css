@@ -44,7 +44,7 @@
 .create-profile.pane {
     background: url(../img/ProfileCreation.png);
     background-size: cover;
-    top: -20px;
+
 }
 .create-profile .has-header {
   top: 0px !important;
