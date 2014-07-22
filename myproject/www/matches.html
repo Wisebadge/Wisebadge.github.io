@@ -15,7 +15,7 @@
     </ion-refresher>
                 <ion-list>
 
-                    <ion-item ng-repeat="match in matches | limitTo:numLimit" class="max100" type="item-text-wrap" href="#/match/{{match.id}}">
+                    <ion-item ng-repeat="match in matches | filter: myfilter(10)  | limitTo:numLimit | orderBy:'-date'" class="max100" type="item-text-wrap" href="#/match/{{match.id}}">
                         <!--a class="item item-thumbnail-left" href="#"-->
                         <div class="card-container item-thumbnail-left" id="{{match.name}}">
                             <img src="img/user75.jpg">

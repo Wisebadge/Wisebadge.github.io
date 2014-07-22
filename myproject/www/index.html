@@ -158,10 +158,10 @@ a .stnd {
     margin: auto;
     text-align: center;
 }
-
 .scroll-refresher {
-  width: 100% !important;
+    width: 100% !important;
 }
+
 </style>
 
 <script type="text/javascript">
@@ -272,14 +272,14 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 })
 
 .directive('myRefresher', function() {
-      return {
+    return {
         restrict: 'E',
         replace: true,
         require: ['^?ionContent', '^?ionList'],
         template: '<div class="scroll-refresher"><div class="ionic-refresher-content"><i class="icon ion-arrow-down-c icon-pulling"></i><i class="icon ion-loading-c icon-refreshing"></i></div></div>',
         scope: true
-      };
-    })
+    };
+})
 
 
 .controller('LoginCtrl', function($scope) {
@@ -287,14 +287,14 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 })
 
 .controller('CreateProfileCtrl', function($scope) {
-  $('.create-profile .notes').unbind('focus');
-  $('.create-profile .notes').unbind('blur');
-  $('.create-profile .notes').focus(function() {
-    $('.create-profile.pane').addClass('raiseNotes');
-  });
-  $('.create-profile .notes').blur(function() {
-    $('.create-profile.pane').removeClass('raiseNotes');
-  });
+    $('.create-profile .notes').unbind('focus');
+    $('.create-profile .notes').unbind('blur');
+    $('.create-profile .notes').focus(function() {
+        $('.create-profile.pane').addClass('raiseNotes');
+    });
+    $('.create-profile .notes').blur(function() {
+        $('.create-profile.pane').removeClass('raiseNotes');
+    });
 })
 
 .controller('Test2Ctrl', function($ionicGesture, $scope) {
@@ -366,64 +366,36 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
 
 .controller('MatchCtrl', function($scope, $ionicViewService, $rootScope, $timeout, Matches) {
-      $scope.matches= Matches.all();
+    $scope.matches = Matches.all();
 
-    /*$rootScope.matches = [{
-        'name': 'Tiffany Wang',
-        'email': 't@wang.com',
-        'phone': '214-748-3647',
-        'title': 'iOS Engineer at Apple',
-        'location': 'San Francisco, CA',
-        'id': 1
-    }, {
-        'name': 'John Smith',
-        'email': 'j@smith.com',
-        'phone': '123-456-7890',
-        'title': 'UI/UX at Airbnb',
-        'location': 'Berkeley, CA',
-        'id': 2
-    }, {
-        'name': 'Bob Smith',
-        'email': 'j@smith.com',
-        'phone': '123-456-7890',
-        'title': 'Product Design at IDEO',
-        'location': 'Berkeley, CA',
-        'id': 3
-    }, {
-        'name': 'Elon Musk',
-        'email': 'e@musk.com',
-        'phone': '123-456-7890',
-        'title': 'Founder at SpaceX',
-        'location': 'Cupertino, CA',
-        'id': 4
-    }, ]; */
+    $scope.myfilter = function(timelim) {
+      var curdate = (new Date).toJSON();
+      console.log('filtering');
+      console.log(curdate);
+      //return {date:  };
+    };
 
     $scope.numLimit = 10;
 
-   /* $rootScope.addMatch = function(n, e, p, t, l, i) {
-    $scope.matches.push({'name': n, 'email': e, 'phone': p, 'title': t, 'location': l, 'id': i});
-  } */
-
-     $rootScope.addMatch = function(newMatch){
+    $rootScope.addMatch = function(newMatch) {
         //var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
         //newCard.id = Math.random();
-        //var newMatch = {'name': n, 'email': e, 'phone': p, 'title': t, 'location': l, 'id': i};
         $scope.matches.push(angular.extend({}, newMatch));
     };
 
     $scope.pop = function() {
-            console.log('Got popped');
-            event.preventDefault();
-             $scope.numLimit = 2;
+        console.log('Got popped');
+        event.preventDefault();
+        $scope.numLimit = 2;
     };
 
     var history = $ionicViewService.getCurrentView();
     //console.log(history);
 
     $scope.goBack = function() {
-            console.log('Got clicked');
-            event.preventDefault();
-            window.history.back();
+        console.log('Got clicked');
+        event.preventDefault();
+        window.history.back();
     };
 
     $rootScope.x = 5; //id5 in factory
@@ -432,85 +404,87 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
         console.log('Refreshing!');
         samples = [{
-        'name': 'Tiffine Wang',
-        'email': 't@wang.com',
-        'phone': '214-748-3647',
-        'title': 'iOS Engineer at Apple',
-        'location': 'San Francisco, CA',
-        'id': ++$rootScope.x
-    }, {
-        'name': 'John Smith',
-        'email': 'j@smith.com',
-        'phone': '123-456-7890',
-        'title': 'UI/UX at Airbnb',
-        'location': 'Berkeley, CA',
-        'id':  ++$rootScope.x
-    }, {
-        'name': 'Helen Poldsman',
-        'email': 'j@smith.com',
-        'phone': '123-456-7890',
-        'title': 'Product Design at IDEO',
-        'location': 'Berkeley, CA',
-        'id':  ++$rootScope.x
-    }, {
-        'name': 'Elon Musk',
-        'email': 'e@musk.com',
-        'phone': '123-456-7890',
-        'title': 'Founder at SpaceX',
-        'location': 'Cupertino, CA',
-        'id':  ++$rootScope.x
-    },
-    {
-        'name': 'Q Smith',
-        'email': 'j@smith.com',
-        'phone': '123-456-7890',
-        'title': 'Product Design at IDEO',
-        'location': 'Berkeley, CA',
-        'id':  ++$rootScope.x
-    },
-    {
-        'name': 'Z Smith',
-        'email': 'j@smith.com',
-        'phone': '123-456-7890',
-        'title': 'Product Design at IDEO',
-        'location': 'Berkeley, CA',
-        'id':  ++$rootScope.x
-    }, ];
-    var i = 0
+            'name': 'Tiffine Wang',
+            'email': 't@wang.com',
+            'phone': '214-748-3647',
+            'title': 'iOS Engineer at Apple',
+            'location': 'San Francisco, CA',
+            'id': ++$rootScope.x,
+            'date': (new Date).toJSON()
+        }, {
+            'name': 'John Smith',
+            'email': 'j@smith.com',
+            'phone': '123-456-7890',
+            'title': 'UI/UX at Airbnb',
+            'location': 'Berkeley, CA',
+            'id': ++$rootScope.x,
+            'date': (new Date).toJSON()
+        }, {
+            'name': 'Helen Poldsman',
+            'email': 'j@smith.com',
+            'phone': '123-456-7890',
+            'title': 'Product Design at IDEO',
+            'location': 'Berkeley, CA',
+            'id': ++$rootScope.x,
+            'date': (new Date).toJSON()
+        }, {
+            'name': 'Elon Musk',
+            'email': 'e@musk.com',
+            'phone': '123-456-7890',
+            'title': 'Founder at SpaceX',
+            'location': 'Cupertino, CA',
+            'id': ++$rootScope.x,
+            'date': (new Date).toJSON()
+        }, {
+            'name': 'Q Smith',
+            'email': 'j@smith.com',
+            'phone': '123-456-7890',
+            'title': 'Product Design at IDEO',
+            'location': 'Berkeley, CA',
+            'id': ++$rootScope.x,
+            'date': (new Date).toJSON()
+        }, {
+            'name': 'Z Smith',
+            'email': 'j@smith.com',
+            'phone': '123-456-7890',
+            'title': 'Product Design at IDEO',
+            'location': 'Berkeley, CA',
+            'id': ++$rootScope.x,
+            'date': (new Date).toJSON()
+        }, ];
 
-   /* var currentList = $scope.roleList;
-    var newList = currentList.concat(newRoleArray);
-    $scope.roleList = newList; */
+        var rand = Math.round((samples.length - 1) * Math.random());
 
-        $timeout( function() {
-        //$rootScope.addMatch(samples[i++].name, samples[i++].email, samples[i++].phone, samples[i++].title, samples[i++].location, i++  );
-        $rootScope.addMatch(samples[i++]);
-        //$rootScope.addMatch(samples[i++]);
-        //$scope.matches.push( samples[i++] + Math.floor(Math.random() * 1000) + 4);
-         //$scope.matches.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+        $timeout(function() {
+            $rootScope.addMatch(samples[rand]);
+            //$rootScope.addMatch(samples[i++]);
+            //$scope.matches.push( samples[i++] + Math.floor(Math.random() * 1000) + 4);
+            //$scope.matches.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
 
-        //Stop the ion-refresher from spinning
-        $scope.$broadcast('scroll.refreshComplete');
+            //Stop the ion-refresher from spinning
+            $scope.$broadcast('scroll.refreshComplete');
 
         }, 1200);
 
-    }
-
+    };
+ /*
     //history.go();
-    /*   rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+     rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
    if (from.name == "app.view2" && to.name =="app.view1"){
         console.log('doing');
    }
 }); */
 
-})
+})  //correctly matched
 
 .controller('MatchDetailCtrl', function($scope, $rootScope, $stateParams, Matches) {
-  $scope.match = Matches.get($stateParams.matchId);
-   $scope.goBack2 = function() {
-            console.log('Got clicked');
-            event.preventDefault();
-            window.history.back();
+    $scope.match = Matches.get($stateParams.matchId);
+    $scope.years = Math.round(10 * Math.random());
+    $scope.date = Math.round(2000 + 10 * Math.random());
+    $scope.goBack2 = function() {
+        console.log('Got clicked');
+        event.preventDefault();
+        window.history.back();
     };
 })
 
@@ -519,23 +493,23 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
     $scope.items = ['Item 1', 'Item 2', 'Item 3'];
 
-  $scope.goBack = function() {
-            console.log('Got clicked');
-            event.preventDefault();
-            window.history.back();
+    $scope.goBack = function() {
+        console.log('Got clicked');
+        event.preventDefault();
+        window.history.back();
     };
 
     $scope.doRefresh = function() {
 
         console.log('Refreshing!');
-        $timeout( function() {
-        $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
-        $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
-        $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
-        $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+        $timeout(function() {
+            $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+            $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+            $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+            $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
 
-        //Stop the ion-refresher from spinning
-        $scope.$broadcast('scroll.refreshComplete');
+            //Stop the ion-refresher from spinning
+            $scope.$broadcast('scroll.refreshComplete');
 
         }, 1000);
 
@@ -578,7 +552,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
     })
 
 
-      .state('matches2', {
+    .state('matches2', {
         url: "/matches2",
         templateUrl: "matches2.html",
         controller: 'RefreshCtrl'
@@ -586,9 +560,9 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
 
     .state('match-detail', {
-     url: '/match/:matchId',
-          templateUrl: 'match-name.html',
-          controller: 'MatchDetailCtrl'
+        url: '/match/:matchId',
+        templateUrl: 'match-name.html',
+        controller: 'MatchDetailCtrl'
     })
 
 
@@ -633,8 +607,6 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
     $urlRouterProvider.otherwise('/login');
 
 });
-
-
 </script>
 
 

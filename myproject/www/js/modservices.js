@@ -20,28 +20,32 @@ myMatches = [{
         'phone': '214-748-3647',
         'title': 'iOS Engineer at Apple',
         'location': 'San Francisco, CA',
-        'id': 0
+        'id': 0,
+        'date': (new Date).toJSON()
     }, {
         'name': 'John Smith',
         'email': 'j@smith.com',
         'phone': '123-456-7890',
         'title': 'UI/UX at Airbnb',
         'location': 'Berkeley, CA',
-        'id': 1
+        'id': 1,
+        'date': (new Date).toJSON()
     }, {
         'name': 'Helen Poldsman',
         'email': 'j@smith.com',
         'phone': '123-456-7890',
         'title': 'Product Design at IDEO',
         'location': 'Berkeley, CA',
-        'id': 2
+        'id': 2,
+        'date': (new Date).toJSON()
     }, {
         'name': 'Elon Musk',
         'email': 'e@musk.com',
         'phone': '123-456-7890',
         'title': 'Founder at SpaceX',
         'location': 'Cupertino, CA',
-        'id': 3
+        'id': 3,
+        'date': (new Date).toJSON()
     },
     {
         'name': 'Q Smith',
@@ -49,7 +53,8 @@ myMatches = [{
         'phone': '123-456-7890',
         'title': 'Product Design at IDEO',
         'location': 'Berkeley, CA',
-        'id': 4
+        'id': 4,
+        'date': (new Date).toJSON()
     },
     {
         'name': 'Z Smith',
@@ -57,7 +62,8 @@ myMatches = [{
         'phone': '123-456-7890',
         'title': 'Product Design at IDEO',
         'location': 'Berkeley, CA',
-        'id': 5
+        'id': 5,
+        'date': (new Date).toJSON()
     }, ];
 
   return {

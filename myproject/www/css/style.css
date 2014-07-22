@@ -130,9 +130,7 @@
     background: url(../img/helen.png);
     background-size: cover;
 }
-.cards {
-    background: #333 !important;
-}
+
 .max100 {
     max-height: 100px;
 }
@@ -147,3 +145,21 @@
 .item[ng-click]:hover {
     cursor: crosshair !important;
 }
+
+.card.mod, .list-inset.mod{
+  overflow: hidden;
+  margin: 56px 10px;
+  border-radius: 2px;
+  background-color: transparent !important;
+}
+
+h2#card {
+    font-size: 20px !important;
+    margin-top: 10px !important;
+}
+
+h3#card {
+    margin-top: -5px !important;
+     margin-bottom: -3px !important;
+}
+
