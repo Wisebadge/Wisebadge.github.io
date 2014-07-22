@@ -158,6 +158,10 @@ a .stnd {
     margin: auto;
     text-align: center;
 }
+
+.scroll-refresher {
+  width: 100% !important;
+}
 </style>
 
 <script type="text/javascript">
@@ -173,6 +177,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         }
     };
 })
+
 
 .controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope) {
     $rootScope.accepted = 0;
@@ -264,15 +269,24 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
         }
     }
-
-
 })
+
+.directive('myRefresher', function() {
+      return {
+        restrict: 'E',
+        replace: true,
+        require: ['^?ionContent', '^?ionList'],
+        template: '<div class="scroll-refresher"><div class="ionic-refresher-content"><i class="icon ion-arrow-down-c icon-pulling"></i><i class="icon ion-loading-c icon-refreshing"></i></div></div>',
+        scope: true
+      };
+    })
 
 
 .controller('LoginCtrl', function($scope) {
 
 })
     .controller('CreateProfileCtrl', function($scope) {
+      $document.setAttribute('data-prevent-scroll', true);
 
     })
 
@@ -344,7 +358,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
 
 
-.controller('MatchCtrl', function($scope, $ionicViewService, $rootScope, Matches) {
+.controller('MatchCtrl', function($scope, $ionicViewService, $rootScope, $timeout, Matches) {
       $scope.matches= Matches.all();
 
     /*$rootScope.matches = [{
@@ -377,7 +391,18 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         'id': 4
     }, ]; */
 
-    $scope.numLimit = 5;
+    $scope.numLimit = 10;
+
+   /* $rootScope.addMatch = function(n, e, p, t, l, i) {
+    $scope.matches.push({'name': n, 'email': e, 'phone': p, 'title': t, 'location': l, 'id': i});
+  } */
+
+     $rootScope.addMatch = function(newMatch){
+        //var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+        //newCard.id = Math.random();
+        //var newMatch = {'name': n, 'email': e, 'phone': p, 'title': t, 'location': l, 'id': i};
+        $scope.matches.push(angular.extend({}, newMatch));
+    };
 
     $scope.pop = function() {
             console.log('Got popped');
@@ -393,6 +418,76 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
             event.preventDefault();
             window.history.back();
     };
+
+    $rootScope.x = 5; //id5 in factory
+
+    $scope.doRefresh = function() {
+
+        console.log('Refreshing!');
+        samples = [{
+        'name': 'Tiffine Wang',
+        'email': 't@wang.com',
+        'phone': '214-748-3647',
+        'title': 'iOS Engineer at Apple',
+        'location': 'San Francisco, CA',
+        'id': ++$rootScope.x
+    }, {
+        'name': 'John Smith',
+        'email': 'j@smith.com',
+        'phone': '123-456-7890',
+        'title': 'UI/UX at Airbnb',
+        'location': 'Berkeley, CA',
+        'id':  ++$rootScope.x
+    }, {
+        'name': 'Helen Poldsman',
+        'email': 'j@smith.com',
+        'phone': '123-456-7890',
+        'title': 'Product Design at IDEO',
+        'location': 'Berkeley, CA',
+        'id':  ++$rootScope.x
+    }, {
+        'name': 'Elon Musk',
+        'email': 'e@musk.com',
+        'phone': '123-456-7890',
+        'title': 'Founder at SpaceX',
+        'location': 'Cupertino, CA',
+        'id':  ++$rootScope.x
+    },
+    {
+        'name': 'Q Smith',
+        'email': 'j@smith.com',
+        'phone': '123-456-7890',
+        'title': 'Product Design at IDEO',
+        'location': 'Berkeley, CA',
+        'id':  ++$rootScope.x
+    },
+    {
+        'name': 'Z Smith',
+        'email': 'j@smith.com',
+        'phone': '123-456-7890',
+        'title': 'Product Design at IDEO',
+        'location': 'Berkeley, CA',
+        'id':  ++$rootScope.x
+    }, ];
+    var i = 0
+
+   /* var currentList = $scope.roleList;
+    var newList = currentList.concat(newRoleArray);
+    $scope.roleList = newList; */
+
+        $timeout( function() {
+        //$rootScope.addMatch(samples[i++].name, samples[i++].email, samples[i++].phone, samples[i++].title, samples[i++].location, i++  );
+        $rootScope.addMatch(samples[i++]);
+        //$rootScope.addMatch(samples[i++]);
+        //$scope.matches.push( samples[i++] + Math.floor(Math.random() * 1000) + 4);
+         //$scope.matches.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+
+        //Stop the ion-refresher from spinning
+        $scope.$broadcast('scroll.refreshComplete');
+
+        }, 1200);
+
+    }
 
     //history.go();
     /*   rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
@@ -410,6 +505,35 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
             event.preventDefault();
             window.history.back();
     };
+})
+
+.controller('RefreshCtrl', function($scope, $timeout) {
+    $scope.myTitle = 'Template';
+
+    $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+
+  $scope.goBack = function() {
+            console.log('Got clicked');
+            event.preventDefault();
+            window.history.back();
+    };
+
+    $scope.doRefresh = function() {
+
+        console.log('Refreshing!');
+        $timeout( function() {
+        $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+        $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+        $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+        $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+
+        //Stop the ion-refresher from spinning
+        $scope.$broadcast('scroll.refreshComplete');
+
+        }, 1000);
+
+    };
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -446,12 +570,19 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         controller: 'MatchCtrl'
     })
 
+
+      .state('matches2', {
+        url: "/matches2",
+        templateUrl: "matches2.html",
+        controller: 'RefreshCtrl'
+    })
+
+
     .state('match-detail', {
      url: '/match/:matchId',
           templateUrl: 'match-name.html',
           controller: 'MatchDetailCtrl'
     })
-
 
 
     .state('meet', {
@@ -473,6 +604,12 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         controller: 'MyCtrl'
     })
 
+    .state('test3', {
+        url: '/test3',
+        templateUrl: "test3.html",
+        controller: 'MatchCtrl'
+    })
+
 
     // Each tab has its own nav history stack:
     .state('tab.dash', {
@@ -490,15 +627,11 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
 });
 
-b = document.documentElement;
-b.setAttribute('data-useragent', navigator.userAgent);
-b.setAttribute('data-viewport', navigator.userAgent);
-b.setAttribute('data-platform', navigator.platform);
-b.className += ((!!('ontouchstart' in window) || !!('onmsgesturechange' in window)) ? ' touch' : '');
+
 </script>
 
 
-<body ng-app="starter" animation="slide-left-right-ios7" no-scroll>
+<body ng-app="starter" animation="slide-left-right-ios7">
 
     <ion-nav-view></ion-nav-view>
 

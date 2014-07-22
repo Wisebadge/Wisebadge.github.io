@@ -101,6 +101,19 @@
     border: none;
     color: white;
 }
+
+#lookingList2 {
+    display: block;
+    position: absolute;
+    top: 333px;
+    margin-left: 23px;
+    width: 278px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    color: white;
+}
+
 .home {
     background: url(../img/Slice1sm.png);
     background-size: cover;

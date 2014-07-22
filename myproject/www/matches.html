@@ -1,3 +1,4 @@
+<body no-scroll>
 <ion-nav-bar animation="" type="bar-positive" class="deuglify">
     <a href="#pane">
         <button class="button button-clear stnd icon ion-ios7-arrow-back" ng-click=""></button>
@@ -6,13 +7,13 @@
 
     <ion-nav-view animation=""></ion-nav-view>
 
-<ion-view title="All Matches" left-buttons="leftButtons">
+<ion-view title="All Matches" left-buttons="leftButtons" class="matches">
 
-
-        <ion-view title="Home" class="matches">
             <ion-content class="has-header" on-drag-right="goBack()">  <!--note alt gestures like on-hold="goBack()" -->
+    <ion-refresher on-refresh="doRefresh()" pulling-text="Pull to refresh..." refreshing-text="Refreshing!" refreshing-icon="ion-loading-c">
 
-                <ion-list on-drag-down="pop()">
+    </ion-refresher>
+                <ion-list>
 
                     <ion-item ng-repeat="match in matches | limitTo:numLimit" class="max100" type="item-text-wrap" href="#/match/{{match.id}}">
                         <!--a class="item item-thumbnail-left" href="#"-->
@@ -31,9 +32,4 @@ margin-left: -20px; margin-top: -4px;"></span>
             </ion-content>
 
         </ion-view>
-        <!--div class="item range range-balanced" style="top: 518;">
-            <i class="icon ion-ios7-bolt-outline"></i>
-            <input type="range" name="volume" min="0" max="100" value="38">
-            <i class="icon ion-ios7-bolt"></i>
-          </div-->
-</ion-view>
+        </body>
