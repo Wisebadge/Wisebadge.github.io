@@ -56,7 +56,7 @@
     width: 276px;
     height: 40px;
 }
-.create-profile .nextPage a:focus, .create-profile .nextPage a:active {
+.create-profile .nextPage:focus, .create-profile .nextPage:active {
     background-color: white;
     opacity: 0.2;
 }
