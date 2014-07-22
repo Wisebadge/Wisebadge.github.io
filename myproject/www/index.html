@@ -272,9 +272,16 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 .controller('LoginCtrl', function($scope) {
 
 })
-    .controller('CreateProfileCtrl', function($scope) {
-
-    })
+.controller('CreateProfileCtrl', function($scope) {
+  $('.create-profile .notes').unbind('focus');
+  $('.create-profile .notes').unbind('blur');
+  $('.create-profile .notes').focus(function() {
+    $('.create-profile.pane').addClass('raiseNotes');
+  });
+  $('.create-profile .notes').blur(function() {
+    $('.create-profile.pane').removeClass('raiseNotes');
+  });
+})
 
 .controller('Test2Ctrl', function($ionicGesture, $scope) {
     /* $ionicGesture.on('swipe', function(event) {
