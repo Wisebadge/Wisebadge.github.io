@@ -211,17 +211,6 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
   };
 })
 
-.controller('AppController', function($scope) {
-  console.log('In App Controller');
-
-  $scope.leftButtons = [{
-    type: 'button-icon icon ion-navicon',
-    tap: function(e) {
-        $scope.sideMenuController.toggleLeft();
-    }
-  }];
-})
-
 
 .directive('dragBack', function($ionicGesture, $state) {
   return {
@@ -281,6 +270,19 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         },
         ];
         $scope.orderList = 'name';
+
+
+console.log('In App Controller');
+
+  $scope.leftButtons = [{
+    type: 'button-icon icon ion-navicon',
+    tap: function(e) {
+        $scope.sideMenuController.toggleLeft();
+    }
+  }];
+
+
+
 })
 
 
