@@ -196,6 +196,16 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic4.png'
     }];
 
+/** T R Y I N G  T O  F I X  A N I M A T I O N  **/
+
+/**
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+        // determine the direction of the transition
+  $rootScope.isForward = toState.data.index > fromState.data.index;
+   });
+
+ http://forum.ionicframework.com/t/setting-the-transition-direction-animation/541/21 **/
+
     $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
 
     $scope.cardSwiped = function(index) {
@@ -334,7 +344,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 
 
 
-.controller('MatchCtrl', function($scope) {
+.controller('MatchCtrl', function($scope, $ionicViewService) {
     $scope.matches = [{
         'name': 'Tiffany Wang',
         'email': 't@wang.com',
@@ -366,16 +376,16 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
     }, ];
     $scope.orderList = 'name';
 
-    /*
-console.log('In App Controller');
+    var history = $ionicViewService.getCurrentView();
+     //.getBackView();
+    console.log(history);
+    //history.go();
+ /*   rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+   if (from.name == "app.view2" && to.name =="app.view1"){
+        console.log('doing');
+   }
+}); */
 
-  $scope.leftButtons = [{
-    type: 'button-icon icon ion-navicon',
-    tap: function(e) {
-        $scope.sideMenuController.toggleLeft();
-    }
-  }];
-  */
 })
 
 
