@@ -163,3 +163,15 @@ h3#card {
      margin-bottom: -3px !important;
 }
 
+.popup{
+width: 320px !important;
+height: 100% !important;
+position: fixed;
+top: 25%;
+left: 39%;
+background-color: rgba(39, 33, 33, 0.86) !important;
+}
+
+.popup-head{
+border-bottom: 0px !important;
+}
