@@ -35,9 +35,6 @@ body {
     width: 96px;
     height: 96px;
 }
-/*.pane {
-  background: #333 !important;
-}*/
 .bar.bar-transparent {
     background-color: transparent;
     background-image: none;
@@ -46,13 +43,20 @@ body {
 .bar .title {
     color: #eee;
 }
-
 .bar.bar-mod {
-  background-color: transparent !important;
-  margin: 0 0px !important;
- }
+    background-color: transparent !important;
+    margin: 0 0px !important;
+}
+.deuglify {
+    background: rgba(0, 0, 0, 0.20);
+    -moz-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.30);
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.30);
+}
 
-
+a .stnd {
+  color: white !important;
+  opacity: 1;
+}
 .swipe-cards {
     position: fixed;
 }
@@ -127,12 +131,7 @@ body {
 .swipe-card.pop-in {
     -webkit-animation: bounceIn 0.3s ease-out;
 }
-
-.card-container {
- };
-
-
-
+.card-container {};
 </style>
 
 <script type="text/javascript">
@@ -205,28 +204,28 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 })
 
 .controller('ContentController', function($scope, $ionicSideMenuDelegate) {
-  $scope.toggleLeft = function() {
-    console.log('swiped left for menu');
-    $ionicSideMenuDelegate.toggleLeft();
-  };
+    $scope.toggleLeft = function() {
+        console.log('swiped left for menu');
+        $ionicSideMenuDelegate.toggleLeft();
+    };
 })
 
 
 .directive('dragBack', function($ionicGesture, $state) {
-  return {
-    restrict : 'A',
-    link : function(scope, elem, attr) {
+    return {
+        restrict: 'A',
+        link: function(scope, elem, attr) {
 
-      $ionicGesture.on('swipe', function(event) {
+            $ionicGesture.on('swipe', function(event) {
 
-        console.log('Got swiped!');
-        event.preventDefault();
-        window.history.back();
+                console.log('Got swiped!');
+                event.preventDefault();
+                window.history.back();
 
-      }, elem);
+            }, elem);
 
+        }
     }
-  }
 })
 
 
@@ -234,44 +233,43 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 .controller('LoginCtrl', function($scope) {
 
 })
-.controller('CreateProfileCtrl', function($scope) {
+    .controller('CreateProfileCtrl', function($scope) {
 
-})
+    })
 
 .controller('MatchCtrl', function($scope) {
-        $scope.matches = [{
-            'name': 'Tiffany Wang',
-            'email': 't@wang.com',
-            'phone': '214-748-3647',
-            'title': 'iOS Engineer at Apple',
-            'location': 'San Francisco, CA',
-            'id': 1
-        }, {
-            'name': 'John Smith',
-            'email': 'j@smith.com',
-            'phone': '123-456-7890',
-            'title': 'UI/UX at Airbnb',
-            'location': 'Berkeley, CA',
-            'id': 2
-        }, {
-            'name': 'John Smith',
-            'email': 'j@smith.com',
-            'phone': '123-456-7890',
-            'title': 'UI/UX at Airbnb',
-            'location': 'Berkeley, CA',
-            'id': 3
-        },{
-            'name': 'John Smith',
-            'email': 'j@smith.com',
-            'phone': '123-456-7890',
-            'title': 'UI/UX at Airbnb',
-            'location': 'Berkeley, CA',
-            'id': 4
-        },
-        ];
-        $scope.orderList = 'name';
+    $scope.matches = [{
+        'name': 'Tiffany Wang',
+        'email': 't@wang.com',
+        'phone': '214-748-3647',
+        'title': 'iOS Engineer at Apple',
+        'location': 'San Francisco, CA',
+        'id': 1
+    }, {
+        'name': 'John Smith',
+        'email': 'j@smith.com',
+        'phone': '123-456-7890',
+        'title': 'UI/UX at Airbnb',
+        'location': 'Berkeley, CA',
+        'id': 2
+    }, {
+        'name': 'John Smith',
+        'email': 'j@smith.com',
+        'phone': '123-456-7890',
+        'title': 'UI/UX at Airbnb',
+        'location': 'Berkeley, CA',
+        'id': 3
+    }, {
+        'name': 'John Smith',
+        'email': 'j@smith.com',
+        'phone': '123-456-7890',
+        'title': 'UI/UX at Airbnb',
+        'location': 'Berkeley, CA',
+        'id': 4
+    }, ];
+    $scope.orderList = 'name';
 
-/*
+    /*
 console.log('In App Controller');
 
   $scope.leftButtons = [{
@@ -328,7 +326,7 @@ console.log('In App Controller');
     })
 
 
-  .state('test', {
+    .state('test', {
         url: '/test',
         templateUrl: "test.html",
         controller: 'MatchCtrl'

@@ -44,8 +44,13 @@
 .create-profile.pane {
     background: url(../img/ProfileCreation.png);
     background-size: cover;
-
 }
+
+.standard.pane {
+   background: url(../img/Slice2.png) no-repeat center center fixed !important;
+}
+
+
 .create-profile .has-header {
   top: 0px !important;
 }

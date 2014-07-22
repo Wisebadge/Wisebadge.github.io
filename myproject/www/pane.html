@@ -1,29 +1,46 @@
-   <pane ng-controller="CardsCtrl" class="cards pane">
-            <header-bar type="bar-transparent" title="'Help out'"></header-bar>
-            <!--p style="color:white">Accepted: {{accepted}}, Rejected: {{rejected}}</p-->
-             <div class="container">
-                <a href="#/matches">list</a>
-            </div>
-            <swipe-cards>
-                <swipe-card on-swipe="cardSwiped()" id="start-card">
-                    Swipe right for your new match
-                </swipe-card>
-                <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
-                    <div ng-controller="CardCtrl">
-                        <!--div class="title">
+  <ion-nav-bar animation="nav-title-slide-ios7"
+             type="bar-positive"
+             class="deuglify"
+             back-button-type="button-icon"
+             back-button-icon="ion-arrow-left-c">
+
+  <a href="#create-profile"> <button class="button button-clear stnd icon ion-ios7-arrow-back" ng-click=""></button> </a>
+</ion-nav-bar>
+
+    <ion-nav-view animation="slide-left-right"></ion-nav-view>
+
+<ion-view title="Matches" left-buttons="leftButtons" drag-back>
+
+    <pane ng-controller="CardsCtrl" class="cards pane standard">
+        <!--header-bar type="bar-transparent" title="'Help out'"></header-bar-->
+
+        <!--p style="color:white">Accepted: {{accepted}}, Rejected: {{rejected}}</p-->
+       <div class="container">
+                <a class="back" id="b1" href="#/login"></a>
+                <a class="nextPage" id="n1" href="#/matches"></a>
+        </div>
+
+        <swipe-cards>
+            <swipe-card on-swipe="cardSwiped()" id="start-card">
+                Swipe right for your new match
+            </swipe-card>
+            <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
+                <div ng-controller="CardCtrl">
+                    <!--div class="title">
               {{card.title}}
             </div-->
-                        <div class="image">
-                            <img ng-src="{{card.image}}">
-                        </div>
-                        <div class="button-bar">
-                            <!--button class="button button-clear button-positive" ng-click="reject()">No</button-->
-                            <!--button class="button button-clear button-positive" ng-click="accept()">Yes</button-->
-                            <button class="button button-clear button-positive icon ion-close" ng-click="reject()"></button>
-
-                            <button class="button button-clear button-assertive icon ion-heart" ng-click="accept()"></button>
-                        </div>
+                    <div class="image">
+                        <img ng-src="{{card.image}}">
                     </div>
-                </swipe-card>
-            </swipe-cards>
-        </pane>
+                    <div class="button-bar">
+                        <!--button class="button button-clear button-positive" ng-click="reject()">No</button-->
+                        <!--button class="button button-clear button-positive" ng-click="accept()">Yes</button-->
+                        <button class="button button-clear button-positive icon ion-close" ng-click="reject()"></button>
+
+                        <button class="button button-clear button-assertive icon ion-heart" ng-click="accept()"></button>
+                    </div>
+                </div>
+            </swipe-card>
+        </swipe-cards>
+    </pane>
+</ion-view>
