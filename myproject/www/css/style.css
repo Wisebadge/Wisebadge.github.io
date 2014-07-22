@@ -56,6 +56,10 @@
     width: 276px;
     height: 40px;
 }
+.create-profile .nextPage a:focus, .create-profile .nextPage a:active {
+    background-color: white;
+    opacity: 0.2;
+}
 .create-profile .back {
     position: absolute;
     top: 13px;
@@ -67,7 +71,7 @@
 .create-profile .notes {
     display: block;
     position: absolute;
-    top: 395px;
+    top: 384px;
     margin-left: 23px;
     width: 278px;
     height: 94px;
@@ -82,7 +86,7 @@
 .create-profile #strengthList {
     display: block;
     position: absolute;
-    top: 260px;
+    top: 256px;
     margin-left: 23px;
     width: 278px;
     height: 30px;
@@ -93,7 +97,7 @@
 .create-profile #lookingList {
     display: block;
     position: absolute;
-    top: 333px;
+    top: 316px;
     margin-left: 23px;
     width: 278px;
     height: 30px;
