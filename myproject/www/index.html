@@ -134,9 +134,7 @@ a .stnd {
     -webkit-animation: bounceIn 0.3s ease-out;
 }
 .card-container {};
-
-
-#blue {
+ #blue {
     background-color: blue;
     max-width: 200px;
     margin-left: 40px;
@@ -147,18 +145,17 @@ a .stnd {
 #pink {
     background-color: pink;
 }
-
 #next {
-  color: white;
-  text-align: center;
-  position:absolute;
-  top:460px;
-  margin:auto;
-  width: 100%;
+    color: white;
+    text-align: center;
+    position: absolute;
+    top: 460px;
+    margin: auto;
+    width: 100%;
 }
-
 #mydiv {
-  margin:auto; text-align: center;
+    margin: auto;
+    text-align: center;
 }
 </style>
 
@@ -196,9 +193,9 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic4.png'
     }];
 
-/** T R Y I N G  T O  F I X  A N I M A T I O N  **/
+    /** T R Y I N G  T O  F I X  A N I M A T I O N  **/
 
-/**
+    /**
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         // determine the direction of the transition
   $rootScope.isForward = toState.data.index > fromState.data.index;
@@ -219,10 +216,10 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
             $scope.$root.rejected++;
         }
         $scope.cards.splice(index, 1);
-        if ( $scope.$root.accepted > 1) {
-           console.log('next');
-             $rootScope.next = true;
-      }
+        if ($scope.$root.accepted > 1) {
+            console.log('next');
+            $rootScope.next = true;
+        }
     };
 
     $scope.addCard = function() {
@@ -266,6 +263,8 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 
         }
     }
+
+
 })
 
 
@@ -277,7 +276,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
     })
 
 .controller('Test2Ctrl', function($ionicGesture, $scope) {
-   /* $ionicGesture.on('swipe', function(event) {
+    /* $ionicGesture.on('swipe', function(event) {
         console.log('Got swiped!');
         event.preventDefault();
         window.history.back();
@@ -287,58 +286,58 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 
 
 .controller('MyCtrl', function($scope, $timeout) {
-  $scope.myTitle = 'Template';
+    $scope.myTitle = 'Template';
 
-  $scope.data = {
-    swipe : 0,
-    swiperight: 0,
-    swipeleft: 0,
-    tap : 0,
-    doubletap : 0,
-    scroll : 0
-  };
+    $scope.data = {
+        swipe: 0,
+        swiperight: 0,
+        swipeleft: 0,
+        tap: 0,
+        doubletap: 0,
+        scroll: 0
+    };
 
-  $scope.reportEvent = function(event)  {
-    console.log('Reporting : ' + event.type);
+    $scope.reportEvent = function(event) {
+        console.log('Reporting : ' + event.type);
 
-    $timeout(function() {
-      $scope.data[event.type]++;
-    })
-  }
+        $timeout(function() {
+            $scope.data[event.type]++;
+        })
+    }
 
 
 })
 
 .directive('detectGestures', function($ionicGesture) {
-  return {
-    restrict :  'A',
+    return {
+        restrict: 'A',
 
-    link : function(scope, elem, attrs) {
-      var gestureType = attrs.gestureType;
+        link: function(scope, elem, attrs) {
+            var gestureType = attrs.gestureType;
 
-      switch(gestureType) {
-        case 'swipe':
-          $ionicGesture.on('swipe', scope.reportEvent, elem);
-          break;
-        case 'swiperight':
-          $ionicGesture.on('swiperight', scope.reportEvent, elem);
-          break;
-        case 'swipeleft':
-          $ionicGesture.on('swipeleft', scope.reportEvent, elem);
-          break;
-        case 'doubletap':
-          $ionicGesture.on('doubletap', scope.reportEvent, elem);
-          break;
-        case 'tap':
-          $ionicGesture.on('tap', scope.reportEvent, elem);
-          break;
-        case 'scroll':
-          $ionicGesture.on('scroll', scope.reportEvent, elem);
-          break;
-      }
+            switch (gestureType) {
+                case 'swipe':
+                    $ionicGesture.on('swipe', scope.reportEvent, elem);
+                    break;
+                case 'swiperight':
+                    $ionicGesture.on('swiperight', scope.reportEvent, elem);
+                    break;
+                case 'swipeleft':
+                    $ionicGesture.on('swipeleft', scope.reportEvent, elem);
+                    break;
+                case 'doubletap':
+                    $ionicGesture.on('doubletap', scope.reportEvent, elem);
+                    break;
+                case 'tap':
+                    $ionicGesture.on('tap', scope.reportEvent, elem);
+                    break;
+                case 'scroll':
+                    $ionicGesture.on('scroll', scope.reportEvent, elem);
+                    break;
+            }
 
+        }
     }
-  }
 })
 
 
@@ -377,10 +376,19 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
     $scope.orderList = 'name';
 
     var history = $ionicViewService.getCurrentView();
-     //.getBackView();
+    //.getBackView();
     console.log(history);
+
+    $scope.goBack = function() {
+        //$ionicGesture.on('swipeleft', function(event) {
+            console.log('Got clicked');
+            event.preventDefault();
+            window.history.back();
+       // });
+    };
+
     //history.go();
- /*   rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+    /*   rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
    if (from.name == "app.view2" && to.name =="app.view1"){
         console.log('doing');
    }

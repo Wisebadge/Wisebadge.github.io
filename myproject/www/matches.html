@@ -6,14 +6,11 @@
 
     <ion-nav-view animation=""></ion-nav-view>
 
-<ion-view title="All Matches" left-buttons="leftButtons" drag-back>
+<ion-view title="All Matches" left-buttons="leftButtons">
 
 
         <ion-view title="Home" class="matches">
-            <!--div class="container">
-            <a href="#/pane">back</a>
-        </div-->
-            <ion-content class="has-header">
+            <ion-content class="has-header" on-hold="goBack()" on-drag-right="goBack()">
 
                 <ion-list>
 
