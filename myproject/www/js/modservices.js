@@ -15,7 +15,7 @@ angular.module('starter.modservices', [])
   ]; */
 
 myMatches = [{
-        'name': 'Tiffany Wang',
+        'name': 'Tiffine Wang',
         'email': 't@wang.com',
         'phone': '214-748-3647',
         'title': 'iOS Engineer at Apple',
@@ -29,7 +29,7 @@ myMatches = [{
         'location': 'Berkeley, CA',
         'id': 1
     }, {
-        'name': 'Bob Smith',
+        'name': 'Helen Poldsman',
         'email': 'j@smith.com',
         'phone': '123-456-7890',
         'title': 'Product Design at IDEO',
@@ -42,6 +42,22 @@ myMatches = [{
         'title': 'Founder at SpaceX',
         'location': 'Cupertino, CA',
         'id': 3
+    },
+    {
+        'name': 'Q Smith',
+        'email': 'j@smith.com',
+        'phone': '123-456-7890',
+        'title': 'Product Design at IDEO',
+        'location': 'Berkeley, CA',
+        'id': 4
+    },
+    {
+        'name': 'Z Smith',
+        'email': 'j@smith.com',
+        'phone': '123-456-7890',
+        'title': 'Product Design at IDEO',
+        'location': 'Berkeley, CA',
+        'id': 5
     }, ];
 
   return {

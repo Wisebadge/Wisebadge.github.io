@@ -10,13 +10,13 @@
 
 
         <ion-view title="Home" class="matches">
-            <ion-content class="has-header" on-hold="goBack()" on-drag-right="goBack()">
+            <ion-content class="has-header" on-drag-right="goBack()">  <!--note alt gestures like on-hold="goBack()" -->
 
-                <ion-list>
+                <ion-list on-drag-down="pop()">
 
-                    <ion-item ng-repeat="match in matches" class="max100" type="item-text-wrap" href="#/match/{{match.id}}">
+                    <ion-item ng-repeat="match in matches | limitTo:numLimit" class="max100" type="item-text-wrap" href="#/match/{{match.id}}">
                         <!--a class="item item-thumbnail-left" href="#"-->
-                        <div class="card-container item-thumbnail-left">
+                        <div class="card-container item-thumbnail-left" id="{{match.name}}">
                             <img src="img/user75.jpg">
                             <h2>{{match.name}}</h2>
                             <div class="">{{match.title}}</div>

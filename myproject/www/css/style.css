@@ -1,130 +1,129 @@
 /* Empty. Add your own CSS if you like */
+
 /** For swipe index **/
 
-.ion-close{
+.ion-close {
     border-right: 1px solid rgb(226, 226, 226) !important;
 }
-
 .swipe-card .image {
     max-height: 250px !important;
 }
-
 .container img {
     width: 70%
 }
-
 .container {
     text-align: center;
 }
-
 .home .container {
-  height: 100%;
+    height: 100%;
 }
 .home .linkedInLogin {
-  width: 100%;
-  position: absolute;
-  top: 455px;
+    width: 100%;
+    position: absolute;
+    top: 455px;
 }
 .home .linkedInLogin a {
-  margin-left: 20px;
-  display: block;
-  width: 260px;
-  height: 40px;
+    margin-left: 20px;
+    display: block;
+    width: 260px;
+    height: 40px;
 }
-
 .home .linkedInLogin a:focus, .home .linkedInLogin a:active {
-  background-color: white;
-  opacity: 0.2;
+    background-color: white;
+    opacity: 0.2;
 }
-
 .matches {
     background: url(../img/Slice2.png) no-repeat center center fixed !important;
 }
-
 .create-profile.pane {
     background: url(../img/ProfileCreation.png);
     background-size: cover;
 }
-
 .standard.pane {
-   background: url(../img/Slice2.png) no-repeat center center fixed !important;
+    background: url(../img/Slice2.png) no-repeat center center fixed !important;
 }
-
 .blue {
     background-color: blue !important;
 }
-
 .create-profile .has-header {
-  top: 0px !important;
+    top: 0px !important;
 }
 .create-profile .nextPage {
-  position: absolute;
-  top: 498px;
-  margin-left: 16px;
-  display: block;
-  width: 276px;
-  height: 40px;
+    position: absolute;
+    top: 498px;
+    margin-left: 16px;
+    display: block;
+    width: 276px;
+    height: 40px;
 }
 .create-profile .back {
-  position: absolute;
-  top: 13px;
-  margin-left: -5px;
-  display: block;
-  width: 50px;
-  height: 40px;
+    position: absolute;
+    top: 13px;
+    margin-left: -5px;
+    display: block;
+    width: 50px;
+    height: 40px;
 }
 .create-profile .notes {
-  display: block;
-  position: absolute;
-  top: 395px;
-  margin-left: 23px;
-  width: 278px;
-  height: 94px;
-  background-color: transparent;
-  color: white;
-  font-size: 16px;
+    display: block;
+    position: absolute;
+    top: 395px;
+    margin-left: 23px;
+    width: 278px;
+    height: 94px;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
 }
-.create-profile .notes::-webkit-input-placeholder { /* WebKit browsers */
-  color: rgba(255, 255, 255, 0.73)
+.create-profile .notes::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: rgba(255, 255, 255, 0.73)
 }
 .create-profile #strengthList {
-  display: block;
-  position: absolute;
-  top: 260px;
-  margin-left: 23px;
-  width: 278px;
-  height: 30px;
-  background: transparent;
-  border: none;
-  color: white;
+    display: block;
+    position: absolute;
+    top: 260px;
+    margin-left: 23px;
+    width: 278px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    color: white;
 }
 .create-profile #lookingList {
-  display: block;
-  position: absolute;
-  top: 333px;
-  margin-left: 23px;
-  width: 278px;
-  height: 30px;
-  background: transparent;
-  border: none;
-  color: white;
+    display: block;
+    position: absolute;
+    top: 333px;
+    margin-left: 23px;
+    width: 278px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    color: white;
 }
 .home {
     background: url(../img/Slice1sm.png);
     background-size: cover;
 }
-.cards {
-  background: #333 !important;
-}
 
-.max100{
+.helen {
+    background: url(../img/helen.png);
+    background-size: cover;
+}
+.cards {
+    background: #333 !important;
+}
+.max100 {
     max-height: 100px;
 }
-
-.button .icon:before, .button.icon:before, .button.icon#loc-icon:before{
+.button .icon:before, .button.icon:before, .button.icon#loc-icon:before {
     display: inline-block;
     padding: 0 0 1px 0;
     vertical-align: inherit;
     font-size: 23px !important;
     line-height: 30px;
-    pointer-events: none; }
+    pointer-events: none;
+}
+.item[ng-click]:hover {
+    cursor: crosshair !important;
+}

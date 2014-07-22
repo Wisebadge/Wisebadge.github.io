@@ -377,6 +377,14 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         'id': 4
     }, ]; */
 
+    $scope.numLimit = 5;
+
+    $scope.pop = function() {
+            console.log('Got popped');
+            event.preventDefault();
+             $scope.numLimit = 2;
+    };
+
     var history = $ionicViewService.getCurrentView();
     //console.log(history);
 
@@ -397,6 +405,11 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
 .controller('MatchDetailCtrl', function($scope, $rootScope, $stateParams, Matches) {
   $scope.match = Matches.get($stateParams.matchId);
+   $scope.goBack2 = function() {
+            console.log('Got clicked');
+            event.preventDefault();
+            window.history.back();
+    };
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
