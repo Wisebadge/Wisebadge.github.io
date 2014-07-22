@@ -42,11 +42,11 @@ since {{date}}. {{match.name}} has worked on {{match.title}} for {{years}} years
 
             <div class="item tabs tabs-secondary tabs-icon-left" id="trans">
                 <a class="tab-item" href="">
-                    <i class="icon ion-thumbsup"></i>
+                    <i class="icon ion-thumbsup" ng-click="showPopup()"></i>
                     Like
                 </a>
                 <a class="tab-item" href="">
-                    <i class="icon ion-chatbox"></i>
+                    <i class="icon ion-chatbox" ng-click="showConfirm()"></i>
                     Comment
                 </a>
                 <a class="tab-item" href="">
@@ -54,6 +54,21 @@ since {{date}}. {{match.name}} has worked on {{match.title}} for {{years}} years
                     Share
                 </a>
             </div>
+
+    <!--button class="button button-dark" ng-click="showPopup()">
+      show
+    </button>
+    <button class="button button-primary" ng-click="showConfirm()">
+      Confirm
+    </button>
+    <button class="button button-positive" ng-click="showAlert()">
+      Alert
+    </button-->
+
+    <!--script id="popup-template.html" type="text/ng-template">
+      <input ng-model="data.wifi" type="text" placeholder="Password">
+    </script-->
+
 
         </div>
     </ion-view>

@@ -161,7 +161,6 @@ a .stnd {
 .scroll-refresher {
     width: 100% !important;
 }
-
 </style>
 
 <script type="text/javascript">
@@ -182,21 +181,38 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 .controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope) {
     $rootScope.accepted = 0;
     $rootScope.rejected = 0;
+
+    x = $.ajax({
+        url: 'http://api.randomuser.me/',
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+        }
+    });
+    x.responseJSON.results[0].user.email;
+    x.responseJSON.results[0].user.picture;
+
     var cardTypes = [{
         title: 'Swipe down to clear the card',
-        image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic.png'
+        //image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic.png'
+        image: 'img/Chris.jpg'
+
     }, {
         title: 'Where is this?',
-        image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic.png'
+        //image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic.png'
+        image: 'img/Chris.jpg'
     }, {
         title: 'What kind of grass is this?',
-        image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic2.png'
+        //image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic2.png'
+        image: 'img/Chris.jpg'
     }, {
         title: 'What beach is this?',
-        image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic3.png'
+        //image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic3.png'
+        image: 'img/Chris.jpg'
     }, {
         title: 'What kind of clouds are these?',
-        image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic4.png'
+        //image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic4.png'
+        image: 'img/Chris.jpg'
     }];
 
     /** T R Y I N G  T O  F I X  A N I M A T I O N  **/
@@ -369,10 +385,10 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
     $scope.matches = Matches.all();
 
     $scope.myfilter = function(timelim) {
-      var curdate = (new Date).toJSON();
-      console.log('filtering');
-      console.log(curdate);
-      //return {date:  };
+        var curdate = (new Date).toJSON();
+        console.log('filtering');
+        console.log(curdate);
+        //return {date:  };
     };
 
     $scope.numLimit = 10;
@@ -467,7 +483,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         }, 1200);
 
     };
- /*
+    /*
     //history.go();
      rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
    if (from.name == "app.view2" && to.name =="app.view1"){
@@ -475,9 +491,9 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
    }
 }); */
 
-})  //correctly matched
+}) //correctly matched
 
-.controller('MatchDetailCtrl', function($scope, $rootScope, $stateParams, Matches) {
+.controller('MatchDetailCtrl', function($scope, $rootScope, $timeout, $ionicPopup, $stateParams, Matches) {
     $scope.match = Matches.get($stateParams.matchId);
     $scope.years = Math.round(10 * Math.random());
     $scope.date = Math.round(2000 + 10 * Math.random());
@@ -486,6 +502,56 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         event.preventDefault();
         window.history.back();
     };
+
+    // Triggered on a button click, or some other target
+    $scope.showPopup = function() {
+        $scope.data = {};
+
+        // An elaborate, custom popup
+        var myPopup = $ionicPopup.show({
+            template: '<input type="password" >', //ng-model="data.wifi"
+            title: 'Enter Wi-Fi Password',
+            subTitle: 'Please use normal things',
+            scope: $scope,
+            buttons: [{
+                text: 'Cancel'
+            }, {
+                text: '<b>Save</b>',
+                type: 'button-positive',
+                onTap: function(e) {
+                    if (!$scope.data.wifi) {
+                        //don't allow the user to close unless he enters wifi password
+                        e.preventDefault();
+                    } else {
+                        return $scope.data.wifi;
+                    }
+                }
+            }, ]
+        });
+        myPopup.then(function(res) {
+            console.log('Tapped!', res);
+        });
+        $timeout(function() {
+            myPopup.close(); //close the popup after 3 seconds for some reason
+        }, 3000);
+    };
+
+    // A confirm dialog
+    $scope.showConfirm = function() {
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'Consume Ice Cream',
+            template: 'Are you sure you want to eat this ice cream?'
+        });
+        confirmPopup.then(function(res) {
+            if (res) {
+                console.log('You are sure');
+            } else {
+                console.log('You are not sure');
+            }
+        });
+    };
+
+
 })
 
 .controller('RefreshCtrl', function($scope, $timeout) {
