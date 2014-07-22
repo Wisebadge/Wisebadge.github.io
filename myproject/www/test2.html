@@ -1,15 +1,19 @@
-<ion-view title="Test2">
+<ion-view title="Test2" class="blue">
 
-<ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="false">
-  <ion-slide id='blue'>
+<pane ng-controller="MyCtrl" class="blue">
+
+<ion-slide-box on-slide-changed="slideHasChanged($index)" class="blue" show-pager="false">
+  <ion-slide detect-gestures gesture-type = "swipeleft" id='blue'>
     <div class="box blue"><h1>BLUE</h1></div>
   </ion-slide>
   <ion-slide id='red'>
     <div class="box yellow"><h1>YELLOW</h1></div>
   </ion-slide>
   <ion-slide id='pink'>
-    <div class="box pink"><h1>PINK</h1></div>
+    <div detect-gestures class="box pink"><h1>PINK</h1></div>
+    <span class="BLU"> TEST</span>
   </ion-slide>
 </ion-slide-box>
+</pane>
 
 </ion-view>
