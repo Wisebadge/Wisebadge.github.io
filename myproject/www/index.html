@@ -18,6 +18,7 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <script type="text/javascript" src="js/cards.js"></script>
+    <script type="text/javascript" src="js/modservices.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
     <script src="js/jquery.js"></script>
@@ -160,7 +161,7 @@ a .stnd {
 </style>
 
 <script type="text/javascript">
-angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
+angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservices'])
 
 .directive('noScroll', function($document) {
     return {
@@ -343,8 +344,10 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 
 
 
-.controller('MatchCtrl', function($scope, $ionicViewService) {
-    $scope.matches = [{
+.controller('MatchCtrl', function($scope, $ionicViewService, $rootScope, Matches) {
+      $scope.matches= Matches.all();
+
+    /*$rootScope.matches = [{
         'name': 'Tiffany Wang',
         'email': 't@wang.com',
         'phone': '214-748-3647',
@@ -359,32 +362,28 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
         'location': 'Berkeley, CA',
         'id': 2
     }, {
-        'name': 'John Smith',
+        'name': 'Bob Smith',
         'email': 'j@smith.com',
         'phone': '123-456-7890',
-        'title': 'UI/UX at Airbnb',
+        'title': 'Product Design at IDEO',
         'location': 'Berkeley, CA',
         'id': 3
     }, {
-        'name': 'John Smith',
-        'email': 'j@smith.com',
+        'name': 'Elon Musk',
+        'email': 'e@musk.com',
         'phone': '123-456-7890',
-        'title': 'UI/UX at Airbnb',
-        'location': 'Berkeley, CA',
+        'title': 'Founder at SpaceX',
+        'location': 'Cupertino, CA',
         'id': 4
-    }, ];
-    $scope.orderList = 'name';
+    }, ]; */
 
     var history = $ionicViewService.getCurrentView();
-    //.getBackView();
-    console.log(history);
+    //console.log(history);
 
     $scope.goBack = function() {
-        //$ionicGesture.on('swipeleft', function(event) {
             console.log('Got clicked');
             event.preventDefault();
             window.history.back();
-       // });
     };
 
     //history.go();
@@ -396,6 +395,9 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 
 })
 
+.controller('MatchDetailCtrl', function($scope, $rootScope, $stateParams, Matches) {
+  $scope.match = Matches.get($stateParams.matchId);
+})
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -427,15 +429,20 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards'])
 
     .state('matches', {
         url: "/matches",
-        //abstract: true,
         templateUrl: "matches.html",
         controller: 'MatchCtrl'
     })
 
+    .state('match-detail', {
+     url: '/match/:matchId',
+          templateUrl: 'match-name.html',
+          controller: 'MatchDetailCtrl'
+    })
+
+
 
     .state('meet', {
         url: "/meet",
-        //abstract: true,
         templateUrl: "meet.html",
         controller: 'CardsCtrl'
     })
