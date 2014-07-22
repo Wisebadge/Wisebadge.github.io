@@ -73,6 +73,42 @@
   width: 50px;
   height: 40px;
 }
+.create-profile .notes {
+  display: block;
+  position: absolute;
+  top: 395px;
+  margin-left: 23px;
+  width: 278px;
+  height: 94px;
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+}
+.create-profile .notes::-webkit-input-placeholder { /* WebKit browsers */
+  color: rgba(255, 255, 255, 0.73)
+}
+.create-profile #strengthList {
+  display: block;
+  position: absolute;
+  top: 260px;
+  margin-left: 23px;
+  width: 278px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  color: white;
+}
+.create-profile #lookingList {
+  display: block;
+  position: absolute;
+  top: 333px;
+  margin-left: 23px;
+  width: 278px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  color: white;
+}
 .home {
     background: url(../img/Slice1sm.png);
     background-size: cover;
