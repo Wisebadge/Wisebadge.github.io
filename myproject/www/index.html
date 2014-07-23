@@ -281,7 +281,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
 
 .controller('LoginCtrl', function($scope, $rootScope, $firebase, $firebaseSimpleLogin) {
-   var dataRef = new Firebase("https://otsi.firebaseio.com/users");
+    var dataRef = new Firebase("https://otsi.firebaseio.com/users/");
     $scope.loginObj = $firebaseSimpleLogin(dataRef, function(error, user) {
         if (error) {
             // an error occurred while attempting login
@@ -294,23 +294,29 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         }
     });
 
-if ($scope.loginObj.user) {
-    $scope.loginObj.$login('facebook', {
-        rememberMe: false,
-        preferRedirect: true,
-        scope: 'email,user_likes'
-    }).then(function(user) {
-        console.log('Logged in as: ', user.uid);
-    }, function(error) {
-        console.error('Login failed: ', error);
-    });
-};
+    if ($scope.loginObj.user) {
+        $scope.loginObj.$login('facebook', {
+            rememberMe: false,
+            preferRedirect: true,
+            scope: 'email,user_likes'
+        }).then(function(user) {
+            console.log('Logged in as: ', user.uid);
+        }, function(error) {
+            console.error('Login failed: ', error);
+        });
+    };
     $scope.$on("$firebaseSimpleLogin:login", function(e, user) {
         console.log("User " + user.uid + " successfully logged in!");
         $rootScope.user = user;
-         console.log('email is: '+ user.thirdPartyUserData.email);
-        console.log('image is: '+ user.thirdPartyUserData.picture.data.url);
-        console.log('link is: '+ user.thirdPartyUserData.link);
+        var date = (new Date).toJSON();
+        dataRef.push({
+            name: user.thirdPartyUserData.name,
+            email: user.thirdPartyUserData.email,
+            image: user.thirdPartyUserData.picture.data.url,
+            url: user.thirdPartyUserData.link,
+            user: user,
+            date: date
+        });
     });
 
     $scope.$on("$firebaseSimpleLogin:error", function(e, user) {
