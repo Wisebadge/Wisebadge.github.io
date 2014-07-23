@@ -42,16 +42,6 @@ angular.module('starter.modservices', []).factory('Matches', function() {
           'image': 'http://wisebadge.github.io/myproject/www/img/Fred.jpg'
       },
       {
-          'name': 'Helen Poldsman',
-          'email': 'j@smith.com',
-          'phone': '123-456-7890',
-          'title': 'Product Design at IDEO',
-          'location': 'Berkeley, CA',
-          'id': 4,
-          'date': (new Date).toJSON(),
-          'image': 'http://wisebadge.github.io/myproject/www/img/Helen.jpg'
-      },
-      {
           'name': 'Ravi',
           'email': 'j@smith.com',
           'phone': '123-456-7890',
@@ -60,6 +50,16 @@ angular.module('starter.modservices', []).factory('Matches', function() {
           'id': 5,
           'date': (new Date).toJSON(),
           'image': 'http://wisebadge.github.io/myproject/www/img/Ravi.jpg'
+      },
+      {
+          'name': 'Helen Poldsman',
+          'email': 'j@smith.com',
+          'phone': '123-456-7890',
+          'title': 'Product Design at IDEO',
+          'location': 'Berkeley, CA',
+          'id': 4,
+          'date': (new Date).toJSON(),
+          'image': 'http://wisebadge.github.io/myproject/www/img/Helen.jpg'
       }
     ];
 

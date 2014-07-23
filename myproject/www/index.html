@@ -216,7 +216,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
     $scope.years = Math.round(10 * Math.random());
     $scope.date = Math.round(2000 + 10 * Math.random());
 
-    var shuffledCards = _.shuffle(_.rest(Matches.all()));
+    var shuffledCards = _.rest(Matches.all());
 
     $scope.cards = shuffledCards;
     chosenGuys = [];
