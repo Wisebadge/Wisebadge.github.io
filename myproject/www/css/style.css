@@ -175,3 +175,18 @@ background-color: rgba(39, 33, 33, 0.86) !important;
 .popup-head{
 border-bottom: 0px !important;
 }
+
+.map-container {
+margin: 0;
+padding: 0;
+left: 4%;
+}
+
+
+#map-canvas { height: 90%; width:90%; margin-bottom: 20px; margin-top: 4%;
+margin-left: 4%;}
+
+.angular-leaflet-map {
+    width: 640px;
+    height: 480px;
+}

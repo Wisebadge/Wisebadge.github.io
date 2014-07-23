@@ -23,6 +23,21 @@
 
         </ion-content>
 
+        <!--style="height:300px;width:400px;border:2px solid #777777;margin:3px; border:1px solid"-->
+        <div class="map-container">
+            <div id="map-canvas" ui-map="myMap" ui-options="mapOptions" ui-event="{'map-idle' : 'onMapIdle()'}">
+            </div>
+
+            <!--In addition to creating the markers on the map,
+       div elements with existing google.maps.Marker object
+        should be created to hook up with events -->
+            <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]" ui-event="{'map-click': 'markerClicked(marker)'}">
+            </div>
+
+        </div>
+
+
+        </div>
     </ion-view>
     <!--div class="item range range-balanced" style="top: 518;">
             <i class="icon ion-ios7-bolt-outline"></i>
