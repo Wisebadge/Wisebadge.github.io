@@ -353,27 +353,35 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         });
     };
 
+    $scope.ask = function() {
 
-    if (!!navigator.geolocation) {
+        if (!!navigator.geolocation) {
 
-        navigator.geolocation.getCurrentPosition(function(position) {
+            navigator.geolocation.getCurrentPosition(function(position) {
 
-            var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-            var infowindow = new google.maps.InfoWindow({
-                map: $scope.myMap,
-                position: geolocate,
-                content: '<h3>Location pinned from HTML5 Geolocation!</h3>' +
-                    '<p>Latitude: ' + position.coords.latitude + '</p>' +
-                    '<p>Longitude: ' + position.coords.longitude + '</p>'
+               /* var infowindow = new google.maps.InfoWindow({
+                    map: $scope.myMap,
+                    position: geolocate,
+                    maxWidth: 200,
+                    pixelOffset: new google.maps.Size(0, -50),
+                    zIndex: null,
+                    content: '<h4>Location pinned from HTML5 Geolocation!</h4>' +
+                        '<p id>Latitude: ' + position.coords.latitude +  '</p>' +
+                        '<p>Longitude: ' + position.coords.longitude + '</p>'
+                });
+            */
+
+
+                $scope.myMap.setCenter(geolocate);
+
+                $scope.myMarkers[ $scope.myMarkers.length - 1].position = geolocate;
             });
 
-            $scope.myMap.setCenter(geolocate);
-
-        });
-
-    } else {
-        document.getElementById('map-canvas').innerHTML = 'No Geolocation Support.';
+        } else {
+            document.getElementById('map-canvas').innerHTML = 'No Geolocation Support.';
+        }
     }
 
 
