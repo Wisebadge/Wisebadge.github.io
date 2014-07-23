@@ -71,6 +71,21 @@
 .youHaveBeenMatched.confirmed #time {
     display: none;
 }
+.youHaveBeenMatched #countdown {
+    display: none;
+}
+.youHaveBeenMatched.confirmed #countdown {
+    display: block;
+    position: absolute;
+    top: 417px;
+    margin-left: 23px;
+    width: 278px;
+    height: 49px;
+    border: none;
+    color: white;
+    font-size: 24px;
+    line-height: 2em;
+}
 .create-profile .nextPage {
     position: absolute;
     top: 494px;

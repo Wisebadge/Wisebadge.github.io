@@ -189,6 +189,12 @@ a .stnd {
 <script type="text/javascript">
 var chosenGuys = [];
 
+function pad(n, width, z) {
+    z = z || '0';
+    n = n + '';
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
 angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservices', 'ui.map', 'ui.event', 'firebase', 'leaflet-directive', 'ui.router'])
 
 .directive('noScroll', function($document) {
@@ -654,9 +660,22 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 .controller('YouHaveBeenMatchedCtrl', function($scope) {
     $('.youHaveBeenMatched #time').unbind('blur');
     $('.youHaveBeenMatched #time').blur(function() {
-        if ($('.youHaveBeenMatched #time').val() != 0) {
+        var time = $('.youHaveBeenMatched #time').val();
+        if (time != 0) {
             setTimeout(function () {
+                time = time * 60;
                 $('.youHaveBeenMatched.pane').addClass('confirmed');
+
+                function countdown() {
+                    time--;
+                    var min = Math.floor(time/60);
+                    var sec = pad(time - min * 60, 2);
+                    $('.youHaveBeenMatched #countdown').text(min + ':' + sec);
+                    if (time != 0) {
+                        setTimeout(countdown, 1000);
+                    }
+                }
+                setTimeout(countdown, 0);
             }, 3000);
         }
     });
