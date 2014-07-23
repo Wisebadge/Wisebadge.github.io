@@ -25,9 +25,6 @@
     <pane ng-controller="CardsCtrl" class="cards pane standard" ng-init="">
 
         <swipe-cards>
-            <!--swipe-card on-swipe="cardSwiped()" id="start-card">
-                Swipe right for your new match
-            </swipe-card-->
             <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)" ng-model="count">
                 <div ng-controller="CardCtrl">
 
@@ -45,21 +42,6 @@
 
 
                     </div>
-
-                    <!--div class="item tabs tabs-secondary tabs-icon-left" id="trans">
-                        <a class="tab-item" href="">
-                            <i class="icon ion-thumbsup" ng-click="showPopup()"></i>
-                            Like
-                        </a>
-                        <a class="tab-item" href="">
-                            <i class="icon ion-chatbox" ng-click="showConfirm()"></i>
-                            Meet
-                        </a>
-                        <a class="tab-item" href="">
-                            <i class="icon ion-share"></i>
-                            Share
-                        </a>
-                    </div-->
                     <div class="button-bar" style="margin-top: 25px;">
 
                         <button class="button button-clear button-positive icon ion-close" ng-click="reject()"></button>
@@ -69,14 +51,5 @@
                 </div>
             </swipe-card>
         </swipe-cards>
-
-        <!--div class="animate-hide" ng-show="next">
-            <div id="next mydiv">
-                <a href="#matches" style="text-underline-style: none;
-text-decoration: initial;">
-                    <h3 id="next">Next</h3>
-                </a>
-            </div>
-        </div-->
     </pane>
 </ion-view>
