@@ -49,7 +49,7 @@
 .blue {
     background-color: blue !important;
 }
-.create-profile .has-header {
+.create-profile .has-header, .youHaveBeenMatched .has-header {
     top: 0px !important;
 }
 .create-profile .nextPage {
@@ -64,7 +64,7 @@
     background-color: white;
     opacity: 0.2;
 }
-.create-profile .back {
+.create-profile .back, .youHaveBeenMatched .back {
     position: absolute;
     top: 13px;
     margin-left: -5px;
