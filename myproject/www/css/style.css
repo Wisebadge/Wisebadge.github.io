@@ -39,6 +39,10 @@
     background: url(../img/ProfileCreation.png);
     background-size: cover;
 }
+.youHaveBeenMatched.pane {
+    background: url(../img/youHaveBeenMatched-waiting.png);
+    background-size: cover;
+}
 .standard.pane {
     background: url(../img/Slice2.png) no-repeat center center fixed !important;
 }

@@ -189,7 +189,7 @@ a .stnd {
 <script type="text/javascript">
 var chosenGuys = [];
 
-angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservices', 'ui.map', 'ui.event', 'firebase', 'leaflet-directive'])
+angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservices', 'ui.map', 'ui.event', 'firebase', 'leaflet-directive', 'ui.router'])
 
 .directive('noScroll', function($document) {
     return {
@@ -204,7 +204,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
 
 
-.controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope, Matches) {
+.controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope, Matches, $state) {
     $rootScope.accepted = 0;
     $rootScope.rejected = 0;
     $scope.years = Math.round(10 * Math.random());
@@ -216,8 +216,10 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
     chosenGuys = [];
 
     $scope.cardSwiped = function(index) {
-        if (this.swipeCard.positive === true) {
-            chosenGuys.push(shuffledCards[index]);
+        var card = shuffledCards[index];
+        if (this.swipeCard.positive === true && card.name === 'Helen Poldsman') {
+            chosenGuys.push(card);
+            $state.go('youHaveBeenMatched');
         } else {}
     };
 
@@ -386,8 +388,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
             var marker = new google.maps.Marker({
                 map: $scope.myMap,
                 position: ll,
-                icon: new google.maps.MarkerImage(
-                    'img/owl-ribbon-web.svg', null, null, null, new google.maps.Size(64, 64)),
+                //icon: new google.maps.MarkerImage('img/owl-ribbon-web.svg', null, null, null, new google.maps.Size(64, 64)),
                 draggable: true,
                 title: "Meet Me!"
             });
@@ -588,10 +589,6 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         }
     }
 })
-
-
-
-
 .controller('MatchCtrl', function($scope, $ionicViewService, $rootScope, $timeout, Matches) {
     $scope.matches = [];
     for (var i = 0; i < chosenGuys.length; i++) {
@@ -654,7 +651,8 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 }); */
 
 }) //correctly matched
-
+.controller('YouHaveBeenMatchedCtrl', function($scope) {
+})
 .controller('MatchDetailCtrl', function($scope, $rootScope, $timeout, $ionicPopup, $stateParams, Matches) {
     $scope.match = Matches.get($stateParams.matchId);
     $scope.years = Math.round(10 * Math.random());
@@ -777,6 +775,11 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         url: "/matches",
         templateUrl: "matches.html",
         controller: 'MatchCtrl'
+    })
+    .state('youHaveBeenMatched', {
+        url: "/youHaveBeenMatched",
+        templateUrl: "youHaveBeenMatched.html",
+        controller: 'YouHaveBeenMatchedCtrl'
     })
 
 
