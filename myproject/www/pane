@@ -9,6 +9,9 @@
 <ion-view title="Matches">
 
     <pane ng-controller="CardsCtrl" class="cards pane standard" ng-init="">
+        <!--header-bar type="bar-transparent" title="'Help out'"></header-bar-->
+
+        <!--p style="color:white">Accepted: {{accepted}}, Rejected: {{rejected}}</p-->
 
         <swipe-cards>
             <swipe-card on-swipe="cardSwiped()" id="start-card">
@@ -16,6 +19,26 @@
             </swipe-card>
             <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)" ng-model="count">
                 <div ng-controller="CardCtrl">
+                    <!--div class="title">
+                          {{card.title}}
+                    </div-->
+                    <!--div class="image">
+                        <img ng-src="{{card.image}}">
+                    </div>
+                    <div class="button-bar">
+
+                        <button class="button button-clear button-positive icon ion-close" ng-click="reject()"></button>
+
+                        <button class="button button-clear button-assertive icon ion-heart" ng-click="accept()"></button>
+                    </div-->
+
+
+
+                    <!--div class="item item-avatar " id="trans">
+                <img src="mcfly.jpg">
+                <h2>Marty McFly</h2>
+                <p>November 05, 1955</p>
+            </div-->
 
                     <div class="item item-body" id="trans">
                         <img class="full-image circled" src="img/user73.jpg">
@@ -28,7 +51,10 @@
                         <p>
                             {{match.name}} is a native of {{match.location}} and has lived in Nice, France since {{date}}. {{match.name}} has worked on {{match.title}} for {{years}} years.
                         </p>
-
+                        <!--p>
+                    <a href="#" class="subdued">1 Like</a>
+                    <a href="#" class="subdued">5 Comments</a>
+                </p-->
                     </div>
 
                     <div class="item tabs tabs-secondary tabs-icon-left" id="trans">

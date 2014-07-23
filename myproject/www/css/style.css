@@ -153,6 +153,13 @@
   background-color: transparent !important;
 }
 
+.card.mod2 {
+  overflow: hidden;
+  margin: 15px 10px;
+  border-radius: 2px;
+  background-color: transparent !important;
+}
+
 h2#card {
     font-size: 20px !important;
     margin-top: 10px !important;
@@ -189,4 +196,15 @@ margin-left: 4%;}
 .angular-leaflet-map {
     width: 640px;
     height: 480px;
+}
+
+.circled {
+border-radius: 200;
+border: red solid 5px;
+display: flex;
+margin: auto;
+}
+
+.full-image.circled{
+    width: 160px;
 }
