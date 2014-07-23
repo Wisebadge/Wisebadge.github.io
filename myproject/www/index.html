@@ -23,6 +23,7 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
     <script src="js/jquery.js"></script>
+    <script src="js/underscore-min.js"></script>
 
 
 
@@ -179,6 +180,9 @@ left: 50%; top: 50%; width: 286px; height: 409px; margin-left: -143px; margin-to
 </style>
 
 <script type="text/javascript">
+
+var chosenGuys = [];
+
 angular.module('starter', ['ionic','ionic.contrib.ui.cards', 'starter.modservices','ui.map','ui.event', 'leaflet-directive'])
 
 .directive('noScroll', function($document) {
@@ -193,62 +197,20 @@ angular.module('starter', ['ionic','ionic.contrib.ui.cards', 'starter.modservice
 })
 
 
-
-.controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope) {
+.controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope, Matches) {
     $rootScope.accepted = 0;
     $rootScope.rejected = 0;
 
-  /*x = $.ajax({
-  url: 'http://api.randomuser.me/',
-  dataType: 'json',
-  success: function(data){
-    console.log(data);
-  }
-});
-x.responseJSON.results[0].user.email;
-x.responseJSON.results[0].user.picture;*/
+    var shuffledCards = _.shuffle(_.rest(Matches.all()));
 
-       var cardTypes = [{
-        title: 'Swipe down to clear the card',
-        //image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic.png'
-        image: 'http://wisebadge.github.io/myproject/www/img/Alar.jpg'
-
-    }, {
-        title: 'Where is this?',
-        //image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic.png'
-        image: 'http://wisebadge.github.io/myproject/www/img/Chris.jpg'
-    }, {
-        title: 'What kind of grass is this?',
-        //image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic2.png'
-        image: 'http://wisebadge.github.io/myproject/www/img/Helen.jpg'
-    }, {
-        title: 'What beach is this?',
-        //image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic3.png'
-        image: 'http://wisebadge.github.io/myproject/www/img/Fred.jpg'
-    }, {
-        title: 'What kind of clouds are these?',
-        //image: 'http://ionicframework.com.s3.amazonaws.com/demos/ionic-contrib-swipecards/pic4.png'
-        image: 'http://wisebadge.github.io/myproject/www/img/Ravi.jpg'
-    }];
-
-
-
-
-
-    /** T R Y I N G  T O  F I X  A N I M A T I O N  **/
-
-    /**
-  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-        // determine the direction of the transition
-  $rootScope.isForward = toState.data.index > fromState.data.index;
-   });
-
- http://forum.ionicframework.com/t/setting-the-transition-direction-animation/541/21 **/
-
-    $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+    $scope.cards = shuffledCards;
+    chosenGuys = [];
 
     $scope.cardSwiped = function(index) {
-        $scope.addCard();
+        if (this.swipeCard.positive === true) {
+          chosenGuys.push(shuffledCards[index]);
+        } else {
+        }
     };
 
     $scope.cardDestroyed = function(index) {
@@ -262,12 +224,6 @@ x.responseJSON.results[0].user.picture;*/
             console.log('next');
             $rootScope.next = true;
         }
-    };
-
-    $scope.addCard = function() {
-        var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-        newCard.id = Math.random();
-        $scope.cards.push(angular.extend({}, newCard));
     };
 })
 
@@ -458,7 +414,10 @@ x.responseJSON.results[0].user.picture;*/
 
 
 .controller('MatchCtrl', function($scope, $ionicViewService, $rootScope, $timeout, Matches) {
-    $scope.matches = Matches.all();
+    $scope.matches = [];
+    for (var i = 0; i < chosenGuys.length; i++) {
+      $scope.matches.push(chosenGuys[i]);
+    }
 
     $scope.myfilter = function(timelim) {
       var curdate = (new Date).toJSON();
@@ -493,62 +452,10 @@ x.responseJSON.results[0].user.picture;*/
     $rootScope.x = 5; //id5 in factory
 
     $scope.doRefresh = function() {
-
         console.log('Refreshing!');
-        samples = [{
-            'name': 'Tiffine Wang',
-            'email': 't@wang.com',
-            'phone': '214-748-3647',
-            'title': 'iOS Engineer at Apple',
-            'location': 'San Francisco, CA',
-            'id': ++$rootScope.x,
-            'date': (new Date).toJSON()
-        }, {
-            'name': 'John Smith',
-            'email': 'j@smith.com',
-            'phone': '123-456-7890',
-            'title': 'UI/UX at Airbnb',
-            'location': 'Berkeley, CA',
-            'id': ++$rootScope.x,
-            'date': (new Date).toJSON()
-        }, {
-            'name': 'Helen Poldsman',
-            'email': 'j@smith.com',
-            'phone': '123-456-7890',
-            'title': 'Product Design at IDEO',
-            'location': 'Berkeley, CA',
-            'id': ++$rootScope.x,
-            'date': (new Date).toJSON()
-        }, {
-            'name': 'Elon Musk',
-            'email': 'e@musk.com',
-            'phone': '123-456-7890',
-            'title': 'Founder at SpaceX',
-            'location': 'Cupertino, CA',
-            'id': ++$rootScope.x,
-            'date': (new Date).toJSON()
-        }, {
-            'name': 'Q Smith',
-            'email': 'j@smith.com',
-            'phone': '123-456-7890',
-            'title': 'Product Design at IDEO',
-            'location': 'Berkeley, CA',
-            'id': ++$rootScope.x,
-            'date': (new Date).toJSON()
-        }, {
-            'name': 'Z Smith',
-            'email': 'j@smith.com',
-            'phone': '123-456-7890',
-            'title': 'Product Design at IDEO',
-            'location': 'Berkeley, CA',
-            'id': ++$rootScope.x,
-            'date': (new Date).toJSON()
-        }, ];
-
-        var rand = Math.round((samples.length - 1) * Math.random());
 
         $timeout(function() {
-            $rootScope.addMatch(samples[rand]);
+            //$rootScope.addMatch(samples[rand]);
             //$rootScope.addMatch(samples[i++]);
             //$scope.matches.push( samples[i++] + Math.floor(Math.random() * 1000) + 4);
             //$scope.matches.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
