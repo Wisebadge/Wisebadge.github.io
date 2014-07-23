@@ -18,7 +18,7 @@
                     <ion-item ng-repeat="match in matches | filter: myfilter(10)  | limitTo:numLimit | orderBy:'-date'" class="max100" type="item-text-wrap" href="#/match/{{match.id}}">
                         <!--a class="item item-thumbnail-left" href="#"-->
                         <div class="card-container item-thumbnail-left" id="{{match.name}}">
-                            <img src="{{match.image}}">
+                            <img ng-src="{{match.image}}">
                             <h2>{{match.name}}</h2>
                             <div class="">{{match.title}}</div>
                             <p style="margin: 3 0 39px">

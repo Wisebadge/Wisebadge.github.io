@@ -210,8 +210,6 @@
 
 
 	.controller('CardsCtrl', function ($scope, $ionicSwipeCardDelegate, $rootScope, Matches, $state) {
-		$rootScope.accepted = 0;
-		$rootScope.rejected = 0;
 		$scope.years = Math.round(10 * Math.random());
 		$scope.date = Math.round(2000 + 10 * Math.random());
 
@@ -221,29 +219,16 @@
 		chosenGuys = [];
 
 		$scope.cardSwiped = function (index) {
-			if (this.swipeCard.positive === true) {
-        var card = shuffledCards[index];
-				chosenGuys.push(card);
-        if (card.name === 'Helen Poldsman') {
-            $state.go('youHaveBeenMatched');
-        }
-			} else {}
+  			if (this.swipeCard.positive === true) {
+            var card = shuffledCards[index];
+    				chosenGuys.push(card);
+            if (card.name === 'Helen Poldsman') {
+                $state.go('youHaveBeenMatched');
+            }
+  			} else {}
 		};
 
 		$scope.cardDestroyed = function (index) {
-			if (this.swipeCard.positive === true) {
-				$scope.$root.accepted++;
-			} else {
-				$scope.$root.rejected++;
-			}
-			$scope.cards.splice(index, 1);
-			if ($scope.$root.accepted > 1) {
-				console.log('next');
-				$rootScope.next = true;
-			}
-			$scope.years = Math.round(10 * Math.random());
-			$scope.date = Math.round(2000 + 10 * Math.random());
-
 		};
 	})
 
