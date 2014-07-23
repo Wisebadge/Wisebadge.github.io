@@ -27,14 +27,15 @@
 
 
 
- <script src="http://maps.googleapis.com/maps/api/js?sensor=false.js"> </script>
- <script src="http://www.flocations.com/static/vendor/angular-ui/map/ui-map.min.js"></script>
- <script src="http://www.flocations.com/static/vendor/angular-ui/event/event.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false.js">
+    </script>
+    <script src="http://www.flocations.com/static/vendor/angular-ui/map/ui-map.min.js"></script>
+    <script src="http://www.flocations.com/static/vendor/angular-ui/event/event.js"></script>
 
 
-<script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
-<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
-<script src="http://tombatossals.github.io/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
+    <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
+    <script src="http://tombatossals.github.io/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
 
 
 </head>
@@ -87,10 +88,12 @@ a .stnd {
     height: 300px;
     margin-left: -150px;
     margin-top: -150px;  OLD Tinder Cards*/
-
-left: 50%; top: 50%; width: 286px; height: 409px; margin-left: -143px; margin-top: -180px;
-
-
+    left: 50%;
+    top: 50%;
+    width: 286px;
+    height: 409px;
+    margin-left: -143px;
+    margin-top: -180px;
     box-sizing: border-box;
     background-color: rgb(255, 255, 255);
     border-radius: 4px;
@@ -177,15 +180,12 @@ left: 50%; top: 50%; width: 286px; height: 409px; margin-left: -143px; margin-to
 .scroll-refresher {
     width: 100% !important;
 }
-
-
 </style>
 
 <script type="text/javascript">
-
 var chosenGuys = [];
 
-angular.module('starter', ['ionic','ionic.contrib.ui.cards', 'starter.modservices','ui.map','ui.event', 'leaflet-directive'])
+angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservices', 'ui.map', 'ui.event', 'leaflet-directive'])
 
 .directive('noScroll', function($document) {
     return {
@@ -210,9 +210,8 @@ angular.module('starter', ['ionic','ionic.contrib.ui.cards', 'starter.modservice
 
     $scope.cardSwiped = function(index) {
         if (this.swipeCard.positive === true) {
-          chosenGuys.push(shuffledCards[index]);
-        } else {
-        }
+            chosenGuys.push(shuffledCards[index]);
+        } else {}
     };
 
     $scope.cardDestroyed = function(index) {
@@ -309,7 +308,7 @@ angular.module('starter', ['ionic','ionic.contrib.ui.cards', 'starter.modservice
             scrollWheelZoom: false
         }
     });
-} )
+})
 
 .controller('SuperCtrl', function($scope) {
 
@@ -324,13 +323,21 @@ angular.module('starter', ['ionic','ionic.contrib.ui.cards', 'starter.modservice
     var newRef = myDataRef.child('meetings');
     posRef = newRef.child('elements');
 
+
+    var scaleFactor = 1000;
+    var offset = 10;
+    var size = 2;
+
     //Markers should be added after map is loaded
     $scope.onMapIdle = function() {
-        if ($scope.myMarkers === undefined){
+        if ($scope.myMarkers === undefined) {
             var marker = new google.maps.Marker({
                 map: $scope.myMap,
                 position: ll,
-                draggable: true
+                icon: new google.maps.MarkerImage(
+                    'img/owl-ribbon-web.svg', null, null, null, new google.maps.Size(64, 64)),
+                draggable: true,
+                title: "Meet Me!"
             });
             $scope.myMarkers = [marker, ];
         }
@@ -338,13 +345,37 @@ angular.module('starter', ['ionic','ionic.contrib.ui.cards', 'starter.modservice
 
     $scope.markerClicked = function(m) {
         window.alert("clicked");
-        var item =   $scope.myMarkers[0].position;//angular.element($0).scope().myMarkers[0].position;
+        var item = $scope.myMarkers[0].position; //angular.element($0).scope().myMarkers[0].position;
         var date = new Date;
-         posRef.push({
-                pos: item,
-                date: date.toJSON()
-            });
+        posRef.push({
+            pos: item,
+            date: date.toJSON()
+        });
     };
+
+
+    if (!!navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+
+            var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+            var infowindow = new google.maps.InfoWindow({
+                map: $scope.myMap,
+                position: geolocate,
+                content: '<h3>Location pinned from HTML5 Geolocation!</h3>' +
+                    '<p>Latitude: ' + position.coords.latitude + '</p>' +
+                    '<p>Longitude: ' + position.coords.longitude + '</p>'
+            });
+
+            $scope.myMap.setCenter(geolocate);
+
+        });
+
+    } else {
+        document.getElementById('map-canvas').innerHTML = 'No Geolocation Support.';
+    }
+
 
 })
 
@@ -430,14 +461,14 @@ angular.module('starter', ['ionic','ionic.contrib.ui.cards', 'starter.modservice
 .controller('MatchCtrl', function($scope, $ionicViewService, $rootScope, $timeout, Matches) {
     $scope.matches = [];
     for (var i = 0; i < chosenGuys.length; i++) {
-      $scope.matches.push(chosenGuys[i]);
+        $scope.matches.push(chosenGuys[i]);
     }
 
     $scope.myfilter = function(timelim) {
-      var curdate = (new Date).toJSON();
-      console.log('filtering');
-      console.log(curdate);
-      //return {date:  };
+        var curdate = (new Date).toJSON();
+        console.log('filtering');
+        console.log(curdate);
+        //return {date:  };
     };
 
     $scope.numLimit = 10;
@@ -480,7 +511,7 @@ angular.module('starter', ['ionic','ionic.contrib.ui.cards', 'starter.modservice
         }, 1200);
 
     };
- /*
+    /*
     //history.go();
      rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
    if (from.name == "app.view2" && to.name =="app.view1"){
@@ -488,9 +519,9 @@ angular.module('starter', ['ionic','ionic.contrib.ui.cards', 'starter.modservice
    }
 }); */
 
-})  //correctly matched
+}) //correctly matched
 
-.controller('MatchDetailCtrl', function($scope, $rootScope,  $timeout, $ionicPopup, $stateParams, Matches) {
+.controller('MatchDetailCtrl', function($scope, $rootScope, $timeout, $ionicPopup, $stateParams, Matches) {
     $scope.match = Matches.get($stateParams.matchId);
     $scope.years = Math.round(10 * Math.random());
     $scope.date = Math.round(2000 + 10 * Math.random());
@@ -500,54 +531,53 @@ angular.module('starter', ['ionic','ionic.contrib.ui.cards', 'starter.modservice
         window.history.back();
     };
 
-// Triggered on a button click, or some other target
-$scope.showPopup = function() {
-  $scope.data = {};
+    // Triggered on a button click, or some other target
+    $scope.showPopup = function() {
+        $scope.data = {};
 
-  // An elaborate, custom popup
-  var myPopup = $ionicPopup.show({
-    template: '<input type="password" >', //ng-model="data.wifi"
-    title: 'Enter Wi-Fi Password',
-    subTitle: 'Please use normal things',
-    scope: $scope,
-    buttons: [
-      { text: 'Cancel' },
-      {
-        text: '<b>Save</b>',
-        type: 'button-positive',
-        onTap: function(e) {
-          if (!$scope.data.wifi) {
-            //don't allow the user to close unless he enters wifi password
-            e.preventDefault();
-          } else {
-            return $scope.data.wifi;
-          }
-        }
-      },
-    ]
-  });
-  myPopup.then(function(res) {
-    console.log('Tapped!', res);
-  });
-  $timeout(function() {
-     myPopup.close(); //close the popup after 3 seconds for some reason
-  }, 3000);
- };
+        // An elaborate, custom popup
+        var myPopup = $ionicPopup.show({
+            template: '<input type="password" >', //ng-model="data.wifi"
+            title: 'Enter Wi-Fi Password',
+            subTitle: 'Please use normal things',
+            scope: $scope,
+            buttons: [{
+                text: 'Cancel'
+            }, {
+                text: '<b>Save</b>',
+                type: 'button-positive',
+                onTap: function(e) {
+                    if (!$scope.data.wifi) {
+                        //don't allow the user to close unless he enters wifi password
+                        e.preventDefault();
+                    } else {
+                        return $scope.data.wifi;
+                    }
+                }
+            }, ]
+        });
+        myPopup.then(function(res) {
+            console.log('Tapped!', res);
+        });
+        $timeout(function() {
+            myPopup.close(); //close the popup after 3 seconds for some reason
+        }, 3000);
+    };
 
- // A confirm dialog
- $scope.showConfirm = function() {
-   var confirmPopup = $ionicPopup.confirm({
-     title: 'Consume Ice Cream',
-     template: ' <div id="map-canvas"> </div>'
-   });
-   confirmPopup.then(function(res) {
-     if(res) {
-       console.log('You are sure');
-     } else {
-       console.log('You are not sure');
-     }
-   });
- };
+    // A confirm dialog
+    $scope.showConfirm = function() {
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'Consume Ice Cream',
+            template: ' <div id="map-canvas"> </div>'
+        });
+        confirmPopup.then(function(res) {
+            if (res) {
+                console.log('You are sure');
+            } else {
+                console.log('You are not sure');
+            }
+        });
+    };
 
 
 })
@@ -655,7 +685,7 @@ $scope.showPopup = function() {
         controller: 'MatchCtrl'
     })
 
-  .state('leaf', {
+    .state('leaf', {
         url: '/leaf',
         templateUrl: "map.html",
         controller: 'LeafCtrl'
