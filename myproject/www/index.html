@@ -221,10 +221,12 @@
 		chosenGuys = [];
 
 		$scope.cardSwiped = function (index) {
-			var card = shuffledCards[index];
-			if (this.swipeCard.positive === true && card.name === 'Helen Poldsman') {
+			if (this.swipeCard.positive === true) {
+        var card = shuffledCards[index];
 				chosenGuys.push(card);
-				$state.go('youHaveBeenMatched');
+        if (card.name === 'Helen Poldsman') {
+            $state.go('youHaveBeenMatched');
+        }
 			} else {}
 		};
 
