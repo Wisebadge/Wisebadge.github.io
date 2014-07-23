@@ -47,7 +47,7 @@ angular.module('starter.modservices', []).factory('Matches', function() {
           'phone': '123-456-7890',
           'title': 'Product Design at IDEO',
           'location': 'Berkeley, CA',
-          'id': 5,
+          'id': 4,
           'date': (new Date).toJSON(),
           'image': 'http://wisebadge.github.io/myproject/www/img/Ravi.jpg'
       },
@@ -57,7 +57,7 @@ angular.module('starter.modservices', []).factory('Matches', function() {
           'phone': '123-456-7890',
           'title': 'Product Design at IDEO',
           'location': 'Berkeley, CA',
-          'id': 4,
+          'id': 5,
           'date': (new Date).toJSON(),
           'image': 'http://wisebadge.github.io/myproject/www/img/Helen.jpg'
       }
