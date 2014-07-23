@@ -162,7 +162,7 @@
 
 h2#card {
     font-size: 20px !important;
-    margin-top: 10px !important;
+    margin-top: 2px !important;
 }
 
 h3#card {
@@ -200,7 +200,7 @@ margin-left: 4%;}
 
 .circled {
 border-radius: 200;
-border: red solid 5px;
+border: #eee solid 5px;
 display: flex;
 margin: auto;
 }

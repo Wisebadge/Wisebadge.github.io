@@ -207,6 +207,8 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 .controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope, Matches) {
     $rootScope.accepted = 0;
     $rootScope.rejected = 0;
+    $scope.years = Math.round(10 * Math.random());
+    $scope.date = Math.round(2000 + 10 * Math.random());
 
     var shuffledCards = _.shuffle(_.rest(Matches.all()));
 
@@ -230,6 +232,9 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
             console.log('next');
             $rootScope.next = true;
         }
+        $scope.years = Math.round(10 * Math.random());
+        $scope.date = Math.round(2000 + 10 * Math.random());
+
     };
 })
 
