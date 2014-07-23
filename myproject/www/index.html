@@ -13,6 +13,7 @@
     </script>
     <script src="http://clic.cimec.unitn.it/~elia.bruni/tank/ionic.cards.js"></script-->
 
+
     <link href="css/style.css" rel="stylesheet">
     <!--if no internet-->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -24,6 +25,14 @@
     <script src="js/jquery.js"></script>
     <script src="js/underscore-min.js"></script>
 
+
+
+ <script src="http://maps.googleapis.com/maps/api/js?sensor=false.js"> </script>
+ <script src="http://www.flocations.com/static/vendor/angular-ui/map/ui-map.min.js"></script>
+ <script src="http://www.flocations.com/static/vendor/angular-ui/event/event.js"></script>
+
+<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
+<script src="http://tombatossals.github.io/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
 
 
 </head>
@@ -163,13 +172,14 @@ a .stnd {
     width: 100% !important;
 }
 
+
 </style>
 
 <script type="text/javascript">
 
 var chosenGuys = [];
 
-angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservices'])
+angular.module('starter', ['ionic','ionic.contrib.ui.cards', 'starter.modservices','ui.map','ui.event', 'leaflet-directive'])
 
 .directive('noScroll', function($document) {
     return {
@@ -262,6 +272,62 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
 .controller('LoginCtrl', function($scope) {
 
+})
+
+.controller("LeafCtrl", function($scope) {
+    angular.extend($scope, {
+        taipei: {
+            lat: 25.0391667,
+            lng: 121.525,
+            zoom: 6
+        },
+        layers: {
+            baselayers: {
+                osm: {
+                    name: 'OpenStreetMap',
+                    url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    type: 'xyz'
+                },
+                cloudmade2: {
+                    name: 'Cloudmade Tourist',
+                    type: 'xyz',
+                    url: 'http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png',
+                    layerParams: {
+                        key: '007b9471b4c74da4a6ec7ff43552b16f',
+                        styleId: 7
+                    }
+                }
+            }
+        },
+        defaults: {
+            scrollWheelZoom: false
+        }
+    });
+} )
+
+.controller('SuperCtrl', function($scope) {
+     var ll = new google.maps.LatLng(13.0810, 80.2740);
+    $scope.mapOptions = {
+        center: ll,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    //Markers should be added after map is loaded
+    $scope.onMapIdle = function() {
+        if ($scope.myMarkers === undefined){
+            var marker = new google.maps.Marker({
+                map: $scope.myMap,
+                position: ll,
+                draggable: true
+            });
+            $scope.myMarkers = [marker, ];
+        }
+    };
+
+    $scope.markerClicked = function(m) {
+        window.alert("clicked");
+    };
 })
 
 .controller('CreateProfileCtrl', function($scope) {
@@ -451,7 +517,7 @@ $scope.showPopup = function() {
  $scope.showConfirm = function() {
    var confirmPopup = $ionicPopup.confirm({
      title: 'Consume Ice Cream',
-     template: 'Are you sure you want to eat this ice cream?'
+     template: ' <div id="map-canvas"> </div>'
    });
    confirmPopup.then(function(res) {
      if(res) {
@@ -553,7 +619,7 @@ $scope.showPopup = function() {
     .state('test', {
         url: '/test',
         templateUrl: "test.html",
-        controller: 'MatchCtrl'
+        controller: 'SuperCtrl'
     })
 
     .state('test2', {
@@ -566,6 +632,12 @@ $scope.showPopup = function() {
         url: '/test3',
         templateUrl: "test3.html",
         controller: 'MatchCtrl'
+    })
+
+  .state('leaf', {
+        url: '/leaf',
+        templateUrl: "map.html",
+        controller: 'LeafCtrl'
     })
 
 
