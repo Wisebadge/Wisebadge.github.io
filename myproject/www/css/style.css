@@ -125,6 +125,12 @@
     width: 278px;
     height: 40px;
 }
+
+#matches-back {
+  display: block;
+  height: 70px;
+  width: 70px;
+}
 .matchFound .nextPage {
     position: absolute;
     top: 424px;
