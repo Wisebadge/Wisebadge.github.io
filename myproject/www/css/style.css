@@ -43,6 +43,10 @@
     background: url(../img/youHaveBeenMatched-waiting.png);
     background-size: cover;
 }
+.youHaveBeenMatched.pane.confirmed {
+    background: url(../img/youHaveBeenMatched-confirmed.png);
+    background-size: cover;
+}
 .standard.pane {
     background: url(../img/Slice2.png) no-repeat center center fixed !important;
 }
@@ -51,6 +55,21 @@
 }
 .create-profile .has-header, .youHaveBeenMatched .has-header {
     top: 0px !important;
+}
+.youHaveBeenMatched #time {
+    display: block;
+    position: absolute;
+    top: 406px;
+    margin-left: 23px;
+    width: 278px;
+    height: 49px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+.youHaveBeenMatched.confirmed #time {
+    display: none;
 }
 .create-profile .nextPage {
     position: absolute;

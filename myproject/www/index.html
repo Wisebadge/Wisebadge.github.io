@@ -652,6 +652,14 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
 }) //correctly matched
 .controller('YouHaveBeenMatchedCtrl', function($scope) {
+    $('.youHaveBeenMatched #time').unbind('blur');
+    $('.youHaveBeenMatched #time').blur(function() {
+        if ($('.youHaveBeenMatched #time').val() != 0) {
+            setTimeout(function () {
+                $('.youHaveBeenMatched.pane').addClass('confirmed');
+            }, 3000);
+        }
+    });
 })
 .controller('MatchDetailCtrl', function($scope, $rootScope, $timeout, $ionicPopup, $stateParams, Matches) {
     $scope.match = Matches.get($stateParams.matchId);
