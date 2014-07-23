@@ -35,6 +35,8 @@
 
     <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
     <script src="https://www.firebase.com/js/libs/idle.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.js"></script>
+    <script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.6.2/firebase-simple-login.js'></script>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
     <script src="http://tombatossals.github.io/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
@@ -187,7 +189,7 @@ a .stnd {
 <script type="text/javascript">
 var chosenGuys = [];
 
-angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservices', 'ui.map', 'ui.event', 'leaflet-directive'])
+angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservices', 'ui.map', 'ui.event', 'firebase', 'leaflet-directive'])
 
 .directive('noScroll', function($document) {
     return {
@@ -199,6 +201,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         }
     };
 })
+
 
 
 .controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope, Matches) {
@@ -277,7 +280,43 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 })
 
 
-.controller('LoginCtrl', function($scope) {
+.controller('LoginCtrl', function($scope, $rootScope, $firebase, $firebaseSimpleLogin) {
+   var dataRef = new Firebase("https://otsi.firebaseio.com/users");
+    $scope.loginObj = $firebaseSimpleLogin(dataRef, function(error, user) {
+        if (error) {
+            // an error occurred while attempting login
+            console.log(error);
+        } else if (user) {
+            // user authenticated with Firebase
+            console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+        } else {
+            // user is logged out
+        }
+    });
+
+if ($scope.loginObj.user) {
+    $scope.loginObj.$login('facebook', {
+        rememberMe: false,
+        preferRedirect: true,
+        scope: 'email,user_likes'
+    }).then(function(user) {
+        console.log('Logged in as: ', user.uid);
+    }, function(error) {
+        console.error('Login failed: ', error);
+    });
+};
+    $scope.$on("$firebaseSimpleLogin:login", function(e, user) {
+        console.log("User " + user.uid + " successfully logged in!");
+        $rootScope.user = user;
+         console.log('email is: '+ user.thirdPartyUserData.email);
+        console.log('image is: '+ user.thirdPartyUserData.picture.data.url);
+        console.log('link is: '+ user.thirdPartyUserData.link);
+    });
+
+    $scope.$on("$firebaseSimpleLogin:error", function(e, user) {
+        console.log("an error occurred with: " +
+            e + "and user:" + user.uid);
+    });
 
 })
 
@@ -363,7 +402,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
                 var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-               /* var infowindow = new google.maps.InfoWindow({
+                /* var infowindow = new google.maps.InfoWindow({
                     map: $scope.myMap,
                     position: geolocate,
                     maxWidth: 200,
@@ -378,7 +417,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
                 $scope.myMap.setCenter(geolocate);
 
-                $scope.myMarkers[ $scope.myMarkers.length - 1].position = geolocate;
+                $scope.myMarkers[$scope.myMarkers.length - 1].position = geolocate;
             });
 
         } else {
@@ -401,82 +440,85 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 })
 
 .controller('Test2Ctrl', function($scope) {
-  // Prompt the user for a name to use.
-  var name = prompt("Your name?", "Guest"),
-      currentStatus = "★ online";
+    // Prompt the user for a name to use.
+    var name = prompt("Your name?", "Guest"),
+        currentStatus = "★ online";
 
-  // Get a reference to the presence data in Firebase.
- $scope.userListRef = new Firebase("https://otsi.firebaseio.com/chat");
+    // Get a reference to the presence data in Firebase.
+    $scope.userListRef = new Firebase("https://otsi.firebaseio.com/chat");
 
 
-  // Generate a reference to a new location for my user with push.
-   $scope.myUserRef =  $scope.userListRef.push();
+    // Generate a reference to a new location for my user with push.
+    $scope.myUserRef = $scope.userListRef.push();
 
-  // Get a reference to my own presence status.
-  $scope.connectedRef =  $scope.userListRef.child('connected');
-   $scope.connectedRef.on("value", function(isOnline) {
-    if (isOnline.val()) {
-      // If we lose our internet connection, we want ourselves removed from the list.
-       $scope.myUserRef.onDisconnect().remove();
+    // Get a reference to my own presence status.
+    $scope.connectedRef = $scope.userListRef.child('connected');
+    $scope.connectedRef.on("value", function(isOnline) {
+        if (isOnline.val()) {
+            // If we lose our internet connection, we want ourselves removed from the list.
+            $scope.myUserRef.onDisconnect().remove();
 
-      // Set our initial online status.
-      $scope.setUserStatus("★ online");
-    } else {
+            // Set our initial online status.
+            $scope.setUserStatus("★ online");
+        } else {
 
-      // We need to catch anytime we are marked as offline and then set the correct status. We
-      // could be marked as offline 1) on page load or 2) when we lose our internet connection
-      // temporarily.
-       $scope.setUserStatus(currentStatus);
+            // We need to catch anytime we are marked as offline and then set the correct status. We
+            // could be marked as offline 1) on page load or 2) when we lose our internet connection
+            // temporarily.
+            $scope.setUserStatus(currentStatus);
+        }
+    });
+
+    // A helper function to let us set our own state.
+    $scope.setUserStatus = function(status) {
+        // Set our status in the list of online users.
+        currentStatus = status;
+        $scope.myUserRef.set({
+            name: name,
+            status: status
+        });
     }
-  });
 
-  // A helper function to let us set our own state.
-  $scope.setUserStatus = function (status) {
-    // Set our status in the list of online users.
-    currentStatus = status;
-     $scope.myUserRef.set({ name: name, status: status });
-  }
+    $scope.getMessageId = function(snapshot) {
+        return snapshot.name().replace(/[^a-z0-9\-\_]/gi, '');
+    }
 
-  $scope.getMessageId = function(snapshot) {
-    return snapshot.name().replace(/[^a-z0-9\-\_]/gi,'');
-  }
+    // Update our GUI to show someone"s online status.
+    $scope.userListRef.on("child_added", function(snapshot) {
+        var user = snapshot.val();
 
-  // Update our GUI to show someone"s online status.
-   $scope.userListRef.on("child_added", function(snapshot) {
-    var user = snapshot.val();
+        $("<div/>")
+            .attr("id", $scope.getMessageId(snapshot))
+            .text(user.name + " is currently " + user.status)
+            .appendTo("#presenceDiv");
+    });
 
-    $("<div/>")
-      .attr("id",  $scope.getMessageId(snapshot))
-      .text(user.name + " is currently " + user.status)
-      .appendTo("#presenceDiv");
-  });
+    // Update our GUI to remove the status of a user who has left.
+    $scope.userListRef.on("child_removed", function(snapshot) {
+        $("#presenceDiv").children("#" + $scope.getMessageId(snapshot))
+            .remove();
+    });
 
-  // Update our GUI to remove the status of a user who has left.
-   $scope.userListRef.on("child_removed", function(snapshot) {
-    $("#presenceDiv").children("#" +  $scope.getMessageId(snapshot))
-      .remove();
-  });
+    // Update our GUI to change a user"s status.
+    $scope.userListRef.on("child_changed", function(snapshot) {
+        var user = snapshot.val();
+        $("#presenceDiv").children("#" + $scope.getMessageId(snapshot))
+            .text(user.name + " is currently " + user.status);
+    });
 
-  // Update our GUI to change a user"s status.
-   $scope.userListRef.on("child_changed", function(snapshot) {
-    var user = snapshot.val();
-    $("#presenceDiv").children("#" +  $scope.getMessageId(snapshot))
-      .text(user.name + " is currently " + user.status);
-  });
+    // Use idle/away/back events created by idle.js to update our status information.
+    document.onIdle = function() {
+        setUserStatus("☆ idle");
+    }
+    document.onAway = function() {
+        setUserStatus("☄ away");
+    }
+    document.onBack = function(isIdle, isAway) {
+        setUserStatus("★ online");
+    }
 
-  // Use idle/away/back events created by idle.js to update our status information.
-  document.onIdle = function () {
-    setUserStatus("☆ idle");
-  }
-  document.onAway = function () {
-    setUserStatus("☄ away");
-  }
-  document.onBack = function (isIdle, isAway) {
-    setUserStatus("★ online");
-  }
-
-  setIdleTimeout(5000);
-  setAwayTimeout(10000);
+    setIdleTimeout(2000);
+    setAwayTimeout(6000);
 
 })
 
