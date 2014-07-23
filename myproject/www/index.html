@@ -410,7 +410,10 @@ angular.module('starter', ['ionic','ionic.contrib.ui.cards', 'starter.modservice
 
 
 .controller('MatchCtrl', function($scope, $ionicViewService, $rootScope, $timeout, Matches) {
-    $scope.matches = Matches.all();
+    $scope.matches = [];
+    for (var i = 0; i < chosenGuys.length; i++) {
+      $scope.matches.push(chosenGuys[i]);
+    }
 
     $scope.myfilter = function(timelim) {
       var curdate = (new Date).toJSON();
