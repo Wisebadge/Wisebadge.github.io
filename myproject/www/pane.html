@@ -32,15 +32,15 @@
                 <div ng-controller="CardCtrl">
 
                     <div class="item item-body" id="trans">
-                        <img class="full-image circled" src="img/user73.jpg">
+                        <img class="full-image circled" src="{{card.image}}">
                         <h2 id="card">
-                            {{match.name}}
+                            {{card.name}}
                         </h2>
                         <h3 id="card">
-                            {{match.title}}
+                            {{card.title}}
                         </h3>
                         <p>
-                            {{match.name}} is a native of {{match.location}} and has lived in Nice, France since {{date}}. {{match.name}} has worked on {{match.title}} for {{years}} years.
+                            {{card.name}} is a native of {{card.location}} and has lived in Nice, France since {{date}}. {{card.name}} has worked on {{card.title}} for {{years}} years.
                         </p>
 
 
