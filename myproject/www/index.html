@@ -293,49 +293,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 })
 
 
-.controller('LoginCtrl', function($scope, $rootScope, $firebase, $firebaseSimpleLogin) {
-    var dataRef = new Firebase("https://otsi.firebaseio.com/users/");
-    $scope.loginObj = $firebaseSimpleLogin(dataRef, function(error, user) {
-        if (error) {
-            // an error occurred while attempting login
-            console.log(error);
-        } else if (user) {
-            // user authenticated with Firebase
-            console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
-        } else {
-            // user is logged out
-        }
-    });
-
-    if ($scope.loginObj.user) {
-        $scope.loginObj.$login('facebook', {
-            rememberMe: false,
-            preferRedirect: true,
-            scope: 'email,user_likes'
-        }).then(function(user) {
-            console.log('Logged in as: ', user.uid);
-        }, function(error) {
-            console.error('Login failed: ', error);
-        });
-    };
-    $scope.$on("$firebaseSimpleLogin:login", function(e, user) {
-        console.log("User " + user.uid + " successfully logged in!");
-        $rootScope.user = user;
-        var date = (new Date).toJSON();
-        dataRef.push({
-            name: user.thirdPartyUserData.name,
-            email: user.thirdPartyUserData.email,
-            image: user.thirdPartyUserData.picture.data.url,
-            url: user.thirdPartyUserData.link,
-            user: user,
-            date: date
-        });
-    });
-
-    $scope.$on("$firebaseSimpleLogin:error", function(e, user) {
-        console.log("an error occurred with: " +
-            e + "and user:" + user.uid);
-    });
+.controller('LoginCtrl', function($scope, $rootScope) {
 
 })
 
