@@ -188,6 +188,7 @@
 <script type="text/javascript">
 	var chosenGuys = [];
   var matchesPeople = null;
+  var swipedThrough = [];
 
 	function pad(n, width, z) {
 		z = z || '0';
@@ -214,9 +215,11 @@
 		$scope.years = Math.round(10 * Math.random());
 		$scope.date = Math.round(2000 + 10 * Math.random());
 
-    if (matchesPeople == null) {
+    //if (matchesPeople == null) {
 		    matchesPeople = _.rest(Matches.all()).reverse();
-    }
+    //} else {
+    //}
+    chosenGuys = [];
 
 		$scope.cards = matchesPeople;
 
