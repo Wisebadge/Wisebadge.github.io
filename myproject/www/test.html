@@ -5,25 +5,6 @@
         <!--div class="container">
             <a href="#/pane">back</a>
         </div-->
-        <ion-content class="has-header">
-            <div class="list">
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">First Name</span>
-                    <input type="text" placeholder="First Name">
-                </label>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Last Name</span>
-                    <input type="text" placeholder="Last Name">
-                </label>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Email</span>
-                    <input type="text" placeholder="Email">
-                </label>
-            </div>
-
-        </ion-content>
-
-        <!--style="height:300px;width:400px;border:2px solid #777777;margin:3px; border:1px solid"-->
         <div class="map-container">
             <div id="map-canvas" ui-map="myMap" ui-options="mapOptions" ui-event="{'map-idle' : 'onMapIdle()'}">
             </div>
@@ -33,11 +14,11 @@
         should be created to hook up with events -->
             <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]" ui-event="{'map-click': 'markerClicked(marker)'}">
             </div>
-
         </div>
 
+      <div class="button-bar"> <div class="button button-positive center" ng-click="pushDB()">
+      Test</div> <div>
 
-        </div>
     </ion-view>
     <!--div class="item range range-balanced" style="top: 518;">
             <i class="icon ion-ios7-bolt-outline"></i>

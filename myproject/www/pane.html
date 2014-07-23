@@ -1,12 +1,26 @@
 <ion-nav-bar animation="" type="bar-positive" class="deuglify">
     <a href="#create-profile">
         <button class="button button-clear stnd icon ion-ios7-arrow-back" ng-click=""></button>
+        <button class="button button-clear stnd icon" ng-click=""> Back </button>
+    </a>
+    <a href="#matches" id='right'>
+        <button class="button button-clear stnd icon" ng-click=""> List </button>
     </a>
 </ion-nav-bar>
 
 <ion-nav-view animation="slide-left-right-ios7"></ion-nav-view>
 
 <ion-view title="Matches">
+
+<ion-nav-bar animation="" type="bar-positive" class="deuglify">
+    <a href="#create-profile">
+        <button class="button button-clear stnd icon ion-ios7-arrow-back" ng-click=""></button>
+        <button class="button button-clear stnd icon" ng-click=""> Back </button>
+    </a>
+    <a href="#matches" id='right'>
+        <button class="button button-clear stnd icon" ng-click=""> List </button>
+    </a>
+</ion-nav-bar>
 
     <pane ng-controller="CardsCtrl" class="cards pane standard" ng-init="">
 
@@ -56,13 +70,13 @@
             </swipe-card>
         </swipe-cards>
 
-        <div class="animate-hide" ng-show="next">
+        <!--div class="animate-hide" ng-show="next">
             <div id="next mydiv">
                 <a href="#matches" style="text-underline-style: none;
 text-decoration: initial;">
                     <h3 id="next">Next</h3>
                 </a>
             </div>
-        </div>
+        </div-->
     </pane>
 </ion-view>

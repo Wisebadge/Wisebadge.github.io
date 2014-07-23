@@ -190,7 +190,7 @@ left: 4%;
 }
 
 
-#map-canvas { height: 90%; width:90%; margin-bottom: 20px; margin-top: 4%;
+#map-canvas { height: 63%; width:90%; margin-bottom: 20px; margin-top: 4%;
 margin-left: 4%;}
 
 .angular-leaflet-map {
@@ -207,4 +207,19 @@ margin: auto;
 
 .full-image.circled{
     width: 160px;
+}
+
+#right {
+    display: flex;
+    margin-left: 64%;
+}
+
+a {
+   text-decoration-line: initial;
+}
+
+.center {
+    display: flex;
+    margin: auto;
+    text-align: center;
 }
