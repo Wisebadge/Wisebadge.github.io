@@ -34,6 +34,8 @@
 
 
     <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
+    <script src="https://www.firebase.com/js/libs/idle.js"></script>
+
     <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
     <script src="http://tombatossals.github.io/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
 
@@ -398,12 +400,83 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
     });
 })
 
-.controller('Test2Ctrl', function($ionicGesture, $scope) {
-    /* $ionicGesture.on('swipe', function(event) {
-        console.log('Got swiped!');
-        event.preventDefault();
-        window.history.back();
-    }, $('ion-slide')); */
+.controller('Test2Ctrl', function($scope) {
+  // Prompt the user for a name to use.
+  var name = prompt("Your name?", "Guest"),
+      currentStatus = "★ online";
+
+  // Get a reference to the presence data in Firebase.
+ $scope.userListRef = new Firebase("https://otsi.firebaseio.com/chat");
+
+
+  // Generate a reference to a new location for my user with push.
+   $scope.myUserRef =  $scope.userListRef.push();
+
+  // Get a reference to my own presence status.
+  $scope.connectedRef =  $scope.userListRef.child('connected');
+   $scope.connectedRef.on("value", function(isOnline) {
+    if (isOnline.val()) {
+      // If we lose our internet connection, we want ourselves removed from the list.
+       $scope.myUserRef.onDisconnect().remove();
+
+      // Set our initial online status.
+      $scope.setUserStatus("★ online");
+    } else {
+
+      // We need to catch anytime we are marked as offline and then set the correct status. We
+      // could be marked as offline 1) on page load or 2) when we lose our internet connection
+      // temporarily.
+       $scope.setUserStatus(currentStatus);
+    }
+  });
+
+  // A helper function to let us set our own state.
+  $scope.setUserStatus = function (status) {
+    // Set our status in the list of online users.
+    currentStatus = status;
+     $scope.myUserRef.set({ name: name, status: status });
+  }
+
+  $scope.getMessageId = function(snapshot) {
+    return snapshot.name().replace(/[^a-z0-9\-\_]/gi,'');
+  }
+
+  // Update our GUI to show someone"s online status.
+   $scope.userListRef.on("child_added", function(snapshot) {
+    var user = snapshot.val();
+
+    $("<div/>")
+      .attr("id",  $scope.getMessageId(snapshot))
+      .text(user.name + " is currently " + user.status)
+      .appendTo("#presenceDiv");
+  });
+
+  // Update our GUI to remove the status of a user who has left.
+   $scope.userListRef.on("child_removed", function(snapshot) {
+    $("#presenceDiv").children("#" +  $scope.getMessageId(snapshot))
+      .remove();
+  });
+
+  // Update our GUI to change a user"s status.
+   $scope.userListRef.on("child_changed", function(snapshot) {
+    var user = snapshot.val();
+    $("#presenceDiv").children("#" +  $scope.getMessageId(snapshot))
+      .text(user.name + " is currently " + user.status);
+  });
+
+  // Use idle/away/back events created by idle.js to update our status information.
+  document.onIdle = function () {
+    setUserStatus("☆ idle");
+  }
+  document.onAway = function () {
+    setUserStatus("☄ away");
+  }
+  document.onBack = function (isIdle, isAway) {
+    setUserStatus("★ online");
+  }
+
+  setIdleTimeout(5000);
+  setAwayTimeout(10000);
 
 })
 
@@ -690,7 +763,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
     .state('test3', {
         url: '/test3',
         templateUrl: "test3.html",
-        controller: 'MatchCtrl'
+        controller: 'Test2Ctrl'
     })
 
     .state('leaf', {
