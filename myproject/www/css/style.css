@@ -58,13 +58,17 @@
     background: url(../img/youHaveBeenMatched-confirmed.png);
     background-size: cover;
 }
+.matchFound.pane {
+    background: url(../img/match-found.png);
+    background-size: cover;
+}
 .standard.pane {
     background: url(../img/Slice2.png) no-repeat center center fixed !important;
 }
 .blue {
     background-color: blue !important;
 }
-.create-profile .has-header, .youHaveBeenMatched .has-header {
+.create-profile .has-header, .youHaveBeenMatched .has-header, .matchFound .has-header {
     top: 0px !important;
 }
 .youHaveBeenMatched #time {
@@ -120,6 +124,14 @@
     display: block;
     width: 278px;
     height: 40px;
+}
+.matchFound .nextPage {
+    position: absolute;
+    top: 424px;
+    margin-left: 30px;
+    display: block;
+    width: 259px;
+    height: 41px;
 }
 .create-profile .nextPage:focus, .create-profile .nextPage:active {
     background-color: white;

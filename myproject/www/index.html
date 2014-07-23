@@ -222,8 +222,8 @@
   			if (this.swipeCard.positive === true) {
             var card = shuffledCards[index];
     				chosenGuys.push(card);
-            if (card.name === 'Helen Poldsman') {
-                $state.go('youHaveBeenMatched');
+            if (card.name === 'Helen Poldsam') {
+                $state.go('matchFound');
             }
   			} else {}
 		};
@@ -629,6 +629,9 @@
       $('.youHaveBeenMatched #spotIcon').css('top', y).css('left', x);
     });
 	})
+  .controller('MatchFoundCtrl', function ($scope) {
+
+  })
 		.controller('MatchDetailCtrl', function ($scope, $rootScope, $timeout, $ionicPopup, $stateParams, Matches) {
 			$scope.match = Matches.get($stateParams.matchId);
 			$scope.years = Math.round(10 * Math.random());
@@ -752,11 +755,16 @@
 			templateUrl: "matches.html",
 			controller: 'MatchCtrl'
 		})
-			.state('youHaveBeenMatched', {
-				url: "/youHaveBeenMatched",
-				templateUrl: "youHaveBeenMatched.html",
-				controller: 'YouHaveBeenMatchedCtrl'
-			})
+		.state('youHaveBeenMatched', {
+			url: "/youHaveBeenMatched",
+			templateUrl: "youHaveBeenMatched.html",
+			controller: 'YouHaveBeenMatchedCtrl'
+		})
+    .state('matchFound', {
+      url: "/matchFound",
+      templateUrl: "matchFound.html",
+      controller: 'MatchFoundCtrl'
+    })
 
 
 		.state('matches2', {
