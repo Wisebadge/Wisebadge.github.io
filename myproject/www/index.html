@@ -1,383 +1,381 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <title>Ionic Template</title>
+	<title>Ionic Template</title>
 
-    <!--link href="http://code.ionicframework.com/1.0.0-beta.8/css/ionic.css" rel="stylesheet">
+	<!--link href="http://code.ionicframework.com/1.0.0-beta.8/css/ionic.css" rel="stylesheet">
     <script src="http://code.ionicframework.com/1.0.0-beta.8/js/ionic.bundle.js">
     </script>
     <script src="http://clic.cimec.unitn.it/~elia.bruni/tank/ionic.cards.js"></script-->
 
 
-    <link href="css/style.css" rel="stylesheet">
-    <!--if no internet-->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <script type="text/javascript" src="js/cards.js"></script>
-    <script type="text/javascript" src="js/modservices.js"></script>
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
-    <script src="js/jquery.js"></script>
-    <script src="js/underscore-min.js"></script>
+	<link href="css/style.css" rel="stylesheet">
+	<!--if no internet-->
+	<script src="lib/ionic/js/ionic.bundle.js"></script>
+	<link href="lib/ionic/css/ionic.css" rel="stylesheet">
+	<script type="text/javascript" src="js/cards.js"></script>
+	<script type="text/javascript" src="js/modservices.js"></script>
+	<!-- cordova script (this will be a 404 during development) -->
+	<script src="cordova.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/underscore-min.js"></script>
 
 
 
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false.js">
-    </script>
-    <script src="http://www.flocations.com/static/vendor/angular-ui/map/ui-map.min.js"></script>
-    <script src="http://www.flocations.com/static/vendor/angular-ui/event/event.js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false.js">
+	</script>
+	<script src="http://www.flocations.com/static/vendor/angular-ui/map/ui-map.min.js"></script>
+	<script src="http://www.flocations.com/static/vendor/angular-ui/event/event.js"></script>
 
 
-    <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
-    <script src="https://www.firebase.com/js/libs/idle.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.js"></script>
-    <script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.6.2/firebase-simple-login.js'></script>
+	<script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
+	<script src="https://www.firebase.com/js/libs/idle.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.js"></script>
+	<script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.6.2/firebase-simple-login.js'></script>
 
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
-    <script src="http://tombatossals.github.io/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
+	<script src="http://tombatossals.github.io/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
 
 
 </head>
 
 <style type="text/css">
-body {
-    cursor: url('http://ionicframework.com/img/finger.png'), auto;
-}
-/* Your app's CSS, go crazy, make it your own */
-
-.ionic-logo {
-    display: block;
-    margin: 15px auto;
-    width: 96px;
-    height: 96px;
-}
-.bar.bar-transparent {
-    background-color: transparent;
-    background-image: none;
-    border: none;
-}
-.bar .title {
-    color: #eee;
-}
-.bar.bar-mod {
-    background-color: transparent !important;
-    margin: 0 0px !important;
-}
-.deuglify {
-    background: rgba(0, 0, 0, 0.20);
-    -moz-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.30);
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.30);
-}
-a .stnd {
-    color: white !important;
-    opacity: 1;
-}
-.swipe-cards {
-    position: fixed;
-}
-.swipe-card {
-    -webkit-perspective: 1000;
-    -webkit-backface-visibility: hidden;
-    display: none;
-    position: fixed;
-    -webkit-transform: scale(1, 1);
-    /*left: 50%;
+	body {
+		cursor: url('http://ionicframework.com/img/finger.png'), auto;
+	}
+	/* Your app's CSS, go crazy, make it your own */
+	.ionic-logo {
+		display: block;
+		margin: 15px auto;
+		width: 96px;
+		height: 96px;
+	}
+	.bar.bar-transparent {
+		background-color: transparent;
+		background-image: none;
+		border: none;
+	}
+	.bar .title {
+		color: #eee;
+	}
+	.bar.bar-mod {
+		background-color: transparent !important;
+		margin: 0 0px !important;
+	}
+	.deuglify {
+		background: rgba(0, 0, 0, 0.20);
+		-moz-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.30);
+		box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.30);
+	}
+	a .stnd {
+		color: white !important;
+		opacity: 1;
+	}
+	.swipe-cards {
+		position: fixed;
+	}
+	.swipe-card {
+		-webkit-perspective: 1000;
+		-webkit-backface-visibility: hidden;
+		display: none;
+		position: fixed;
+		-webkit-transform: scale(1, 1);
+		/*left: 50%;
     top: 50%;
     width: 300px;
     height: 300px;
     margin-left: -150px;
     margin-top: -150px;  OLD Tinder Cards*/
-    left: 50%;
-    top: 50%;
-    width: 286px;
-    height: 409px;
-    margin-left: -143px;
-    margin-top: -180px;
-    box-sizing: border-box;
-    background-color: rgb(255, 255, 255);
-    border-radius: 4px;
-    overflow: hidden;
-    -webkit-animation-fill-mode: forwards;
-}
-.swipe-card .title {
-    height: 40px;
-    padding: 5px;
-    line-height: 30px;
-    color: #444;
-}
-.swipe-card .image {
-    overflow: hidden;
-    max-height: 210px;
-}
-.swipe-card .button {
-    border: none;
-}
-.swipe-card .image img {
-    width: 100%;
-    border-radius: 0px 0px 4px 4px;
-}
-#start-card {
-    color: #fff;
-    background-color: #30BD8A;
-    line-height: 300px;
-    word-wrap: break-word;
-    border: 6px solid #4CD68E;
-    text-align: center;
-}
-#start-card span {
-    display: inline-block;
-    line-height: 50px;
-    margin-top: 20;
-    width: 250px;
-    font-size: 30px;
-    vertical-align: middle;
-}
-#footer .button {
-    color: #fff;
-}
-@-webkit-keyframes bounceIn {
-    0% {
-        -webkit-transform: scale(0, 0);
-    }
-    70% {
-        -webkit-transform: scale(1.2, 1.2);
-    }
-    100% {
-        -webkit-transform: scale(1, 1);
-    }
-}
-.swipe-card.pop-in-start {
-    -webkit-transform: scale(0, 0);
-}
-.swipe-card.pop-in {
-    -webkit-animation: bounceIn 0.3s ease-out;
-}
-.card-container {};
- #blue {
-    background-color: blue;
-    max-width: 200px;
-    margin-left: 40px;
-}
-#red {
-    background-color: red;
-}
-#pink {
-    background-color: pink;
-}
-#next {
-    color: white;
-    text-align: center;
-    position: absolute;
-    top: 460px;
-    margin: auto;
-    width: 100%;
-}
-#mydiv {
-    margin: auto;
-    text-align: center;
-}
-.scroll-refresher {
-    width: 100% !important;
-}
+		left: 50%;
+		top: 50%;
+		width: 286px;
+		height: 409px;
+		margin-left: -143px;
+		margin-top: -180px;
+		box-sizing: border-box;
+		background-color: rgb(255, 255, 255);
+		border-radius: 4px;
+		overflow: hidden;
+		-webkit-animation-fill-mode: forwards;
+	}
+	.swipe-card .title {
+		height: 40px;
+		padding: 5px;
+		line-height: 30px;
+		color: #444;
+	}
+	.swipe-card .image {
+		overflow: hidden;
+		max-height: 210px;
+	}
+	.swipe-card .button {
+		border: none;
+	}
+	.swipe-card .image img {
+		width: 100%;
+		border-radius: 0px 0px 4px 4px;
+	}
+	#start-card {
+		color: #fff;
+		background-color: #30BD8A;
+		line-height: 300px;
+		word-wrap: break-word;
+		border: 6px solid #4CD68E;
+		text-align: center;
+	}
+	#start-card span {
+		display: inline-block;
+		line-height: 50px;
+		margin-top: 20;
+		width: 250px;
+		font-size: 30px;
+		vertical-align: middle;
+	}
+	#footer .button {
+		color: #fff;
+	}
+	@-webkit-keyframes bounceIn {
+		0% {
+			-webkit-transform: scale(0, 0);
+		}
+		70% {
+			-webkit-transform: scale(1.2, 1.2);
+		}
+		100% {
+			-webkit-transform: scale(1, 1);
+		}
+	}
+	.swipe-card.pop-in-start {
+		-webkit-transform: scale(0, 0);
+	}
+	.swipe-card.pop-in {
+		-webkit-animation: bounceIn 0.3s ease-out;
+	}
+	.card-container {};
+	#blue {
+		background-color: blue;
+		max-width: 200px;
+		margin-left: 40px;
+	}
+	#red {
+		background-color: red;
+	}
+	#pink {
+		background-color: pink;
+	}
+	#next {
+		color: white;
+		text-align: center;
+		position: absolute;
+		top: 460px;
+		margin: auto;
+		width: 100%;
+	}
+	#mydiv {
+		margin: auto;
+		text-align: center;
+	}
+	.scroll-refresher {
+		width: 100% !important;
+	}
 </style>
 
 <script type="text/javascript">
-var chosenGuys = [];
+	var chosenGuys = [];
 
-function pad(n, width, z) {
-    z = z || '0';
-    n = n + '';
-    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-}
+	function pad(n, width, z) {
+		z = z || '0';
+		n = n + '';
+		return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+	}
 
-angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservices', 'ui.map', 'ui.event', 'firebase', 'leaflet-directive', 'ui.router'])
+	angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservices', 'ui.map', 'ui.event', 'firebase', 'leaflet-directive', 'ui.router'])
 
-.directive('noScroll', function($document) {
-    return {
-        restrict: 'A',
-        link: function($scope, $element, $attr) {
-            $document.on('touchmove', function(e) {
-                e.preventDefault();
-            });
-        }
-    };
-})
-
-
-
-.controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope, Matches, $state) {
-    $rootScope.accepted = 0;
-    $rootScope.rejected = 0;
-    $scope.years = Math.round(10 * Math.random());
-    $scope.date = Math.round(2000 + 10 * Math.random());
-
-    var shuffledCards = _.rest(Matches.all());
-
-    $scope.cards = shuffledCards;
-    chosenGuys = [];
-
-    $scope.cardSwiped = function(index) {
-        var card = shuffledCards[index];
-        if (this.swipeCard.positive === true && card.name === 'Helen Poldsman') {
-            chosenGuys.push(card);
-            $state.go('youHaveBeenMatched');
-        } else {}
-    };
-
-    $scope.cardDestroyed = function(index) {
-        if (this.swipeCard.positive === true) {
-            $scope.$root.accepted++;
-        } else {
-            $scope.$root.rejected++;
-        }
-        $scope.cards.splice(index, 1);
-        if ($scope.$root.accepted > 1) {
-            console.log('next');
-            $rootScope.next = true;
-        }
-        $scope.years = Math.round(10 * Math.random());
-        $scope.date = Math.round(2000 + 10 * Math.random());
-
-    };
-})
-
-.controller('CardCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope) {
-    $scope.accept = function() {
-        var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
-        card.swipe(true);
-    };
-    $scope.reject = function() {
-        var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
-        card.swipe();
-    };
-})
-
-.controller('ContentController', function($scope, $ionicSideMenuDelegate) {
-    $scope.toggleLeft = function() {
-        console.log('swiped left for menu');
-        $ionicSideMenuDelegate.toggleLeft();
-    };
-})
+	.directive('noScroll', function ($document) {
+		return {
+			restrict: 'A',
+			link: function ($scope, $element, $attr) {
+				$document.on('touchmove', function (e) {
+					e.preventDefault();
+				});
+			}
+		};
+	})
 
 
-.directive('dragBack', function($ionicGesture, $state) {
-    return {
-        restrict: 'A',
-        link: function(scope, elem, attr) {
 
-            $ionicGesture.on('swipe', function(event) {
+	.controller('CardsCtrl', function ($scope, $ionicSwipeCardDelegate, $rootScope, Matches, $state) {
+		$rootScope.accepted = 0;
+		$rootScope.rejected = 0;
+		$scope.years = Math.round(10 * Math.random());
+		$scope.date = Math.round(2000 + 10 * Math.random());
 
-                console.log('Got swiped!');
-                event.preventDefault();
-                window.history.back();
+		var shuffledCards = _.rest(Matches.all());
 
-            }, elem);
+		$scope.cards = shuffledCards;
+		chosenGuys = [];
 
-        }
-    }
-})
+		$scope.cardSwiped = function (index) {
+			var card = shuffledCards[index];
+			if (this.swipeCard.positive === true && card.name === 'Helen Poldsman') {
+				chosenGuys.push(card);
+				$state.go('youHaveBeenMatched');
+			} else {}
+		};
 
-.directive('myRefresher', function() {
-    return {
-        restrict: 'E',
-        replace: true,
-        require: ['^?ionContent', '^?ionList'],
-        template: '<div class="scroll-refresher"><div class="ionic-refresher-content"><i class="icon ion-arrow-down-c icon-pulling"></i><i class="icon ion-loading-c icon-refreshing"></i></div></div>',
-        scope: true
-    };
-})
+		$scope.cardDestroyed = function (index) {
+			if (this.swipeCard.positive === true) {
+				$scope.$root.accepted++;
+			} else {
+				$scope.$root.rejected++;
+			}
+			$scope.cards.splice(index, 1);
+			if ($scope.$root.accepted > 1) {
+				console.log('next');
+				$rootScope.next = true;
+			}
+			$scope.years = Math.round(10 * Math.random());
+			$scope.date = Math.round(2000 + 10 * Math.random());
 
+		};
+	})
 
-.controller('LoginCtrl', function($scope, $rootScope) {
-})
+	.controller('CardCtrl', function ($scope, $ionicSwipeCardDelegate, $rootScope) {
+		$scope.accept = function () {
+			var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
+			card.swipe(true);
+		};
+		$scope.reject = function () {
+			var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
+			card.swipe();
+		};
+	})
 
-.controller("LeafCtrl", function($scope) {
-    angular.extend($scope, {
-        taipei: {
-            lat: 25.0391667,
-            lng: 121.525,
-            zoom: 6
-        },
-        layers: {
-            baselayers: {
-                osm: {
-                    name: 'OpenStreetMap',
-                    url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    type: 'xyz'
-                },
-                cloudmade2: {
-                    name: 'Cloudmade Tourist',
-                    type: 'xyz',
-                    url: 'http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png',
-                    layerParams: {
-                        key: '007b9471b4c74da4a6ec7ff43552b16f',
-                        styleId: 7
-                    }
-                }
-            }
-        },
-        defaults: {
-            scrollWheelZoom: false
-        }
-    });
-})
-
-.controller('SuperCtrl', function($scope) {
-
-    var ll = new google.maps.LatLng(43.61590642810612, 7.07169234752655);
-    $scope.mapOptions = {
-        center: ll,
-        zoom: 18,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    var myDataRef = new Firebase('https://otsi.firebaseio.com');
-    var newRef = myDataRef.child('meetings');
-    posRef = newRef.child('elements');
+	.controller('ContentController', function ($scope, $ionicSideMenuDelegate) {
+		$scope.toggleLeft = function () {
+			console.log('swiped left for menu');
+			$ionicSideMenuDelegate.toggleLeft();
+		};
+	})
 
 
-    var scaleFactor = 1000;
-    var offset = 10;
-    var size = 2;
+	.directive('dragBack', function ($ionicGesture, $state) {
+		return {
+			restrict: 'A',
+			link: function (scope, elem, attr) {
 
-    //Markers should be added after map is loaded
-    $scope.onMapIdle = function() {
-        if ($scope.myMarkers === undefined) {
-            var marker = new google.maps.Marker({
-                map: $scope.myMap,
-                position: ll,
-                //icon: new google.maps.MarkerImage('img/owl-ribbon-web.svg', null, null, null, new google.maps.Size(64, 64)),
-                draggable: true,
-                title: "Meet Me!"
-            });
-            $scope.myMarkers = [marker, ];
-        }
-    };
+				$ionicGesture.on('swipe', function (event) {
 
-    $scope.markerClicked = function(m) {
-        window.alert("clicked");
-        var item = $scope.myMarkers[0].position; //angular.element($0).scope().myMarkers[0].position;
-        var date = new Date;
-        posRef.push({
-            pos: item,
-            date: date.toJSON()
-        });
-    };
+					console.log('Got swiped!');
+					event.preventDefault();
+					window.history.back();
 
-    $scope.ask = function() {
+				}, elem);
 
-        if (!!navigator.geolocation) {
+			}
+		}
+	})
 
-            navigator.geolocation.getCurrentPosition(function(position) {
+	.directive('myRefresher', function () {
+		return {
+			restrict: 'E',
+			replace: true,
+			require: ['^?ionContent', '^?ionList'],
+			template: '<div class="scroll-refresher"><div class="ionic-refresher-content"><i class="icon ion-arrow-down-c icon-pulling"></i><i class="icon ion-loading-c icon-refreshing"></i></div></div>',
+			scope: true
+		};
+	})
 
-                var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-                /* var infowindow = new google.maps.InfoWindow({
+	.controller('LoginCtrl', function ($scope, $rootScope) {})
+
+	.controller("LeafCtrl", function ($scope) {
+		angular.extend($scope, {
+			taipei: {
+				lat: 25.0391667,
+				lng: 121.525,
+				zoom: 6
+			},
+			layers: {
+				baselayers: {
+					osm: {
+						name: 'OpenStreetMap',
+						url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+						type: 'xyz'
+					},
+					cloudmade2: {
+						name: 'Cloudmade Tourist',
+						type: 'xyz',
+						url: 'http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png',
+						layerParams: {
+							key: '007b9471b4c74da4a6ec7ff43552b16f',
+							styleId: 7
+						}
+					}
+				}
+			},
+			defaults: {
+				scrollWheelZoom: false
+			}
+		});
+	})
+
+	.controller('SuperCtrl', function ($scope) {
+
+		var ll = new google.maps.LatLng(43.61590642810612, 7.07169234752655);
+		$scope.mapOptions = {
+			center: ll,
+			zoom: 18,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+
+		var myDataRef = new Firebase('https://otsi.firebaseio.com');
+		var newRef = myDataRef.child('meetings');
+		posRef = newRef.child('elements');
+
+
+		var scaleFactor = 1000;
+		var offset = 10;
+		var size = 2;
+
+		//Markers should be added after map is loaded
+		$scope.onMapIdle = function () {
+			if ($scope.myMarkers === undefined) {
+				var marker = new google.maps.Marker({
+					map: $scope.myMap,
+					position: ll,
+					//icon: new google.maps.MarkerImage('img/owl-ribbon-web.svg', null, null, null, new google.maps.Size(64, 64)),
+					draggable: true,
+					title: "Meet Me!"
+				});
+				$scope.myMarkers = [marker, ];
+			}
+		};
+
+		$scope.markerClicked = function (m) {
+			window.alert("clicked");
+			var item = $scope.myMarkers[0].position; //angular.element($0).scope().myMarkers[0].position;
+			var date = new Date;
+			posRef.push({
+				pos: item,
+				date: date.toJSON()
+			});
+		};
+
+		$scope.ask = function () {
+
+			if (!!navigator.geolocation) {
+
+				navigator.geolocation.getCurrentPosition(function (position) {
+
+					var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+					/* var infowindow = new google.maps.InfoWindow({
                     map: $scope.myMap,
                     position: geolocate,
                     maxWidth: 200,
@@ -390,222 +388,222 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
             */
 
 
-                $scope.myMap.setCenter(geolocate);
+					$scope.myMap.setCenter(geolocate);
 
-                $scope.myMarkers[$scope.myMarkers.length - 1].position = geolocate;
-            });
+					$scope.myMarkers[$scope.myMarkers.length - 1].position = geolocate;
+				});
 
-        } else {
-            document.getElementById('map-canvas').innerHTML = 'No Geolocation Support.';
-        }
-    }
-
-
-})
-
-.controller('CreateProfileCtrl', function($scope) {
-    $('.create-profile .notes').unbind('focus');
-    $('.create-profile .notes').unbind('blur');
-    $('.create-profile .notes').focus(function() {
-        $('.create-profile.pane').addClass('raiseNotes');
-    });
-    $('.create-profile .notes').blur(function() {
-        $('.create-profile.pane').removeClass('raiseNotes');
-    });
-})
-
-.controller('Test2Ctrl', function($scope) {
-    // Prompt the user for a name to use.
-    var name = prompt("Your name?", "Guest"),
-        currentStatus = "★ online";
-
-    // Get a reference to the presence data in Firebase.
-    $scope.userListRef = new Firebase("https://otsi.firebaseio.com/chat");
+			} else {
+				document.getElementById('map-canvas').innerHTML = 'No Geolocation Support.';
+			}
+		}
 
 
-    // Generate a reference to a new location for my user with push.
-    $scope.myUserRef = $scope.userListRef.push();
+	})
 
-    // Get a reference to my own presence status.
-    $scope.connectedRef = $scope.userListRef.child('connected');
-    $scope.connectedRef.on("value", function(isOnline) {
-        if (isOnline.val()) {
-            // If we lose our internet connection, we want ourselves removed from the list.
-            $scope.myUserRef.onDisconnect().remove();
+	.controller('CreateProfileCtrl', function ($scope) {
+		$('.create-profile .notes').unbind('focus');
+		$('.create-profile .notes').unbind('blur');
+		$('.create-profile .notes').focus(function () {
+			$('.create-profile.pane').addClass('raiseNotes');
+		});
+		$('.create-profile .notes').blur(function () {
+			$('.create-profile.pane').removeClass('raiseNotes');
+		});
+	})
 
-            // Set our initial online status.
-            $scope.setUserStatus("★ online");
-        } else {
+	.controller('Test2Ctrl', function ($scope) {
+		// Prompt the user for a name to use.
+		var name = prompt("Your name?", "Guest"),
+			currentStatus = "★ online";
 
-            // We need to catch anytime we are marked as offline and then set the correct status. We
-            // could be marked as offline 1) on page load or 2) when we lose our internet connection
-            // temporarily.
-            $scope.setUserStatus(currentStatus);
-        }
-    });
-
-    // A helper function to let us set our own state.
-    $scope.setUserStatus = function(status) {
-        // Set our status in the list of online users.
-        currentStatus = status;
-        $scope.myUserRef.set({
-            name: name,
-            status: status
-        });
-    }
-
-    $scope.getMessageId = function(snapshot) {
-        return snapshot.name().replace(/[^a-z0-9\-\_]/gi, '');
-    }
-
-    // Update our GUI to show someone"s online status.
-    $scope.userListRef.on("child_added", function(snapshot) {
-        var user = snapshot.val();
-
-        $("<div/>")
-            .attr("id", $scope.getMessageId(snapshot))
-            .text(user.name + " is currently " + user.status)
-            .appendTo("#presenceDiv");
-    });
-
-    // Update our GUI to remove the status of a user who has left.
-    $scope.userListRef.on("child_removed", function(snapshot) {
-        $("#presenceDiv").children("#" + $scope.getMessageId(snapshot))
-            .remove();
-    });
-
-    // Update our GUI to change a user"s status.
-    $scope.userListRef.on("child_changed", function(snapshot) {
-        var user = snapshot.val();
-        $("#presenceDiv").children("#" + $scope.getMessageId(snapshot))
-            .text(user.name + " is currently " + user.status);
-    });
-
-    // Use idle/away/back events created by idle.js to update our status information.
-    document.onIdle = function() {
-        setUserStatus("☆ idle");
-    }
-    document.onAway = function() {
-        setUserStatus("☄ away");
-    }
-    document.onBack = function(isIdle, isAway) {
-        setUserStatus("★ online");
-    }
-
-    setIdleTimeout(2000);
-    setAwayTimeout(6000);
-
-})
+		// Get a reference to the presence data in Firebase.
+		$scope.userListRef = new Firebase("https://otsi.firebaseio.com/chat");
 
 
-.controller('MyCtrl', function($scope, $timeout) {
-    $scope.myTitle = 'Template';
+		// Generate a reference to a new location for my user with push.
+		$scope.myUserRef = $scope.userListRef.push();
 
-    $scope.data = {
-        swipe: 0,
-        swiperight: 0,
-        swipeleft: 0,
-        tap: 0,
-        doubletap: 0,
-        scroll: 0
-    };
+		// Get a reference to my own presence status.
+		$scope.connectedRef = $scope.userListRef.child('connected');
+		$scope.connectedRef.on("value", function (isOnline) {
+			if (isOnline.val()) {
+				// If we lose our internet connection, we want ourselves removed from the list.
+				$scope.myUserRef.onDisconnect().remove();
 
-    $scope.reportEvent = function(event) {
-        console.log('Reporting : ' + event.type);
+				// Set our initial online status.
+				$scope.setUserStatus("★ online");
+			} else {
 
-        $timeout(function() {
-            $scope.data[event.type]++;
-        })
-    }
+				// We need to catch anytime we are marked as offline and then set the correct status. We
+				// could be marked as offline 1) on page load or 2) when we lose our internet connection
+				// temporarily.
+				$scope.setUserStatus(currentStatus);
+			}
+		});
+
+		// A helper function to let us set our own state.
+		$scope.setUserStatus = function (status) {
+			// Set our status in the list of online users.
+			currentStatus = status;
+			$scope.myUserRef.set({
+				name: name,
+				status: status
+			});
+		}
+
+		$scope.getMessageId = function (snapshot) {
+			return snapshot.name().replace(/[^a-z0-9\-\_]/gi, '');
+		}
+
+		// Update our GUI to show someone"s online status.
+		$scope.userListRef.on("child_added", function (snapshot) {
+			var user = snapshot.val();
+
+			$("<div/>")
+				.attr("id", $scope.getMessageId(snapshot))
+				.text(user.name + " is currently " + user.status)
+				.appendTo("#presenceDiv");
+		});
+
+		// Update our GUI to remove the status of a user who has left.
+		$scope.userListRef.on("child_removed", function (snapshot) {
+			$("#presenceDiv").children("#" + $scope.getMessageId(snapshot))
+				.remove();
+		});
+
+		// Update our GUI to change a user"s status.
+		$scope.userListRef.on("child_changed", function (snapshot) {
+			var user = snapshot.val();
+			$("#presenceDiv").children("#" + $scope.getMessageId(snapshot))
+				.text(user.name + " is currently " + user.status);
+		});
+
+		// Use idle/away/back events created by idle.js to update our status information.
+		document.onIdle = function () {
+			setUserStatus("☆ idle");
+		}
+		document.onAway = function () {
+			setUserStatus("☄ away");
+		}
+		document.onBack = function (isIdle, isAway) {
+			setUserStatus("★ online");
+		}
+
+		setIdleTimeout(2000);
+		setAwayTimeout(6000);
+
+	})
 
 
-})
+	.controller('MyCtrl', function ($scope, $timeout) {
+		$scope.myTitle = 'Template';
 
-.directive('detectGestures', function($ionicGesture) {
-    return {
-        restrict: 'A',
+		$scope.data = {
+			swipe: 0,
+			swiperight: 0,
+			swipeleft: 0,
+			tap: 0,
+			doubletap: 0,
+			scroll: 0
+		};
 
-        link: function(scope, elem, attrs) {
-            var gestureType = attrs.gestureType;
+		$scope.reportEvent = function (event) {
+			console.log('Reporting : ' + event.type);
 
-            switch (gestureType) {
-                case 'swipe':
-                    $ionicGesture.on('swipe', scope.reportEvent, elem);
-                    break;
-                case 'swiperight':
-                    $ionicGesture.on('swiperight', scope.reportEvent, elem);
-                    break;
-                case 'swipeleft':
-                    $ionicGesture.on('swipeleft', scope.reportEvent, elem);
-                    break;
-                case 'doubletap':
-                    $ionicGesture.on('doubletap', scope.reportEvent, elem);
-                    break;
-                case 'tap':
-                    $ionicGesture.on('tap', scope.reportEvent, elem);
-                    break;
-                case 'scroll':
-                    $ionicGesture.on('scroll', scope.reportEvent, elem);
-                    break;
-            }
+			$timeout(function () {
+				$scope.data[event.type]++;
+			})
+		}
 
-        }
-    }
-})
-.controller('MatchCtrl', function($scope, $ionicViewService, $rootScope, $timeout, Matches) {
-    $scope.matches = [];
-    for (var i = 0; i < chosenGuys.length; i++) {
-        $scope.matches.push(chosenGuys[i]);
-    }
 
-    $scope.myfilter = function(timelim) {
-        var curdate = (new Date).toJSON();
-        console.log('filtering');
-        console.log(curdate);
-        //return {date:  };
-    };
+	})
 
-    $scope.numLimit = 10;
+	.directive('detectGestures', function ($ionicGesture) {
+		return {
+			restrict: 'A',
 
-    $rootScope.addMatch = function(newMatch) {
-        //var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-        //newCard.id = Math.random();
-        $scope.matches.push(angular.extend({}, newMatch));
-    };
+			link: function (scope, elem, attrs) {
+				var gestureType = attrs.gestureType;
 
-    $scope.pop = function() {
-        console.log('Got popped');
-        event.preventDefault();
-        $scope.numLimit = 2;
-    };
+				switch (gestureType) {
+				case 'swipe':
+					$ionicGesture.on('swipe', scope.reportEvent, elem);
+					break;
+				case 'swiperight':
+					$ionicGesture.on('swiperight', scope.reportEvent, elem);
+					break;
+				case 'swipeleft':
+					$ionicGesture.on('swipeleft', scope.reportEvent, elem);
+					break;
+				case 'doubletap':
+					$ionicGesture.on('doubletap', scope.reportEvent, elem);
+					break;
+				case 'tap':
+					$ionicGesture.on('tap', scope.reportEvent, elem);
+					break;
+				case 'scroll':
+					$ionicGesture.on('scroll', scope.reportEvent, elem);
+					break;
+				}
 
-    var history = $ionicViewService.getCurrentView();
-    //console.log(history);
+			}
+		}
+	})
+		.controller('MatchCtrl', function ($scope, $ionicViewService, $rootScope, $timeout, Matches) {
+			$scope.matches = [];
+			for (var i = 0; i < chosenGuys.length; i++) {
+				$scope.matches.push(chosenGuys[i]);
+			}
 
-    $scope.goBack = function() {
-        console.log('Got clicked');
-        event.preventDefault();
-        window.history.back();
-    };
+			$scope.myfilter = function (timelim) {
+				var curdate = (new Date).toJSON();
+				console.log('filtering');
+				console.log(curdate);
+				//return {date:  };
+			};
 
-    $rootScope.x = 5; //id5 in factory
+			$scope.numLimit = 10;
 
-    $scope.doRefresh = function() {
-        console.log('Refreshing!');
+			$rootScope.addMatch = function (newMatch) {
+				//var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+				//newCard.id = Math.random();
+				$scope.matches.push(angular.extend({}, newMatch));
+			};
 
-        $timeout(function() {
-            //$rootScope.addMatch(samples[rand]);
-            //$rootScope.addMatch(samples[i++]);
-            //$scope.matches.push( samples[i++] + Math.floor(Math.random() * 1000) + 4);
-            //$scope.matches.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+			$scope.pop = function () {
+				console.log('Got popped');
+				event.preventDefault();
+				$scope.numLimit = 2;
+			};
 
-            //Stop the ion-refresher from spinning
-            $scope.$broadcast('scroll.refreshComplete');
+			var history = $ionicViewService.getCurrentView();
+			//console.log(history);
 
-        }, 1200);
+			$scope.goBack = function () {
+				console.log('Got clicked');
+				event.preventDefault();
+				window.history.back();
+			};
 
-    };
-    /*
+			$rootScope.x = 5; //id5 in factory
+
+			$scope.doRefresh = function () {
+				console.log('Refreshing!');
+
+				$timeout(function () {
+					//$rootScope.addMatch(samples[rand]);
+					//$rootScope.addMatch(samples[i++]);
+					//$scope.matches.push( samples[i++] + Math.floor(Math.random() * 1000) + 4);
+					//$scope.matches.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+
+					//Stop the ion-refresher from spinning
+					$scope.$broadcast('scroll.refreshComplete');
+
+				}, 1200);
+
+			};
+			/*
     //history.go();
      rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
    if (from.name == "app.view2" && to.name =="app.view1"){
@@ -613,227 +611,227 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
    }
 }); */
 
-}) //correctly matched
-.controller('YouHaveBeenMatchedCtrl', function($scope) {
-    $('.youHaveBeenMatched #time').unbind('blur');
-    $('.youHaveBeenMatched #time').blur(function() {
-        var time = $('.youHaveBeenMatched #time').val();
-        if (time != 0) {
-            setTimeout(function () {
-                time = time * 60;
-                $('.youHaveBeenMatched.pane').addClass('confirmed');
+		}) //correctly matched
+	.controller('YouHaveBeenMatchedCtrl', function ($scope) {
+		$('.youHaveBeenMatched #time').unbind('blur');
+		$('.youHaveBeenMatched #time').blur(function () {
+			var time = $('.youHaveBeenMatched #time').val();
+			if (time != 0) {
+				setTimeout(function () {
+					time = time * 60;
+					$('.youHaveBeenMatched.pane').addClass('confirmed');
 
-                function countdown() {
-                    time--;
-                    var min = Math.floor(time/60);
-                    var sec = pad(time - min * 60, 2);
-                    $('.youHaveBeenMatched #countdown').text(min + ':' + sec);
-                    if (time != 0) {
-                        setTimeout(countdown, 1000);
-                    }
-                }
-                setTimeout(countdown, 0);
-            }, 3000);
-        }
-    });
-})
-.controller('MatchDetailCtrl', function($scope, $rootScope, $timeout, $ionicPopup, $stateParams, Matches) {
-    $scope.match = Matches.get($stateParams.matchId);
-    $scope.years = Math.round(10 * Math.random());
-    $scope.date = Math.round(2000 + 10 * Math.random());
-    $scope.goBack2 = function() {
-        console.log('Got clicked');
-        event.preventDefault();
-        window.history.back();
-    };
+					function countdown() {
+						time--;
+						var min = Math.floor(time / 60);
+						var sec = pad(time - min * 60, 2);
+						$('.youHaveBeenMatched #countdown').text(min + ':' + sec);
+						if (time != 0) {
+							setTimeout(countdown, 1000);
+						}
+					}
+					setTimeout(countdown, 0);
+				}, 3000);
+			}
+		});
+	})
+		.controller('MatchDetailCtrl', function ($scope, $rootScope, $timeout, $ionicPopup, $stateParams, Matches) {
+			$scope.match = Matches.get($stateParams.matchId);
+			$scope.years = Math.round(10 * Math.random());
+			$scope.date = Math.round(2000 + 10 * Math.random());
+			$scope.goBack2 = function () {
+				console.log('Got clicked');
+				event.preventDefault();
+				window.history.back();
+			};
 
-    // Triggered on a button click, or some other target
-    $scope.showPopup = function() {
-        $scope.data = {};
+			// Triggered on a button click, or some other target
+			$scope.showPopup = function () {
+				$scope.data = {};
 
-        // An elaborate, custom popup
-        var myPopup = $ionicPopup.show({
-            template: '<input type="password" >', //ng-model="data.wifi"
-            title: 'Enter Wi-Fi Password',
-            subTitle: 'Please use normal things',
-            scope: $scope,
-            buttons: [{
-                text: 'Cancel'
+				// An elaborate, custom popup
+				var myPopup = $ionicPopup.show({
+					template: '<input type="password" >', //ng-model="data.wifi"
+					title: 'Enter Wi-Fi Password',
+					subTitle: 'Please use normal things',
+					scope: $scope,
+					buttons: [{
+						text: 'Cancel'
             }, {
-                text: '<b>Save</b>',
-                type: 'button-positive',
-                onTap: function(e) {
-                    if (!$scope.data.wifi) {
-                        //don't allow the user to close unless he enters wifi password
-                        e.preventDefault();
-                    } else {
-                        return $scope.data.wifi;
-                    }
-                }
+						text: '<b>Save</b>',
+						type: 'button-positive',
+						onTap: function (e) {
+							if (!$scope.data.wifi) {
+								//don't allow the user to close unless he enters wifi password
+								e.preventDefault();
+							} else {
+								return $scope.data.wifi;
+							}
+						}
             }, ]
-        });
-        myPopup.then(function(res) {
-            console.log('Tapped!', res);
-        });
-        $timeout(function() {
-            myPopup.close(); //close the popup after 3 seconds for some reason
-        }, 3000);
-    };
+				});
+				myPopup.then(function (res) {
+					console.log('Tapped!', res);
+				});
+				$timeout(function () {
+					myPopup.close(); //close the popup after 3 seconds for some reason
+				}, 3000);
+			};
 
-    // A confirm dialog
-    $scope.showConfirm = function() {
-        var confirmPopup = $ionicPopup.confirm({
-            title: 'Consume Ice Cream',
-            template: ' <div id="map-canvas"> </div>'
-        });
-        confirmPopup.then(function(res) {
-            if (res) {
-                console.log('You are sure');
-            } else {
-                console.log('You are not sure');
-            }
-        });
-    };
-
-
-})
-
-.controller('RefreshCtrl', function($scope, $timeout) {
-    $scope.myTitle = 'Template';
-
-    $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-
-    $scope.goBack = function() {
-        console.log('Got clicked');
-        event.preventDefault();
-        window.history.back();
-    };
-
-    $scope.doRefresh = function() {
-
-        console.log('Refreshing!');
-        $timeout(function() {
-            $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
-            $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
-            $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
-            $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
-
-            //Stop the ion-refresher from spinning
-            $scope.$broadcast('scroll.refreshComplete');
-
-        }, 1000);
-
-    };
-
-})
-
-.config(function($stateProvider, $urlRouterProvider) {
-
-    // Ionic uses AngularUI Router which uses the concept of states
-    // Learn more here: https://github.com/angular-ui/ui-router
-    // Set up the various states which the app can be in.
-    // Each state's controller can be found in controllers.js
-    $stateProvider
+			// A confirm dialog
+			$scope.showConfirm = function () {
+				var confirmPopup = $ionicPopup.confirm({
+					title: 'Consume Ice Cream',
+					template: ' <div id="map-canvas"> </div>'
+				});
+				confirmPopup.then(function (res) {
+					if (res) {
+						console.log('You are sure');
+					} else {
+						console.log('You are not sure');
+					}
+				});
+			};
 
 
-    .state('login', {
-        url: "/login",
-        templateUrl: "homeview.html",
-        controller: 'LoginCtrl'
-    })
-        .state('createProfile', {
-            url: "/create-profile",
-            templateUrl: "create-profile.html",
-            controller: 'CreateProfileCtrl'
-        })
+		})
 
-    // setup an abstract state for the tabs directive
-    .state('pane', {
-        url: "/pane",
-        //abstract: true,
-        templateUrl: "pane.html",
-        controller: 'CardsCtrl'
-    })
+	.controller('RefreshCtrl', function ($scope, $timeout) {
+		$scope.myTitle = 'Template';
 
-    .state('matches', {
-        url: "/matches",
-        templateUrl: "matches.html",
-        controller: 'MatchCtrl'
-    })
-    .state('youHaveBeenMatched', {
-        url: "/youHaveBeenMatched",
-        templateUrl: "youHaveBeenMatched.html",
-        controller: 'YouHaveBeenMatchedCtrl'
-    })
+		$scope.items = ['Item 1', 'Item 2', 'Item 3'];
 
+		$scope.goBack = function () {
+			console.log('Got clicked');
+			event.preventDefault();
+			window.history.back();
+		};
 
-    .state('matches2', {
-        url: "/matches2",
-        templateUrl: "matches2.html",
-        controller: 'RefreshCtrl'
-    })
+		$scope.doRefresh = function () {
 
+			console.log('Refreshing!');
+			$timeout(function () {
+				$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+				$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+				$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+				$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
 
-    .state('match-detail', {
-        url: '/match/:matchId',
-        templateUrl: 'match-name.html',
-        controller: 'MatchDetailCtrl'
-    })
+				//Stop the ion-refresher from spinning
+				$scope.$broadcast('scroll.refreshComplete');
+
+			}, 1000);
+
+		};
+
+	})
+
+	.config(function ($stateProvider, $urlRouterProvider) {
+
+		// Ionic uses AngularUI Router which uses the concept of states
+		// Learn more here: https://github.com/angular-ui/ui-router
+		// Set up the various states which the app can be in.
+		// Each state's controller can be found in controllers.js
+		$stateProvider
 
 
-    .state('meet', {
-        url: "/meet",
-        templateUrl: "meet.html",
-        controller: 'CardsCtrl'
-    })
+		.state('login', {
+			url: "/login",
+			templateUrl: "homeview.html",
+			controller: 'LoginCtrl'
+		})
+			.state('createProfile', {
+				url: "/create-profile",
+				templateUrl: "create-profile.html",
+				controller: 'CreateProfileCtrl'
+			})
+
+		// setup an abstract state for the tabs directive
+		.state('pane', {
+			url: "/pane",
+			//abstract: true,
+			templateUrl: "pane.html",
+			controller: 'CardsCtrl'
+		})
+
+		.state('matches', {
+			url: "/matches",
+			templateUrl: "matches.html",
+			controller: 'MatchCtrl'
+		})
+			.state('youHaveBeenMatched', {
+				url: "/youHaveBeenMatched",
+				templateUrl: "youHaveBeenMatched.html",
+				controller: 'YouHaveBeenMatchedCtrl'
+			})
 
 
-    .state('test', {
-        url: '/test',
-        templateUrl: "test.html",
-        controller: 'SuperCtrl'
-    })
-
-    .state('test2', {
-        url: '/test2',
-        templateUrl: "test2.html",
-        controller: 'MyCtrl'
-    })
-
-    .state('test3', {
-        url: '/test3',
-        templateUrl: "test3.html",
-        controller: 'Test2Ctrl'
-    })
-
-    .state('leaf', {
-        url: '/leaf',
-        templateUrl: "map.html",
-        controller: 'LeafCtrl'
-    })
+		.state('matches2', {
+			url: "/matches2",
+			templateUrl: "matches2.html",
+			controller: 'RefreshCtrl'
+		})
 
 
-    // Each tab has its own nav history stack:
-    .state('tab.dash', {
-        url: '/dash',
-        views: {
-            'tab-dash': {
-                templateUrl: 'templates/tab-dash.html',
-                controller: 'DashCtrl'
-            }
-        }
-    })
+		.state('match-detail', {
+			url: '/match/:matchId',
+			templateUrl: 'match-name.html',
+			controller: 'MatchDetailCtrl'
+		})
 
-    // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/login');
 
-});
+		.state('meet', {
+			url: "/meet",
+			templateUrl: "meet.html",
+			controller: 'CardsCtrl'
+		})
+
+
+		.state('test', {
+			url: '/test',
+			templateUrl: "test.html",
+			controller: 'SuperCtrl'
+		})
+
+		.state('test2', {
+			url: '/test2',
+			templateUrl: "test2.html",
+			controller: 'MyCtrl'
+		})
+
+		.state('test3', {
+			url: '/test3',
+			templateUrl: "test3.html",
+			controller: 'Test2Ctrl'
+		})
+
+		.state('leaf', {
+			url: '/leaf',
+			templateUrl: "map.html",
+			controller: 'LeafCtrl'
+		})
+
+
+		// Each tab has its own nav history stack:
+		.state('tab.dash', {
+			url: '/dash',
+			views: {
+				'tab-dash': {
+					templateUrl: 'templates/tab-dash.html',
+					controller: 'DashCtrl'
+				}
+			}
+		})
+
+		// if none of the above states are matched, use this as the fallback
+		$urlRouterProvider.otherwise('/login');
+
+	});
 </script>
 
 
 <body ng-app="starter" animation="slide-left-right-ios7">
 
-    <ion-nav-view></ion-nav-view>
+	<ion-nav-view></ion-nav-view>
 
 </body>
 
