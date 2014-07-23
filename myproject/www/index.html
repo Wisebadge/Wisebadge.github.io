@@ -204,7 +204,7 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
 
 
-.controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope, Matches, $state) {
+.controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate, $ionicPopup, $rootScope, Matches, $state) {
     $rootScope.accepted = 0;
     $rootScope.rejected = 0;
     $scope.years = Math.round(10 * Math.random());
@@ -214,21 +214,75 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
 
     $scope.cards = shuffledCards;
     chosenGuys = [];
+    $scope.showConfirm = function(id) {
+        if (id == 5 || id == 1) { //ravi or alar
+        console.log('ravi or alar accepted')
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Consume Ice Cream',
+                template: 'Hi' //' <div id="map-canvas"> </div>'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                    console.log('Should accept');
+                } else {
+                    console.log('You are not sure');
+                }
+            })
+
+        } else if (id == 4) { //helen
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Consume Ice Cream',
+                template: 'Hi' //' <div id="map-canvas"> </div>'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                    console.log('Helen chosen');
+                    chosenGuys.push(card);
+                    $state.go('youHaveBeenMatched');
+                } else {
+                    console.log('You are not sure');
+                }
+            })
+        }
+        console.log('Triggered')
+
+    };
+    $scope.showConfirmUn = function() {
+        var confirmPopup = $ionicPopup.confirm({
+            title: "It's a match!",
+            template: 'Hi' //' <div id="map-canvas"> </div>'
+        });
+        confirmPopup.then(function(res) {
+            if (res) {
+                console.log('You are sure');
+            } else {
+                console.log('You are not sure');
+            }
+        });
+    };
 
     $scope.cardSwiped = function(index) {
         var card = shuffledCards[index];
         if (this.swipeCard.positive === true && card.name === 'Helen Poldsman') {
+            /// I N S E R T STUB
             chosenGuys.push(card);
             $state.go('youHaveBeenMatched');
-        } else {}
+        } else if (this.swipeCard.positive === true) {
+
+            chosenGuys.push(card);
+        } else {
+
+        }
     };
 
     $scope.cardDestroyed = function(index) {
         if (this.swipeCard.positive === true) {
             $scope.$root.accepted++;
+
         } else {
             $scope.$root.rejected++;
         }
+
         $scope.cards.splice(index, 1);
         if ($scope.$root.accepted > 1) {
             console.log('next');
@@ -249,6 +303,8 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
         card.swipe();
     };
+
+
 })
 
 .controller('ContentController', function($scope, $ionicSideMenuDelegate) {
@@ -589,60 +645,60 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         }
     }
 })
-.controller('MatchCtrl', function($scope, $ionicViewService, $rootScope, $timeout, Matches) {
-    $scope.matches = [];
-    for (var i = 0; i < chosenGuys.length; i++) {
-        $scope.matches.push(chosenGuys[i]);
-    }
+    .controller('MatchCtrl', function($scope, $ionicViewService, $rootScope, $timeout, Matches) {
+        $scope.matches = [];
+        for (var i = 0; i < chosenGuys.length; i++) {
+            $scope.matches.push(chosenGuys[i]);
+        }
 
-    $scope.myfilter = function(timelim) {
-        var curdate = (new Date).toJSON();
-        console.log('filtering');
-        console.log(curdate);
-        //return {date:  };
-    };
+        $scope.myfilter = function(timelim) {
+            var curdate = (new Date).toJSON();
+            console.log('filtering');
+            console.log(curdate);
+            //return {date:  };
+        };
 
-    $scope.numLimit = 10;
+        $scope.numLimit = 10;
 
-    $rootScope.addMatch = function(newMatch) {
-        //var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-        //newCard.id = Math.random();
-        $scope.matches.push(angular.extend({}, newMatch));
-    };
+        $rootScope.addMatch = function(newMatch) {
+            //var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+            //newCard.id = Math.random();
+            $scope.matches.push(angular.extend({}, newMatch));
+        };
 
-    $scope.pop = function() {
-        console.log('Got popped');
-        event.preventDefault();
-        $scope.numLimit = 2;
-    };
+        $scope.pop = function() {
+            console.log('Got popped');
+            event.preventDefault();
+            $scope.numLimit = 2;
+        };
 
-    var history = $ionicViewService.getCurrentView();
-    //console.log(history);
+        var history = $ionicViewService.getCurrentView();
+        //console.log(history);
 
-    $scope.goBack = function() {
-        console.log('Got clicked');
-        event.preventDefault();
-        window.history.back();
-    };
+        $scope.goBack = function() {
+            console.log('Got clicked');
+            event.preventDefault();
+            window.history.back();
+        };
 
-    $rootScope.x = 5; //id5 in factory
+        $rootScope.x = 5; //id5 in factory
 
-    $scope.doRefresh = function() {
-        console.log('Refreshing!');
+        $scope.doRefresh = function() {
+            console.log('Refreshing!');
 
-        $timeout(function() {
-            //$rootScope.addMatch(samples[rand]);
-            //$rootScope.addMatch(samples[i++]);
-            //$scope.matches.push( samples[i++] + Math.floor(Math.random() * 1000) + 4);
-            //$scope.matches.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+            $timeout(function() {
+                //$rootScope.addMatch(samples[rand]);
+                //$rootScope.addMatch(samples[i++]);
+                //$scope.matches.push( samples[i++] + Math.floor(Math.random() * 1000) + 4);
+                //$scope.matches.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
 
-            //Stop the ion-refresher from spinning
-            $scope.$broadcast('scroll.refreshComplete');
+                //Stop the ion-refresher from spinning
+                $scope.$broadcast('scroll.refreshComplete');
 
-        }, 1200);
+            }, 1200);
 
-    };
-    /*
+        };
+        /*
     //history.go();
      rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
    if (from.name == "app.view2" && to.name =="app.view1"){
@@ -650,69 +706,72 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
    }
 }); */
 
-}) //correctly matched
-.controller('YouHaveBeenMatchedCtrl', function($scope) {
-})
-.controller('MatchDetailCtrl', function($scope, $rootScope, $timeout, $ionicPopup, $stateParams, Matches) {
-    $scope.match = Matches.get($stateParams.matchId);
-    $scope.years = Math.round(10 * Math.random());
-    $scope.date = Math.round(2000 + 10 * Math.random());
-    $scope.goBack2 = function() {
-        console.log('Got clicked');
-        event.preventDefault();
-        window.history.back();
-    };
+    }) //correctly matched
+.controller('YouHaveBeenMatchedCtrl', function($scope) {})
+    .controller('MatchDetailCtrl', function($scope, $rootScope, $timeout, $ionicPopup, $stateParams, Matches) {
+        $scope.match = Matches.get($stateParams.matchId);
+        $scope.years = Math.round(10 * Math.random());
+        $scope.date = Math.round(2000 + 10 * Math.random());
+        $scope.goBack2 = function() {
+            console.log('Got clicked');
+            event.preventDefault();
+            window.history.back();
+        };
 
-    // Triggered on a button click, or some other target
-    $scope.showPopup = function() {
-        $scope.data = {};
+        // M A P   T O D O  S T U B
+        //
 
-        // An elaborate, custom popup
-        var myPopup = $ionicPopup.show({
-            template: '<input type="password" >', //ng-model="data.wifi"
-            title: 'Enter Wi-Fi Password',
-            subTitle: 'Please use normal things',
-            scope: $scope,
-            buttons: [{
-                text: 'Cancel'
-            }, {
-                text: '<b>Save</b>',
-                type: 'button-positive',
-                onTap: function(e) {
-                    if (!$scope.data.wifi) {
-                        //don't allow the user to close unless he enters wifi password
-                        e.preventDefault();
-                    } else {
-                        return $scope.data.wifi;
+        /*
+        // Triggered on a button click, or some other target
+        $scope.showPopup = function() {
+            $scope.data = {};
+
+            // An elaborate, custom popup
+            var myPopup = $ionicPopup.show({
+                template: '<input type="password" >', //ng-model="data.wifi"
+                title: 'Enter Wi-Fi Password',
+                subTitle: 'Please use normal things',
+                scope: $scope,
+                buttons: [{
+                    text: 'Cancel'
+                }, {
+                    text: '<b>Save</b>',
+                    type: 'button-positive',
+                    onTap: function(e) {
+                        if (!$scope.data.wifi) {
+                            //don't allow the user to close unless he enters wifi password
+                            e.preventDefault();
+                        } else {
+                            return $scope.data.wifi;
+                        }
                     }
+                }, ]
+            });
+            myPopup.then(function(res) {
+                console.log('Tapped!', res);
+            });
+            $timeout(function() {
+                myPopup.close(); //close the popup after 3 seconds for some reason
+            }, 3000);
+        };
+
+        // A confirm dialog
+        $scope.showConfirm = function() {
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Consume Ice Cream',
+                template: ' <div id="map-canvas"> </div>'
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                    console.log('You are sure');
+                } else {
+                    console.log('You are not sure');
                 }
-            }, ]
-        });
-        myPopup.then(function(res) {
-            console.log('Tapped!', res);
-        });
-        $timeout(function() {
-            myPopup.close(); //close the popup after 3 seconds for some reason
-        }, 3000);
-    };
+            });
+        };
+*/
 
-    // A confirm dialog
-    $scope.showConfirm = function() {
-        var confirmPopup = $ionicPopup.confirm({
-            title: 'Consume Ice Cream',
-            template: ' <div id="map-canvas"> </div>'
-        });
-        confirmPopup.then(function(res) {
-            if (res) {
-                console.log('You are sure');
-            } else {
-                console.log('You are not sure');
-            }
-        });
-    };
-
-
-})
+    })
 
 .controller('RefreshCtrl', function($scope, $timeout) {
     $scope.myTitle = 'Template';
@@ -776,11 +835,11 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.cards', 'starter.modservic
         templateUrl: "matches.html",
         controller: 'MatchCtrl'
     })
-    .state('youHaveBeenMatched', {
-        url: "/youHaveBeenMatched",
-        templateUrl: "youHaveBeenMatched.html",
-        controller: 'YouHaveBeenMatchedCtrl'
-    })
+        .state('youHaveBeenMatched', {
+            url: "/youHaveBeenMatched",
+            templateUrl: "youHaveBeenMatched.html",
+            controller: 'YouHaveBeenMatchedCtrl'
+        })
 
 
     .state('matches2', {

@@ -60,13 +60,16 @@
                             Share
                         </a>
                     </div-->
+
                     <div class="button-bar" style="margin-top: 25px;">
 
                         <button class="button button-clear button-positive icon ion-close" ng-click="reject()"></button>
 
-                        <button class="button button-clear button-assertive icon ion-heart" ng-click="accept()"></button>
+                        <!--div ng-click="showConfirm({{card.id}})" ng-show="{{card.id}} == 4"-->
+                         <button class="button button-clear button-assertive icon ion-heart" ng-click="accept()" ></button>
+
                     </div>
-                </div>
+
             </swipe-card>
         </swipe-cards>
 
