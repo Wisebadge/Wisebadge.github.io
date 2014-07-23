@@ -42,21 +42,21 @@ angular.module('starter.modservices', []).factory('Matches', function() {
           'image': 'http://wisebadge.github.io/myproject/www/img/Fred.jpg'
       },
       {
-          'name': 'Ravi',
+          'name': 'Ravi Belani',
           'email': 'j@smith.com',
           'phone': '123-456-7890',
-          'title': 'Product Design at IDEO',
-          'location': 'Berkeley, CA',
+          'title': 'Director at Alchemist',
+          'location': 'Stanford, CA',
           'id': 4,
           'date': (new Date).toJSON(),
           'image': 'http://wisebadge.github.io/myproject/www/img/Ravi.jpg'
       },
       {
-          'name': 'Helen Poldsman',
+          'name': 'Helen Poldsam',
           'email': 'j@smith.com',
           'phone': '123-456-7890',
-          'title': 'Product Design at IDEO',
-          'location': 'Berkeley, CA',
+          'title': 'Chief Mentor at EIA',
+          'location': 'Tallinn, Estonia',
           'id': 5,
           'date': (new Date).toJSON(),
           'image': 'http://wisebadge.github.io/myproject/www/img/Helen.jpg'
