@@ -621,6 +621,13 @@
 				}, 3000);
 			}
 		});
+
+    $('.youHaveBeenMatched #mapArea').unbind('click');
+    $('.youHaveBeenMatched #mapArea').click(function (e) {
+      var x = e.pageX - $(window).scrollLeft();
+      var y = e.pageY - $(window).scrollTop();
+      $('.youHaveBeenMatched #spotIcon').css('top', y).css('left', x);
+    });
 	})
 		.controller('MatchDetailCtrl', function ($scope, $rootScope, $timeout, $ionicPopup, $stateParams, Matches) {
 			$scope.match = Matches.get($stateParams.matchId);
