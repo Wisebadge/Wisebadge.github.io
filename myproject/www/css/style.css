@@ -2,6 +2,17 @@
 
 /** For swipe index **/
 
+#preload-01 { background: url(../img/Slice2.png) no-repeat -9999px -9999px; }
+#preload-02 { background: url(../img/ProfileCreation.png) no-repeat -9999px -9999px; }
+#preload-03 { background: url(../img/youHaveBeenMatched-waiting.png) no-repeat -9999px -9999px; }
+#preload-04 { background: url(../img/youHaveBeenMatched-confirmed.png) no-repeat -9999px -9999px; }
+#preload-05 { background: url(http://wisebadge.github.io/myproject/www/img/Tiffine.jpg) no-repeat -9999px -9999px; }
+#preload-06 { background: url(http://wisebadge.github.io/myproject/www/img/Alar.jpg) no-repeat -9999px -9999px; }
+#preload-07 { background: url(http://wisebadge.github.io/myproject/www/img/Chris.jpg) no-repeat -9999px -9999px; }
+#preload-08 { background: url(http://wisebadge.github.io/myproject/www/img/Fred.jpg) no-repeat -9999px -9999px; }
+#preload-09 { background: url(http://wisebadge.github.io/myproject/www/img/Helen.jpg) no-repeat -9999px -9999px; }
+#preload-09 { background: url(http://wisebadge.github.io/myproject/www/img/Ravi.jpg) no-repeat -9999px -9999px; }
+
 .ion-close {
     border-right: 1px solid rgb(226, 226, 226) !important;
 }
