@@ -1,0 +1,55 @@
+<ion-nav-bar animation="" type="bar-positive" class="deuglify">
+    <a href="#create-profile">
+        <button class="button button-clear stnd icon ion-ios7-arrow-back" ng-click=""></button>
+        <button class="button button-clear stnd icon" ng-click=""> Back </button>
+    </a>
+    <a href="#matches" id='right'>
+        <button class="button button-clear stnd icon" ng-click=""> List </button>
+    </a>
+</ion-nav-bar>
+
+<ion-nav-view animation="slide-left-right-ios7"></ion-nav-view>
+
+<ion-view title="Matches">
+
+<ion-nav-bar animation="" type="bar-positive" class="deuglify">
+    <a href="#create-profile" style="text-decoration: none">
+        <button class="button button-clear stnd icon ion-ios7-arrow-back" ng-click=""></button>
+        <button class="button button-clear stnd icon" ng-click=""> Back </button>
+    </a>
+    <a href="#matches" id='right'>
+        <button class="button button-clear stnd icon" ng-click=""> List </button>
+    </a>
+</ion-nav-bar>
+
+    <pane ng-controller="CardsCtrl" class="cards pane standard" ng-init="">
+
+        <swipe-cards>
+            <swipe-card on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)" ng-model="count">
+                <div ng-controller="CardCtrl">
+
+                    <div class="item item-body" id="trans">
+                        <img class="full-image circled" ng-src="http://wisebadge.github.io/myproject/www/img/Helen.jpg">
+                        <h2 id="card">
+                            Helen Poldsam
+                        </h2>
+                        <h3 id="card">
+                            Chief Mentor at EIA
+                        </h3>
+                        <p>
+                            Helen Poldsam is a native of Tallinn, Estonia and has lived in Nice, France since 2014.  Helen Poldsam has worked as Chief Mentor at EIA for 2 years.
+                        </p>
+
+
+                    </div>
+                    <div class="button-bar" style="margin-top: 25px;">
+
+                        <button class="button button-clear button-positive icon ion-close" ng-click="reject()"></button>
+
+                        <button class="button button-clear button-assertive icon ion-heart" ng-click="accept()"></button>
+                    </div>
+                </div>
+            </swipe-card>
+        </swipe-cards>
+    </pane>
+</ion-view>
