@@ -11,3 +11,4 @@ myproject/platforms/*
 myproject/plugins/*
 myproject/www/img/.*
 !myproject/www/img/*
+!weather-ang/img/*
